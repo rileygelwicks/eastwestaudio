@@ -1,0 +1,7 @@
+#! /usr/bin/env python
+
+import ewa.clisupport as cli
+import sys
+
+if __name__=='__main__':
+    cli.do_serve(sys.argv[1:])

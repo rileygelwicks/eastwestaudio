@@ -1,0 +1,111 @@
+.. -*-rst-*-
+
+======================
+ WNYC EWA Integration
+======================
+
+* lots more tests:
+  * conf parser
+  * Python config file
+  * finding the right files to combine
+  * combining them
+* improve logging
+* performance testing: ewa versus static.  
+* try lighttpd 1.5.
+* acceptance testing of aggregated audio.
+* need updated ebuild for ply.
+* siege urls.txt for multi-file stress tests.
+
+* QA plan.  
+* Get QA guy.
+* cleanup.
+* docs.
+
+
+Next Things to Do
+=================
+
+* QA plan! 
+* regression-test ewasplice.
+* more tests!
+* more docs!
+
+
+Upcoming Features
+=================
+
+* in ewabatch also drop to user/group if running as root. 
+* move more defaults that should be configurable into Config:
+  * what transcodeFunc to use
+  * whether to add Content-Disposition: attachment header
+  * what else?
+* logging -- we need log rotation, which can be done with the logging
+  module. 
+* raw mode (way for wsgi to return unprocessed files if request meets
+  some criterion). 
+
+Future Ideas
+============
+
+* per-request aggregations, stored in separate buckets
+* dynamic id3 tagging.
+* a class of rules that does not depend on the idea of a "main" file.
+
+
+Bugs
+====
+
+* add dependencies to setup.py.
+
+
+"Deploying EWA" Presentation
+============================
+
+An s5 presentation with complete instructions on getting EWA up and
+running.  Preparatory to this, full open-source release with trac
+instance on a suitable url: code.wnyc.org?  eastwestaudio.org?
+
+DONE
+====
+
+* FileRule, and its abstraction of config format, isn't in used in
+  bin/ewarule. Neither is the config file, but it should be. -- DONE
+* BAREWORD is too greedy a token; only support a more restrictive set
+  of characters, and add a quoted string token. -- DONE
+* find way to get ply to stop generating files in the current working
+  directory.  -- DONE
+* I forgot to implement a matcher that depends on the current time;
+  that needs to be done, and the config file format suitably
+  extended.   -- DONE!
+* the config file format for DateRangeMatch doesn't permit setting its
+  dateregex/dateformat parameters.  -- DONE
+* windows compatibility -- non-forking servers supported in ewa
+  script. -- DONE
+* rule system -- new format?  DONE
+* pass options to conditions -- DONE
+* dynamic rules that create file lists according to back-references 
+  to regex matches in the filename?  DONE
+* add ability to import rules from a python config file. -- DONE
+* add Not to rules. -- DONE
+* support "not" in ewaconf.  -- DONE
+* get functional installation running on zelenka. -- DONE
+* fix ewarule to use config -- DONE
+* get audio snippets for testing -- DONE
+* truncated frames in default splicer (mp3cat seems OK). -- FIXED
+* when running as root, become another user/group. -- DONE
+* test wav support for extra masters -- DONE
+
+REJECTED
+========
+
+* move new fix for final frames into C for better performance. --
+  REJECTED
+* make it possible to leave off ".mp3" in the extra filenames? --
+  REJECTED
+* refactor ewa and ewarule commandline programs into one program: 
+
+    ewa --serve
+    ewa --batch
+  
+  ewasplice can stay the way it is.  Also, add 'stop' option to ewa,
+  to kill the server; and configtest option.  -- REJECTED

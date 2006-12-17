@@ -1,0 +1,68 @@
+# -*-python-*-
+# -*-coding: utf8-*-
+
+## keys that begin with an underscore won't go in the config object;
+## use them for convenience in the config file itself, for temporary
+## variables, imports, etc.
+
+_EWADIR='/home/smulloni/workdir/svn.wnyc.org/ewa2/trunk'
+
+## KEYS THAT MUST BE DEFINED
+############################
+
+## path to the JSON file with rules
+rulefile='%s/tests/rulelist.json' % _EWADIR
+
+## path to the base audio directory
+basedir='%s/tests/audioroot' % _EWADIR
+
+
+## OPTIONAL KEYS
+################
+
+## what server protocol to use: one of fcgi, scgi or http.  Default: fcgi.
+# protocol='fcgi'
+
+## bind address.  Either the ip interface and port the server should
+## listen on, or path to a unix socket (and optionally a umask for the
+## socket file).  Default: 127.0.0.1:5000.
+
+# interface='127.0.0.1'
+# port=5000
+
+# or
+
+#unixsocket=/path/to/socket-file
+#umask=0600
+
+
+## where combined files should go.  Default: basedir+'/combined'
+
+# targetdir=basedir+'/combined'
+
+## path to logfile (default: no logfile)
+logfile='/home/smulloni/ewa.log'
+
+## log level (default: critical)
+loglevel='debug'
+
+## whether to daemonize (default: yes)
+daemonize=False
+
+## whether to send an X-Sendfile or equivalent header (default: yes)
+# use_xsendfile=True
+
+## whether to stream directly, not saving to disk (default: no; not recommended)
+# stream=False
+
+## what X-Sendfile header to send X-Sendfile is the default, but lighttpd in
+# versions <= 1.4.11 requires 'X-LIGHTTPD-send-file'.
+
+sendfile_header='X-LIGHTTPD-send-file'
+
+## how often to refresh combined files (default: 0 (never refresh))
+# refresh_rate=0
+
+## if daemonizing, where to put a pidfile (default: none)
+# pidfile=/path/to/ewa.pid
+

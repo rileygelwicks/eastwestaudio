@@ -1,0 +1,69 @@
+EastWestAudio
+=============
+
+Summary
+-------
+
+ewa (EastWestAudio) is an application that quickly splices together
+mp3 audio files together into larger files according to user-defined
+rules.  It can be run as a commandline utility or in server mode.
+
+Installation
+------------
+
+Ewa may installed through setuptools:
+
+   easy_install .
+
+or:
+
+   python setup.py install
+
+Dependencies
+------------
+
+ewa has several Python dependencies:
+
+  setuptools
+  eyeD3
+  simplejson
+  ply 
+  nose (optional, to run tests)
+  Python 2.4 or better.
+
+It also requires that lame be installed for transcoding.
+
+Documentation
+-------------
+
+The documentation is available as man pages.  To install, cd to the
+doc directory and type 
+
+   make install
+
+(This is probably not going to remain true.)
+
+Tests
+-----
+
+The test suite may be run through nosetests.
+
+License
+-------
+
+Ewa is free software; for license see the file COPYING.
+
+
+Authors
+-------
+
+The principal author of Ewa is Jacob Smullyan, with significant
+contributions from:
+
+* Joe Hopfield
+* Brian Olsen
+
+Ewa contains code derived from mp3cat by Tom Clegg.
+
+Copyright 2005,2006 WNYC New York Public Radio.
+

@@ -1,0 +1,100 @@
+=head1 NAME
+
+ewa - a dynamic mp3-splicing server
+
+=head1 SYNOPSIS
+
+B<ewa> S<[B<-c> configfile | B<--config>=configfile]>
+
+=head1 DESCRIPTION
+
+B<ewa> is a server program that generates mp3 files that are
+concatenations of one main mp3 file (the content file) with any number
+of intro and/or outro files according to configurable rules.
+
+=head1 OPTIONS
+
+=over 5
+
+=item B<-c> configfile
+B<--config>=configfile
+
+
+B<ewa> takes only one option, a path to a config file.  If not
+specified, B<ewa> will look for one first in B<~/.ewa/ewa.conf> and
+then in B</etc/ewa.conf>.  B<ewa> needs a config file to run.
+
+=back
+
+=head1 USAGE
+
+=head2 Deployment
+
+=head2 Concatenation Rules 
+
+In order for B<ewa> to know what files need to be concatenated
+together to serve a request for an audio file, it consults a
+concatenation rule, which is a function that is given the name of the
+audio file requested and returns a list of files to concatenate. 
+
+Let us call such a rule B<nonconditional> if it will return a
+non-empty list of files for every possible input file, and call it
+B<conditional> if it will not.  
+
+The rule that Ewa directly consults needs to be non-conditional, but
+that rule may internally consult conditional sub-rules to deal with
+different cases.  This is implemented with a B<rule list>, which is a
+rule with a list of sub-rules; when called, it calls each sub-rule in
+turn until one returns a non-empty result, and returns that.
+
+=head3 Types of Rules
+
+=over 2
+
+=item Glob Rules
+
+=item Regex Rules
+
+=item Date Range Rules
+
+=back
+
+=head2 Configuration
+
+The rules are currently defined in JSON, in a very particular format;
+while the JSON could be hand-edited, it is easier to define the rules
+in Python and then serialize them to JSON.  A tool will be written to
+make it easier to define the rules, or another format devised.
+
+=head1 BUGS
+
+The mp3 files B<ewa> generates are only as valid as the input mp3
+files.
+
+=head1 SEE ALSO
+
+ewarule, ewasplice
+
+=head1 AUTHORS
+
+=over 2 
+
+=item Jacob Smullyan <jsmullyan@gmail.com>
+
+=item Joe Hopfield
+
+=item Brian Olsen
+
+=back
+
+
+An earlier version of B<ewa> was written by Jacob Smullyan with help
+from Joe Hopfield; Brian Olsen drafted a subsequent version, and Jacob
+Smullyan wrote a significantly different new version, ewa 2.0, with
+considerable material from both previous codebases.
+
+=head1 COPYRIGHT AND LICENSE
+
+2006 WNYC New York Public Radio
+
+The GPL 2.0 license applies.  

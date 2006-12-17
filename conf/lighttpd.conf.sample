@@ -1,0 +1,23 @@
+server.modules = ( "mod_access",
+                   "mod_fastcgi",
+                   "mod_accesslog",
+                   "mod_staticfile" )
+
+server.document-root = "/home/smulloni/ewaroot"
+server.errorlog      = "/tmp/lighttpd.error.log"
+server.port          = 8000
+accesslog.filename   = "/tmp/lighttpd.access.log"
+
+$HTTP["url"] !~ "^/static/" {
+ fastcgi.server = (
+                  "/" =>
+                    ( "127.0.0.1" =>
+                      (
+                        "host" => "127.0.0.1",
+                        "port" => 5000,
+                        "check-local" => "disable",
+			"allow-x-send-file" => "enable"
+                      )
+                    )
+                )
+}
