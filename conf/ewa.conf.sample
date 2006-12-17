@@ -11,7 +11,7 @@ _EWADIR='/home/smulloni/workdir/svn.wnyc.org/ewa2/trunk'
 ############################
 
 ## path to the JSON file with rules
-rulefile='%s/tests/rulelist.json' % _EWADIR
+rulefile='%s/conf/rules.conf' % _EWADIR
 
 ## path to the base audio directory
 basedir='%s/tests/audioroot' % _EWADIR
