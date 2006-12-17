@@ -5,7 +5,7 @@
 ## use them for convenience in the config file itself, for temporary
 ## variables, imports, etc.
 
-_EWADIR='/home/smulloni/workdir/svn.wnyc.org/ewa2/trunk'
+_EWADIR='/home/smulloni/workdir/svn.wnyc.org/ewa/trunk'
 
 ## KEYS THAT MUST BE DEFINED
 ############################
