@@ -1,4 +1,3 @@
-import mmap
 import os
 from struct import unpack
 import subprocess
@@ -226,3 +225,5 @@ def _check_last_sync(fp, idx):
     
     return idx
 
+
+         

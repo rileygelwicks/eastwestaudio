@@ -50,15 +50,6 @@ class BaseAudioProvider(object):
                     audioname)
         if path_exists(p):
             return p
-##         main, ext=os.path.splitext(p)
-##         if not ext:
-##             # try various extensions
-##             for e in ('.wav', '.WAV',
-##                       '.aiff', '.AIFF',
-##                       '.mp3', '.MP3'):
-##                 possible='%s%s' % (main, e)
-##                 if path_exists(possible):
-##                     return possible
         raise FileNotFound(p)
             
 
@@ -79,8 +70,6 @@ class BaseAudioProvider(object):
             path+='.mp3'
         if create:
             orig_path=self.get_extra_master_path(audioname)
-##             if not path_exists(orig_path):
-##                 raise FileNotFound(orig_path)
             if path_exists(path):
                 trans_mtime=getmtime(path)
                 orig_mtime=getmtime(orig_path)

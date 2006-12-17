@@ -3,10 +3,10 @@ ez_setup.use_setuptools()
 
 from setuptools import setup, Extension
 import os
-os.environ['PYTHONSETUP']='1'
 import sys
 sys.path.insert(0, 'src')
 from ewa import __version__ as version
+
 description="an mp3 splicing system"
 platforms="OS Independent"
 
