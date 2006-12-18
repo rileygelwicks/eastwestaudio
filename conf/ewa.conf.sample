@@ -71,3 +71,8 @@ sendfile_header='X-LIGHTTPD-send-file'
 ## this to "attachment"
 
 content_disposition='attachment'
+
+## if you run as root and want to drop credentials to another user/group,
+## set these.  By default they are not set.
+# user = 'ewa'
+# group = 'ewa'

@@ -178,10 +178,9 @@ Supported Platforms
 
 Ewa has been developed and tested on Linux, but should work fine on
 any flavor of BSD, including Mac OS X, and commercial UNIX
-implementations.  It hasn't been tested on Windows, but a future might
-work there in whole or in part; if you are interested in helping with
-a Windows port, please volunteer on the mailing list.  Please note
-that some parts of this manual presuppose a UNIX platform.
+implementations.  It hasn't been tested on Windows, but in future
+might work there in whole or in part.  Please note that some parts of
+this manual presuppose a UNIX platform.
 
 Ewa is written in Python_, and requires Python 2.4 or later. In
 addition, the following Python packages need to be installed:
@@ -204,10 +203,17 @@ mod\_xsendfile_, or possibly nginx_.
 Getting Ewa
 -----------
 
-Ewa releases are available at from
-http://cheeseshop.python.org/pypi/ewa.  If you want to follow the
-bleeding edge development version, you can check out the latest source
-code from Subversion at http://svn.wnyc.org/ewa/trunk.
+Ewa releases are available in binary and source form from
+http://cheeseshop.python.org/pypi/ewa. 
+
+If you want to follow the bleeding edge development version, you can
+check out the latest source code from our subversion repository::
+
+  svn co svn+ssh://svn.wnyc.org/var/svn/repos/ewa/trunk ewa
+
+.. the above refers to our private WNYC repository;  this
+   will be switched to our public repository when it exists. 
+
 
 Software Installation
 ---------------------
@@ -304,19 +310,69 @@ The ``ewa.conf`` File
 
 ``ewa.conf`` is written in Python; keys defined there that don't start
 with an underscore become attributes of the ``ewa.config.Config``
-object.  The following values are provided by default:
+object.  The following are meaningful keys:
 
-* user
-* group
-* more ....
-
-The following must be provided:
-
- basedir
-     the root of the managed audio directory.
-
- rulefile
-     path to the rule file.
+basedir
+	The path to to the base audio directory.  Must be supplied, as
+	there is no default.
+rulefile
+	The path to the file with ewa rules, either in Python, JSON or
+	ewaconf.  If the file ends with ``.py``, it is assumed to be in
+	Python; if with ``.json`` or ``.js``, in JSON; otherwise
+	ewaconf.  This also must be supplied.
+targetdir
+	The path to the directory where ewa will place generated
+	composite files.  If not supplied, basedir + ``/combined``
+	will be used.
+protocol
+	what server protocol to use: one of ``'fcgi'``, ``'scgi'`` or
+	``'http'``, defaulting to ``'fcgi'``.  ``'http'`` is for
+	development only and should not be used otherwise.
+interface
+	an ip address like ``'127.0.0.1'``, which is the default.
+port
+	default: ``5000``.
+unixsocket
+	if you want to use a UNIX rather than a TCP/IP socket, put the
+	path to the socket file here; e.g., ``'/var/run/ewa.socket'``.
+umask
+	if you are using a UNIX socket, this will determine its
+	permissions; e.g., ``0600``.
+logfile
+	path to logfile.  By default there is no logfile and hence no
+	logging. 
+loglevel
+	how much to log -- should be one of ``'debug'``, ``'info'``,
+	``'warn'``,  or ``'critical'``, defaulting to ``'critical'``.  
+daemonize
+	whether the server process should daemonize (default:
+	``True``). 
+use_xsendfile
+	whether to send an X-Sendfile or equivalent header from the
+	server process to the front-end web server (default:
+	``True``). 
+sendfile_header
+	what flavor of X-Sendfile-ish header to send.
+	``'X-Sendfile'`` is the default, but lighttpd in versions
+	<=`.4.11 requires ``'X-LIGHTTPD-send-file'`` instead, and uses
+	``'X-Accel-Redirect'`` (with slightly different semantics). 
+stream
+	whether to stream the concatenated file directory rather than
+	saving to disk.  This is not a production-quality option;
+	don't use it.
+refresh_rate
+	how often to refresh combined files, in seconds.  Default is
+	``0`` (never refresh).
+pidfile
+	if daemonizing, where to put a pidfile (default: ``None``).
+content_disposition
+	if you want a Content-Disposition: attachment header, set this
+	to ``'attachment'``.  Default is ``None``.
+user
+	If you run in either server or batch mode as root and want to
+	drop credentials to another user/group, set this.
+group
+	Same as for user.
 
 
 The EWA Rule Configuration File
@@ -455,6 +511,10 @@ the nested list of rules in matching brackets::
           pre: [current.mp3]
           post: [current.mp3]
        ]
+
+For a complete reference, see the `grammar specification`_ below.
+
+.. _`grammar specification`: `Appendix I. ewaconf Formal Grammar Specification`_
 
 Using The CLI Programs
 ======================
