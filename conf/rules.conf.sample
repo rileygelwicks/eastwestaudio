@@ -5,7 +5,7 @@
 
 >08/08/2006: pre: [lumpy.mp3], post: []
 
-/shows/bl/*: 
+shows/bl/*: 
   pre: [intro/bl.mp3, ad/generic.mp3]
   post: [outro/bl.mp3]
 
@@ -13,12 +13,12 @@ regex:"^/shows/(?P<nick>[a-z][a-z0-9]+)/(?P=nick).*\.mp3" [I]:
   pre: [intro/newyear.mp3], post: []
 
 =01/20/2001 [F, fmt=MMDDYYYY]: [
-   /shows/studio: 
+   shows/studio: 
       pre: []
       post: [outro/studio.mp3]
-   /shows/pingpong:
+   shows/pingpong:
       pre: [foomanchu.mp3,bingo.mp3]
       post: []
-   pre: [plop], post: []
+   pre: [plop.mp3], post: []
    ]
 default

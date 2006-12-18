@@ -7,43 +7,212 @@
 :organization: WNYC New York Public Radio
 :date: $Date$
 :revision: $Revision$
+:version: 0.62
 
 
-.. :contents:: 
+.. contents:: 
 ..
-  1  Overview
-  2  Deploying EWA
-    2.1  Supported Platforms
-    2.2  Software Installation
-    2.3  The Managed Audio Directory
-    2.4  Permissions Gotchas
-    2.5  Configuration
-      2.5.1  The ``ewa.conf`` File
-      2.5.2  The EWA Rule Configuration File
+    1  Overview
+      1.1  Modes of Operation
+        1.1.1  Batch Mode
+        1.1.2  Server Mode
+      1.2  Limitations
+        1.2.1  A Note on Mp3 Splicing
+    2  Installation
+      2.1  Supported Platforms
+      2.2  Getting Ewa
+      2.3  Software Installation
+      2.4  The Managed Audio Directory
+      2.5  Permissions Gotchas
+    3  Configuration
+      3.1  The ``ewa.conf`` File
+      3.2  The EWA Rule Configuration File
+        3.2.1  The Ewaconf Configuration Language
+    4  Using The CLI Programs
+      4.1  ``ewabatch``
+      4.2  ``ewa``
+      4.3  ``ewasplice``
+    5  Appendix I. ``ewaconf`` Formal Grammar Specification
+      5.1  Normative EBNF
+      5.2  Implemented BNF
+      5.3  Lexical Details
+        5.3.1  Significant Tokens
+        5.3.2  Ignored Tokens
+      5.4  Complete Example
+
+
 
 Overview
 ========
 
-what EWA is.
+Ewa (East-West Audio) is an application that manages the production of
+spliced mp3 files.  It is meant to solve a common audio production
+problem facing producers of audio for the web who would like to add
+extra content such as credits and promotional or underwriting messages
+to their mp3s and be able to update those messages periodically
+without having to remaster all their mp3s from scratch.
+
+Ewa makes a distinction between *content files* and *extra files*. The
+content files contain the material of main interest; the extra files
+are the promotional material.  Ewa assumes that one resultant mp3 is
+normally an aggregation of exactly one content file with any number of
+extra files. [#]_
+
+In order to know what extra files to combine with a particular content
+file, ewa consults a *rule*, which is a function that takes the name
+of the requested file and returns an ordered list of files that should
+be combined.  The rule ewa consults is normally actually a special
+rule called a *rule list* that contains a list of sub-rules; the first
+sub-rule that matches, i.e., that returns a non-empty list, is the
+return value of the parent rule.  Ewa provides a expressive
+`mini-language`_ for specifying such rule lists; with it, rules can match
+only for filenames that match glob or regular expression patterns, or
+that match date formats, or combinations of such criteria with "and",
+"or", and "not" operators.  Also, rules can be made active only for
+certain date ranges, so you can add configuration in January that will
+only become effective in February.  If the rule system isn't flexible
+enough and you have special needs, you can also configure the rule
+system in Python and implement your own rule system.
+
+Any individual piece of promotional audio may be associated with
+various different content mp3s, and therefore need to be combined with
+mp3s of different bitrates, sample rates, and mode.  Therefore, master
+files for each piece of extra audio are placed in a directory managed
+by ewa; when it needs to use one of those files, it transcodes it as
+necessary, leaving the transcoded file in a managed directory for
+future runs. The masters may be in mp3, wav, or aiff format.
+
+.. _mini-language: ewaconf_
+
+Modes of Operation
+------------------
+
+Ewa can operate either in batch mode, in which case it produces
+combined files for the content files specified on the command line, or
+in server mode.  
+
+Batch Mode
+~~~~~~~~~~
+
+The batch mode, controlled by the script ewabatch_, is convenient if
+you can't run your own persistent processes on the web server serving
+your audio files; you can use them to produce static files on a
+machine under your own control and rsync them up to the web server
+however often you need.  Batch mode can operate either on individual
+files or recursively on entire directories.
 
 
-Deploying EWA
-=============
+Server Mode
+~~~~~~~~~~~
+
+The server mode, controlled by the script ewa_, is a persistent
+process which runs a simple WSGI_ application which normally should be
+connected to a web server via FCGI_ or SCGI_.  It generates the
+combined files on demand, leaving the file in the filesystem and
+returning the path to the file to the web server via the X-Sendfile_
+hack (which originated with lighttpd_ and is also supported by apache_
+with the `mod_xsendfile`_ module; nginx_ also has a `similar feature`_).
+If the corresponding file in the filesystem is new enough (depending
+on ewa's configuration), it doesn't regenerate at all, but simply
+sends the http server the path of the cached file.  As a result, the
+server application exits extremely quickly and files are served at
+essentially the same speed as static files, with excellent
+scaleability.
+
+
+.. _WSGI: http://wsgi.org/wsgi
+.. _FCGI: http://fastcgi.com/
+.. _SCGI: http://www.mems-exchange.org/software/scgi/
+.. _X-Sendfile: http://blog.lighttpd.net/articles/2006/07/02/x-sendfile
+.. _apache: http://httpd.apache.org/
+.. _lighttpd: http://lighttpd.net/
+.. _mod\_xsendfile: http://celebnamer.celebworld.ws/stuff/mod_xsendfile/
+.. _nginx: http://nginx.net/
+.. _`similar feature`: http://blog.kovyrin.net/2006/11/01/nginx-x-accel-redirect-php-rails/
+
+
+Limitations
+-----------
+
+Ewa has a few limitations that the user should be aware of.
+
+1. Ewa only supports MP3 at this time.  
+2. Ewa only supports CBR (constant bit rate) encoding.  
+3. Ewa's rule system only takes into account the name of the requested
+   content file and the current time and date in determining the list
+   of files to splice; in particular, it isn't currently suited to
+   personalizing mp3 downloads.
+4. Ewa currently does not support the dynamic writing of id3 tags; it
+   takes whatever id3 tags are on the main content file and transfers
+   them verbatim to the composite.
+5. Ewa relies on the model of one content file + multiple extra files;
+   scenarios with multiple content files aren't supported.
+
+Some or all of these may be addressed in future revisions, depending
+on community interest.
+
+A Note on Mp3 Splicing
+~~~~~~~~~~~~~~~~~~~~~~
+
+You will occasionally read that mp3s cannot be reliably spliced, as
+mp3 frames may store information used by later frames in the bit
+reservoir.  This is not quite true; the reality is that mp3s cannot be
+reliably *cut and spliced*.  In ewa, all the mp3s are spliced on
+preexisting mp3 boundaries; they are not cut (except to drop a bad
+frame at the end of a file).  Obviously, the last frame in an mp3 does
+not store content in the bit reservoir for subsequent frames.
+Therefore, the bit reservoir does not present a problem for ewa.
+
+Ewa attempts to produce spliced files that are without bad frames; to
+do so, it looks at the frames preceding frame boundaries and discard
+broken ones.  However, ewa also attempts to splice very quickly, and
+hence cannot scan entire mp3s to clean them; if the mp3s going into
+ewa are broken, the ones coming out will be too.
+
+
+Installation
+============
 
 Supported Platforms
 -------------------
 
-Ewa has been tested on Linux, but should work fine on any flavor of
-BSD, including Mac OS X, and commercial UNIX implementations.  It
-hasn't been tested on Windows, but might work there.  
+Ewa has been developed and tested on Linux, but should work fine on
+any flavor of BSD, including Mac OS X, and commercial UNIX
+implementations.  It hasn't been tested on Windows, but a future might
+work there in whole or in part; if you are interested in helping with
+a Windows port, please volunteer on the mailing list.  Please note
+that some parts of this manual presuppose a UNIX platform.
 
+Ewa is written in Python_, and requires Python 2.4 or later. In
+addition, the following Python packages need to be installed:
+
+* setuptools_ 
+* simplejson_
+* eyeD3_
+* ply_ (>=2.2)
+* flup_
+
+To run tests you also need:
+
+* nose_
+
+Ewa also requires that lame_ be installed for transcoding.  To run the
+ewa server, you want to run an http server that supports X-Sendfile_
+or something equivalent: either lighttpd_, apache_ with
+mod\_xsendfile_, or possibly nginx_.
+
+Getting Ewa
+-----------
+
+Ewa releases are available at from
+http://cheeseshop.python.org/pypi/ewa.  If you want to follow the
+bleeding edge development version, you can check out the latest source
+code from Subversion at http://svn.wnyc.org/ewa/trunk.
 
 Software Installation
 ---------------------
 
-Ewa is written in `Python`_ and 
-
-To install, if you already have setuptools installed, you can simply
+To install, if you already have setuptools_ installed, you can simply
 do::
 
   easy_install ewa
@@ -57,27 +226,34 @@ or equivalently::
 
   python setup.py install
 
-The latter will install setuptools if you don't already have it.
+The latter will install setuptools_ if you don't already have it.
 
-
+.. _Python: http://www.python.org/
+.. _setuptools: http://cheeseshop.python.org/pypi/setuptools
+.. _simplejson: http://cheeseshop.python/org/pypi/simplejson
+.. _eyeD3: http://eyed3.nicfit.net/
+.. _ply: http://www.dabeaz.com/ply/
+.. _flup: http://cheeseshop.python.org/pypi/flup
+.. _nose: http://somethingaboutorange.com/mrl/projects/nose/
+.. _lame: http://lame.sourceforge.net/
 
 The Managed Audio Directory
 ---------------------------
 
 Ewa expects audio to be stored in a directory structure like:
 
-$basedir/main
+ $basedir/main
 	Your content mp3s go here; you manage this directory and can
 	organize it however you like. Ewa needs read access to it.
-$basedir/extras/masters
+ $basedir/extras/masters
 	Your "extra" files -- intros, outros, ads, etc. -- go here;
 	you manage this directory also.  Ewa needs read access to it
 	also. 
-$basedir/extras/transcoded
+ $basedir/extras/transcoded
 	Ewa manages this directory and needs write access to it; it
 	stores transcoded versions of the audio files extras/masters
 	here. 
-$targetdir
+ $targetdir
 	Ewa manages this directory and needs write access to it; this
 	is where it stores the spliced files.
 
@@ -117,14 +293,14 @@ credentials to your user/group before it creates any files.
 
 
 Configuration
--------------
+=============
 
 Ewa has two configuration files: ``ewa.conf``, for adminstrative
 options, and a rule configuration file, which is used to determine
-what the playlists.
+the playlists.
 
 The ``ewa.conf`` File
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 ``ewa.conf`` is written in Python; keys defined there that don't start
 with an underscore become attributes of the ``ewa.config.Config``
@@ -139,31 +315,354 @@ The following must be provided:
  basedir
      the root of the managed audio directory.
 
-* rulefile -- 
+ rulefile
+     path to the rule file.
 
 
 The EWA Rule Configuration File
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
-The rule file can be written in two formats:
+The rule file can be written either in Python or in a special
+configuration mini-language, ewaconf_. [#]_
 
-* Python
-* ewaconf
+.. _ewaconf: `The Ewaconf Configuration Language`_ 
+
+A rule file in Python format gives you maximum flexibility, at the
+cost of requiring you to know Python and understand the ewa API.  The
+Python file can contain anything as long as it defines a global with
+the name ``rules``, which should be a Python callable that, when
+called, returns an iterator that yields symbolic names for the files
+that should be combined.  (These names will be interpreted as file
+paths relative to the ``extras/masters`` managed directory, unless
+they have the Python attribute ``is_original`` set to a true value, in
+which case, they will interpreted as file paths relative to the
+``main`` managed directory.)  With this hook you can load into ewa
+just about any sort of rule system that you might like to devise.
+
+The Ewaconf Configuration Language
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-The most flexible option is Python; if you use this, the Python file
-can contain anything as long as it defines a global with the name
-"rules", which should be a ``Rule`` object (something that, when
-called, returns an iterator that yields filenames relative to the
-audioroot that will be merged).  With this hook you can load any sort
-of rule system that you might like to devise.
+Ewa's rule configuration format is designed to make it easy to define
+a list of rules that say, for a given mp3 file, what files ewa should
+combine to make an aggregate file, and in what order.  The rules are
+consulted in order, and checked to see if they match the input mp3
+file; the first one that matches returns a list of files to combine,
+and those are then combined.
 
-If you want to use the default rule system, however, ewaconf is much
-simpler.
+This format is not the only way of setting file combination rules for
+ewa.  Rules can also be defined in Python, which permits the rule
+system to be extended or even replaced.  This format supports the core
+rule feature set only.
+
+A rule is normally written in the form::
+
+  condition [options]: 
+     pre:  [file1,file2...] 
+     post: [file1,file2...]
+
+where a condition is a glob pattern, a regex pattern, or a date
+specification, or combinations of the above with with the logical
+operators ``and``, ``or``, and ``not``.  The ``pre`` and ``post``
+lists indicate what files should go before or after the main content
+file in the aggregate file ewa produces.  Condition options are put in
+brackets after the condition and separated by commas; they can either
+be a single symbol, such as ``F`` or ``I``, or a name-value pair,
+separated by ``=``.  For example::
+
+  bigband*.mp3 [I]: 
+    pre: [bigbandintro.wav]
+    post: [bigbandoutro.wav]
+  regex:schwartz.*:
+    pre: []
+    post: []
+  and(09/01/2006 - 11/01/2006 [F,fmt=YYYYMMDD], 
+      or(lopate/*, bl/*):
+    pre: []
+    post: [specialoutro.mp3]
+
+The regular expression follows Python regular expression rules.   If you want a
+regex to ignore case, you can pass the ``I`` option.  Two other regex
+options are supported: ``U`` (unicode) and ``L`` (locale).  These
+correspond to the same options in the Python ``re`` module.  For more
+information, see the `official Python documentation 
+<http://www.python.org/doc/current/lib/module-re.html>`_.
+
+Globs support only one option: ``I``.  By default, globs are
+case-sensitive, but if this option is passed they will ignore case.
+
+Both globs and regexes can contain arbitary characters if they are
+delimited with either single or double quotation marks.  They can also
+be written without quotation marks, with some restrictions.  Spaces
+are not permitted for either; for regexes, colons and commas must be
+escaped with a preceding backslash. Unquoted globs are furthermore
+restricted to alphanumeric characters, forward slashes, asterisks,
+question marks, underscores, and periods.  When in doubt, quote.
+
+The date options are ``F``, ``T``, and the name-value option ``fmt``.
+``F`` and ``T`` are incompatible.  ``T`` is the default (so its use is
+actually not necessary except perhaps for readability); it means that
+the condition will return true only if the current time matches
+against the date range specified.
+
+``F`` means that the date is matched against the filename using a
+regular expression derived from a format (the ``fmt`` option); the
+default format is ``MMDDYYYY``.  Formats may be specified with the
+following symbols:
+
+* MM (months)
+* DD (days)
+* YY (2-digit year)
+* YYYY (4-digit year)
+* HH (hours, 24 hour clock)
+* mm (minutes)
+* PM (AM or PM)
+* hh (hours, 12 hour clock)
+
+Any additional characters in the format become a literal part of the
+regular expression.  The ``fmt`` option has no meaning and may not be
+used when matching against the current time.
+
+If the pre and post lists are both empty, the special form ``default``
+may be used.   Also, if a rule applies unconditionally, the condition
+may be omitted.  Therefore, the following four forms are equivalent::
+
+   *: pre: [], post: []
+   *: default
+   pre: [], post: []
+   default
+
+For regex rules, it is possible for the filenames in the pre and post
+lists to backreference named groups in the matching regex::
+
+   regex:^/shows/(?P<showname>[^/]+)/.*\.mp3: 
+      pre:  [intro/$showname.mp3]
+      post: [outro/generic.mp3]
+
+(Because of implementation details in the underlying parsing library
+(`PLY <http://www.dabeaz.com/ply/>`_), only named groups can be used.)
+
+It is convenient under some circumstances to nest lists of rules, with
+a conditional qualifier shared by all of them.  To do this, enclose
+the nested list of rules in matching brackets::
+
+   regex:shows/(?P<showname>[^/]+)/.*: [
+       <=09-01-2005 [F]: default
+       09-02-2005 - 10-14-2006 [F]: 
+          pre: [intro/$showname.mp3]
+          post: []
+       >10-15-2006 [F]: 
+          pre: [current.mp3]
+          post: [current.mp3]
+       ]
+
+Using The CLI Programs
+======================
+
+Add summary of command-line options for ewa, ewabatch, and ewasplice.
+
+``ewabatch``
+------------
+
+TBD
+
+``ewa``
+-------
+
+TBD
+
+``ewasplice``
+-------------
+
+TBD
 
 
 
+Appendix I. ``ewaconf`` Formal Grammar Specification
+====================================================
 
+
+Normative EBNF
+--------------
+
+The below is an EBNF grammar for the rule configuration format::
+
+ grammar 	:= cond_rule [','? cond_rule]*
+ rulelist 	:= '[' cond_rule [','? cond_rule]* ']'
+ cond_rule 	:= [cond ':']? rule
+ rule 		:= simplerule | rulelist
+ simplerule 	:= prelist ','? postlist | postlist ','? prelist | 'default'
+ prelist	:= 'pre' ':' speclist 
+ postlist	:= 'post' ':' speclist
+ speclist	:= '[' [specifier [',' specifier]*]? ']'
+ specifier	:= string
+ string         := BAREWORD | QWORD
+ cond		:= cond_expr | simple_cond 
+ cond_expr	:= cond_op '(' cond [',' cond]+ ')'
+ cond_expr	:= NOT '(' cond ')'
+ cond_op	:= 'and' | 'or'
+ simple_cond	:= regex | glob | datespec
+ regex		:= BAREREGEX condopts? | QREGEX condopts?
+ glob		:= string condopts?
+ datespec       := daterange condopts?
+ daterange	:= [date '-' date] | [ datecompare date ] | date
+ datecompare	:= '<' | '<=' | '>' | '>=' | '='
+ date           := DATE | DATETIME
+ condopts       := '[' condopt [',' condopt]* ']'
+ condopt        := BAREWORD | BAREWORD '=' BAREWORD
+  
+
+Implemented BNF
+---------------
+
+The above is actually implemented by the following less readable but
+equivalent grammar in a BNF notation without quantifiers::
+
+ grammar -> cond_rule_list
+ cond_rule_list -> cond_rule
+ cond_rule_list -> cond_rule COMMA cond_rule_list
+ cond_rule_list -> cond_rule cond_rule_list
+ rulelist -> LBRACK cond_rule_list RBRACK
+ rulelist -> LBRACK RBRACK
+ cond_rule -> cond COLON rule
+ cond_rule -> rule
+ rule -> simplerule
+ rule -> rulelist
+ simplerule -> prelist COMMA postlist
+ simplerule -> prelist postlist
+ simplerule -> postlist COMMA prelist
+ simplerule -> postlist prelist
+ simplerule -> DEFAULT
+ prelist -> PRE COLON speclist
+ postlist -> POST COLON speclist
+ speclist -> LBRACK specifier_list RBRACK
+ speclist -> LBRACK RBRACK
+ specifier_list -> specifier
+ specifier_list -> specifier COMMA specifier_list
+ specifier -> string
+ string -> BAREWORD
+ string -> QWORD
+ cond -> cond_expr
+ cond -> simple_cond
+ cond_expr -> cond_op LPAREN cond_list RPAREN
+ cond_expr -> NOT LPAREN cond RPAREN
+ cond_list -> cond
+ cond_list -> cond COMMA cond_list
+ cond_op -> AND
+ cond_op -> OR
+ simple_cond -> regex
+ simple_cond -> glob
+ simple_cond -> datespec
+ regex -> BAREREGEX
+ regex -> QREGEX
+ regex -> BAREREGEX condopts
+ regex -> QREGEX condopts
+ glob -> string
+ glob -> string condopts
+ datespec -> datetime DASH datetime
+ datespec -> date DASH date
+ datespec -> datetime DASH date
+ datespec -> date DASH datetime
+ datespec -> datetime DASH datetime condopts
+ datespec -> date DASH date condopts
+ datespec -> datetime DASH date condopts
+ datespec -> date DASH datetime condopts
+ datespec -> datecompare datetime
+ datespec -> datecompare date
+ datespec -> datecompare datetime condopts
+ datespec -> datecompare date condopts
+ condopts -> LBRACK condopt_list RBRACK
+ condopt_list -> condopt
+ condopt_list -> condopt COMMA condopt_list
+ condopt -> BAREWORD OP BAREWORD
+ condopt -> BAREWORD
+ datecompare -> OP
+ date -> DATE
+ datetime -> DATETIME
+
+Lexical Details
+---------------
+
+
+Significant Tokens
+~~~~~~~~~~~~~~~~~~
+
+The tokens that the lexer must produce will be:
+
+ BAREWORD
+     an unquoted string with alphanumeric characters, asterisks,
+     backslashes, question marks, underscores, or periods.
+ QWORD
+     a string delimited by single or double quotation marks.  Internal
+     quotation marks of the same type used as the delimiter must be
+     escaped.
+ BAREREGEX
+     a string that matches a regex; should start with ``regex:``,
+     followed by an unquoted string with the same restrictions as
+     BAREWORD above.
+ QREGEX
+     like a BAREREGEX, but the regex, after the ``regex:`` prefix, 
+     is delimited by single or double quotation marks, and escaping
+     (except of quotation marks) is not necessary.
+ DATE
+     MM-DD-YYYY format.  The separator can also be a slash (/) or a
+     period (.), but the same separator must be used in both
+     positions. 
+ DATETIME
+     MM-DD-YYYY HHMM format.  The separator can also be a slash or
+     period, as with DATE, and the space before the hour can be either
+     a space or the previously used separator.
+ DEFAULT
+    'default'
+ PRE
+    'pre'
+ POST
+    'post'
+ AND
+    'and'
+ OR
+    'or'
+ OP
+    '<', '<=', '>', '>=', '='
+ DASH
+    '-'
+ COMMA
+    ','
+ COLON
+    ':'
+ LBRACK
+    '['
+ RBRACK
+    ']'
+ LPAREN
+    '('
+ RPAREN
+    ')'
+
+Ignored Tokens
+~~~~~~~~~~~~~~
+
+Any text on a line after a pound sign (#) is a comment and is ignored.
+Whitespace, including line returns, is ignored between tokens.
+Indentation may be freely used to clarify patterns.
+
+Complete Example
+----------------
+
+.. include :: ../conf/rules.conf.sample
+  :literal:
+
+
+
+.. [#] There are use cases in which you might want more than one
+    content file -- one for each segment of a radio program, for
+    instance -- but this usage is not currently supported. 
+
+.. [#] Actually, there is a third format -- a special dialect of JSON_
+    -- but it isn't very useful and may be dropped in a future
+    release. 
+
+.. _JSON: http://www.json.org/
 
 
 
