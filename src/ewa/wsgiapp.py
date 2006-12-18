@@ -42,8 +42,8 @@ class EwaApp(object):
                  refresh_rate=0,
                  use_xsendfile=True,
                  sendfile_header=GENERIC_SENDFILE_HEADER,
-                 index_directories=False,
-                 content_disposition='attachment',
+#                 index_directories=False,
+                 content_disposition='',
                  **spliceKwargs):
         self.rule=rule
         self.stream=stream
@@ -53,7 +53,7 @@ class EwaApp(object):
         self.refresh_rate=refresh_rate
         self.use_xsendfile=use_xsendfile
         self.sendfile_header=sendfile_header
-        self.index_directories=index_directories
+#        self.index_directories=index_directories
         self.content_disposition=content_disposition
         if self.stream:
             self.provider=ewa.audio.StreamAudioProvider(basedir)
@@ -84,11 +84,11 @@ class EwaApp(object):
         # if this blows up, propagate
         maintime=os.path.getmtime(mainpath)
         if os.path.isdir(mainpath):
-            if self.index_directories:
-                # implement this eventually.
-                # probably the file-existence/directory
-                # check should be moved to __call__
-                pass
+##             if self.index_directories:
+##                 # implement this eventually.
+##                 # probably the file-existence/directory
+##                 # check should be moved to __call__
+##                 pass
             raise OSError
         if self.stream:
             try:

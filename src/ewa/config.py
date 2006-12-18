@@ -63,6 +63,7 @@ DEFAULTS=dict(loglevel='critical',
               engine='default',
               user=None,
               group=None,
+              content_disposition='attachment',
               )
 
 def initConfig(configfile):

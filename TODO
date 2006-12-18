@@ -22,19 +22,10 @@
 * docs.
 
 
-Next Things to Do
-=================
-
-* QA plan! 
-* regression-test ewasplice.
-* more tests!
-* more docs!
-
 
 Upcoming Features
 =================
 
-* in ewabatch also drop to user/group if running as root. 
 * move more defaults that should be configurable into Config:
   * what transcodeFunc to use
   * whether to add Content-Disposition: attachment header
@@ -94,6 +85,7 @@ DONE
 * truncated frames in default splicer (mp3cat seems OK). -- FIXED
 * when running as root, become another user/group. -- DONE
 * test wav support for extra masters -- DONE
+* in ewabatch also drop to user/group if running as root.  -- DONE
 
 REJECTED
 ========

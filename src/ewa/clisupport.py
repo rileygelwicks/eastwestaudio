@@ -340,6 +340,7 @@ def do_serve(args):
                refresh_rate=Config.refresh_rate,
                use_xsendfile=Config.use_xsendfile,
                sendfile_header=Config.sendfile_header,
+               content_disposition=Config.content_disposition,
                splicer=engine)
             
     if Config.protocol=='http':

@@ -10,7 +10,7 @@ _EWADIR='/home/smulloni/workdir/svn.wnyc.org/ewa/trunk'
 ## KEYS THAT MUST BE DEFINED
 ############################
 
-## path to the JSON file with rules
+## path to the rule file
 rulefile='%s/conf/rules.conf' % _EWADIR
 
 ## path to the base audio directory
@@ -66,3 +66,8 @@ sendfile_header='X-LIGHTTPD-send-file'
 ## if daemonizing, where to put a pidfile (default: none)
 # pidfile=/path/to/ewa.pid
 
+
+## if you want a Content-Disposition: attachment header, set
+## this to "attachment"
+
+content_disposition='attachment'
