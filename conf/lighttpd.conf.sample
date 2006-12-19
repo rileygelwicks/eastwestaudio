@@ -15,6 +15,9 @@ fastcgi.server = (
                         "host" => "127.0.0.1",
                         "port" => 5000,
                         "check-local" => "disable",
+                        # note: this is for lighttpd < 1.5.
+                        # for 1.5, apparently you do instead:
+                        # proxy-core.allow-x-sendfile = "enable"
 			"allow-x-send-file" => "enable"
                       )
                     )

@@ -318,7 +318,7 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Date:</th>
 <td>2006-12-18</td></tr>
 <tr><th class="docinfo-name">Revision:</th>
-<td>5903</td></tr>
+<td>5905</td></tr>
 <tr><th class="docinfo-name">Version:</th>
 <td>0.62</td></tr>
 </tbody>
@@ -889,6 +889,9 @@ fastcgi.server = (
                         &quot;host&quot; =&gt; &quot;127.0.0.1&quot;,
                         &quot;port&quot; =&gt; 5000,
                         &quot;check-local&quot; =&gt; &quot;disable&quot;,
+                        # note: this is for lighttpd &lt; 1.5.
+                        # for 1.5, apparently you do instead:
+                        # proxy-core.allow-x-sendfile = &quot;enable&quot;
 			&quot;allow-x-send-file&quot; =&gt; &quot;enable&quot;
                       )
                     )
