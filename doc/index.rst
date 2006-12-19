@@ -464,6 +464,9 @@ information, see the `official Python documentation
 
 Globs support only one option: ``I``.  By default, globs are
 case-sensitive, but if this option is passed they will ignore case.
+(Globs are implemented with Python fnmatch_ module.)
+
+.. _fnmatch: http://www.python.org/doc/current/lib/module-fnmatch.html
 
 Both globs and regexes can contain arbitary characters if they are
 delimited with either single or double quotation marks.  They can also
@@ -472,6 +475,18 @@ are not permitted for either; for regexes, colons and commas must be
 escaped with a preceding backslash. Unquoted globs are furthermore
 restricted to alphanumeric characters, forward slashes, asterisks,
 question marks, underscores, and periods.  When in doubt, quote.
+
+.. hint :: Both globs and regexes need to match the *entire path* to
+   requested file, relative to the main content file directory
+   (``$basedir/main``); and furthermore globs and regexes have
+   different matching behavior, in that a regex will match as long it
+   matches against the beginning of the target string, but a glob
+   needs to match all the way to the end.  So if someone requests
+   ``http://bozoland.org/dingdong/frogling.mp3``, the path against which
+   your pattern will be matched will be ``dingdong/frogling.mp3``,
+   *without* a leading forward slash.  ``*frogling*`` would match it,
+   as would ``regex:.*frogling``; ``frogling.mp3`` wouldn't, and
+   neither would ``dingdong``, but ``regex:dingdong`` would.
 
 The date options are ``F``, ``T``, and the name-value option ``fmt``.
 ``F`` and ``T`` are incompatible.  ``T`` is the default (so its use is
