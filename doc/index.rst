@@ -381,8 +381,8 @@ refresh_rate
 pidfile
 	if daemonizing, where to put a pidfile (default: ``None``).
 content_disposition
-	if you want a Content-Disposition: attachment header, set this
-	to ``'attachment'``.  Default is ``None``.
+	if you want a ``Content-Disposition: attachment`` header, set
+	this to ``'attachment'``.  Default is ``None``.
 user
 	If you run in either server or batch mode as root and want to
 	drop credentials to another user/group, set this.
