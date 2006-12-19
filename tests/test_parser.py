@@ -151,5 +151,53 @@ def test_date5():
     res=list(rules(orig))
     assert res==[orig]
 
+
+def test_backreference1():
+    s="""
+    regex:(pingpong|nougat|follicle)\d{6}[a-z]?.mp3:
+        pre: ["\\1_intro.mp3"]
+        post: []
+    default
+    """
+    rules=R.parse_string(s)
+    orig='nougat060605a.mp3'
+    res=list(rules(orig))
+    print res
+    assert res==['nougat_intro.mp3', orig]
+
+def test_backreference2():
+    s="""
+    regex:(?P<show>pingpong|nougat|follicle)\d{6}[a-z]?.mp3:
+        pre: ["\\g<show>_intro.mp3"]
+        post: []
+    default
+    """
+    rules=R.parse_string(s)
+    orig='pingpong060605a.mp3'
+    res=list(rules(orig))
+    assert res==['pingpong_intro.mp3', orig]
+
+def test_backreference3():
+    s="""
+    regex:(?P<show>pingpong|nougat|follicle)\d{6}[a-z]?.mp3:
+        pre: ["${show}_intro.mp3"]
+        post: []
+    default
+    """
+    rules=R.parse_string(s)
+    orig='pingpong060605a.mp3'
+    res=list(rules(orig))
+    assert res==['pingpong_intro.mp3', orig]
     
-    
+def test_backreference4():
+    s="""
+    regex:(pingpong|nougat|follicle)\d{6}[a-z]?.mp3:
+        pre: ["${1}_intro.mp3"]
+        post: []
+    default
+    """
+    rules=R.parse_string(s)
+    orig='nougat060605a.mp3'
+    res=list(rules(orig))
+    print res
+    assert res==['nougat_intro.mp3', orig]

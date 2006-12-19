@@ -30,6 +30,9 @@ import simplejson
 
 from ewa.logutil import warn
 
+class _template(Template):
+    idpattern='[_a-z0-9]+'
+
 class OriginalName(str):
     is_original=True
 
@@ -97,15 +100,20 @@ class MatchRule(_jsonable):
 
     def _gen_list(self, filename, match):
         if hasattr(match, 'groupdict'):
-            d=match.groupdict()
+            # is a regex match
+            d=dict((str(i+1), v) for i, v in enumerate(match.groups()))
+            d.update(match.groupdict())
+            expand=lambda s: match.expand(_template(f).safe_substitute(d))
         else:
-            d={}
+            expand=lambda s: s
+            
         for f in self.pre:
-            yield Template(f).safe_substitute(d)
+            yield expand(f)
 
         yield OriginalName(filename)
+        
         for f in self.post:
-            yield Template(f).safe_substitute(d)
+            yield expand(f)
 
 
     def _match(self, filename):
