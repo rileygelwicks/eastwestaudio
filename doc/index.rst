@@ -75,16 +75,15 @@ patterns, or that match date formats, or combinations of such criteria
 with "and", "or", and "not" operators.  Also, rules can be made active
 only for certain date ranges, so you can add configuration in January
 that will only become effective in February.  If the rule system isn't
-flexible enough and you have special needs, you can also configure the
-rule system in Python and implement your own rule system.
+flexible enough and you have special needs, it is also feasible to
+plug in your own, implemented in Python. 
 
-Any individual piece of promotional audio may be associated with
-various different content mp3s, and therefore need to be combined with
-mp3s of different bitrates, sample rates, and mode.  Therefore, master
-files for each piece of extra audio are placed in a directory managed
-by ewa; when it needs to use one of those files, it transcodes it as
-necessary, leaving the transcoded file in a managed directory for
-future runs. The masters may be in mp3, wav, or aiff format.
+Ewa also manages transcoding the extra audio to match the content
+files with which it may be spliced. Master files for each piece of
+extra audio are placed in a directory managed by ewa, and ewa
+transcodes them as needed, leaving the transcoded files in a managed
+directory for future runs. The masters may be in mp3, wav, or aiff
+format.  
 
 .. _mini-language: ewaconf_
 
@@ -112,28 +111,26 @@ Server Mode
 If you are using ``ewabatch`` to generate all your files, there is no
 need for any integration with the web server at all; you just need a
 cron job to generate the files periodically and perhaps rsync them.
-But if you have a large number of files, using ``ewabatch`` can be
-inconvenient; with batch mode processing, each new file must be
-processed before going live, and the bandwidth costs of changing
-intros for a large number of mp3s and having to rsync them up to your
-webserver may be prohibitive if undertaken frequently.  Even if cost
-is not the issue, it is highly inefficient to have to move a thousand
-files when really only one thing has changed -- a single intro.  The
-ewa server gets around this problem.
+But if you have a large number of files, this can become unwieldy. Not
+only must each new file must be processed before going live, but the
+bandwidth costs in both money and time of changing intros for a large
+number of mp3s and having to rsync them up to your webserver may be
+prohibitive if undertaken frequently.  It is highly inefficient to
+have to move thousands of files when really only one thing has changed
+-- a single intro.  The ewa server gets around this problem.
 
-The server mode, controlled by the script ewa_, is a persistent
-process running a simple WSGI_ application which normally should be
-connected to a web server via FCGI_ or SCGI_.  It generates the
-combined files on demand, leaving the file in the filesystem and
-returning the path to the file to the web server via the X-Sendfile_
-hack (which originated with lighttpd_ and is also supported by apache_
-with the `mod_xsendfile`_ module; nginx_ also has a `similar
-feature`_).  If the corresponding file in the filesystem is new enough
-(depending on ewa's configuration), it doesn't regenerate at all, but
-simply sends the http server the path of the cached file.  As a
-result, the server application processes each request extremely
-quickly and files are served at essentially the same speed as static
-files, with excellent scaleability.
+The server mode, controlled by the script ewa_, is a persistent daemon
+running a simple WSGI_ application, normally connected to a web server
+via FCGI_ or SCGI_, which generates the composite files on demand,
+caching them on the filesystem and rebuilding them upon request with a
+configurable frequency.  The path to the composite file is passed to
+the webserver via the X-Sendfile_ technique (which originated with
+lighttpd_ and is also supported by apache_ with the `mod_xsendfile`_
+module; nginx_ also has a `similar feature`_).  The webserver is
+responsible for returning the actual file over HTTP, and ewa
+does not need to do IO; as a result, ewa processes each request
+extremely quickly, and files are served at almost the same speed as
+static files, with excellent scaleability.
 
 
 .. _WSGI: http://wsgi.org/wsgi
@@ -152,7 +149,7 @@ Limitations
 
 Ewa has a few limitations that the user should be aware of.
 
-1. Ewa only supports MP3 at this time.  
+1. Mp3 is the only supported audio format.
 2. Ewa only supports CBR (constant bit rate) encoding.  
 3. Ewa's rule system only takes into account the name of the requested
    content file and the current time and date in determining the list
@@ -212,7 +209,7 @@ To run tests you also need:
 * nose_
 
 Ewa also requires that lame_ be installed for transcoding.  To run the
-ewa server, you want to run an http server that supports X-Sendfile_
+ewa server, you need to run an http server that supports X-Sendfile_
 or something equivalent: either lighttpd_, apache_ with
 `mod_xsendfile`_, or possibly nginx_.
 
@@ -252,7 +249,7 @@ The latter will install setuptools_ if you don't already have it.
 
 .. _Python: http://www.python.org/
 .. _setuptools: http://cheeseshop.python.org/pypi/setuptools
-.. _simplejson: http://cheeseshop.python/org/pypi/simplejson
+.. _simplejson: http://cheeseshop.python.org/pypi/simplejson
 .. _eyeD3: http://eyed3.nicfit.net/
 .. _ply: http://www.dabeaz.com/ply/
 .. _flup: http://cheeseshop.python.org/pypi/flup
@@ -373,7 +370,7 @@ sendfile_header
 	<=`.4.11 requires ``'X-LIGHTTPD-send-file'`` instead, and uses
 	``'X-Accel-Redirect'`` (with slightly different semantics). 
 stream
-	whether to stream the concatenated file directory rather than
+	whether to stream the concatenated file directly rather than
 	saving to disk.  This is not a production-quality option;
 	don't use it.
 refresh_rate
@@ -527,14 +524,22 @@ may be omitted.  Therefore, the following four forms are equivalent::
    default
 
 For regex rules, it is possible for the filenames in the pre and post
-lists to backreference named groups in the matching regex::
+lists to backreference named groups in the matching regex.  Named or
+numbered group references can be used, with either a shell-like
+interpolation style::
 
    regex:^/shows/(?P<showname>[^/]+)/.*\.mp3: 
-      pre:  [intro/$showname.mp3]
-      post: [outro/generic.mp3]
+      pre:  [intro/$showname.mp3, ad/${showname}.mp3]
+      post: [notices/$1.mp3, outro/${1}.mp3]
 
-(Because of implementation details in the underlying parsing library
-(`PLY <http://www.dabeaz.com/ply/>`_), only named groups can be used.)
+or the style used by backreferences in Python `regular expression
+expansions`_::
+
+   regex:^/shows/(?P<showname>[^/]+)/.*\.mp3: 
+      pre:  [intro/\\g<showname>.mp3]
+      post: [outro/\\1.mp3]
+
+.. _`regular expression expansions`: http://www.python.org/doc/current/lib/match-objects.html
 
 It is convenient under some circumstances to nest lists of rules, with
 a conditional qualifier shared by all of them.  To do this, enclose
@@ -698,74 +703,6 @@ The below is an EBNF grammar for the rule configuration format::
  condopts       := '[' condopt [',' condopt]* ']'
  condopt        := BAREWORD | BAREWORD '=' BAREWORD
   
-
-Implemented BNF
----------------
-
-The above is actually implemented by the following less readable but
-equivalent grammar in a BNF notation without quantifiers::
-
- grammar -> cond_rule_list
- cond_rule_list -> cond_rule
- cond_rule_list -> cond_rule COMMA cond_rule_list
- cond_rule_list -> cond_rule cond_rule_list
- rulelist -> LBRACK cond_rule_list RBRACK
- rulelist -> LBRACK RBRACK
- cond_rule -> cond COLON rule
- cond_rule -> rule
- rule -> simplerule
- rule -> rulelist
- simplerule -> prelist COMMA postlist
- simplerule -> prelist postlist
- simplerule -> postlist COMMA prelist
- simplerule -> postlist prelist
- simplerule -> DEFAULT
- prelist -> PRE COLON speclist
- postlist -> POST COLON speclist
- speclist -> LBRACK specifier_list RBRACK
- speclist -> LBRACK RBRACK
- specifier_list -> specifier
- specifier_list -> specifier COMMA specifier_list
- specifier -> string
- string -> BAREWORD
- string -> QWORD
- cond -> cond_expr
- cond -> simple_cond
- cond_expr -> cond_op LPAREN cond_list RPAREN
- cond_expr -> NOT LPAREN cond RPAREN
- cond_list -> cond
- cond_list -> cond COMMA cond_list
- cond_op -> AND
- cond_op -> OR
- simple_cond -> regex
- simple_cond -> glob
- simple_cond -> datespec
- regex -> BAREREGEX
- regex -> QREGEX
- regex -> BAREREGEX condopts
- regex -> QREGEX condopts
- glob -> string
- glob -> string condopts
- datespec -> datetime DASH datetime
- datespec -> date DASH date
- datespec -> datetime DASH date
- datespec -> date DASH datetime
- datespec -> datetime DASH datetime condopts
- datespec -> date DASH date condopts
- datespec -> datetime DASH date condopts
- datespec -> date DASH datetime condopts
- datespec -> datecompare datetime
- datespec -> datecompare date
- datespec -> datecompare datetime condopts
- datespec -> datecompare date condopts
- condopts -> LBRACK condopt_list RBRACK
- condopt_list -> condopt
- condopt_list -> condopt COMMA condopt_list
- condopt -> BAREWORD OP BAREWORD
- condopt -> BAREWORD
- datecompare -> OP
- date -> DATE
- datetime -> DATETIME
 
 Lexical Details
 ---------------
