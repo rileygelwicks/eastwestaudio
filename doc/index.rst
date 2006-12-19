@@ -31,7 +31,6 @@
       3.3  Configuring the Web Server
         3.3.1  Lighttpd
         3.3.2  Apache with mod_xsendfile
-        3.3.3  Apache with mod_rewrite
     4  Using The CLI Programs
       4.1  ``ewabatch``
       4.2  ``ewa``
