@@ -27,13 +27,10 @@ Upcoming Features
 =================
 
 * move more defaults that should be configurable into Config:
-  * what transcodeFunc to use
-  * whether to add Content-Disposition: attachment header
-  * what else?
+  * what transcodeFunc to use, or at least lame path
+
 * logging -- we need log rotation, which can be done with the logging
   module. 
-* raw mode (way for wsgi to return unprocessed files if request meets
-  some criterion). 
 
 Future Ideas
 ============
@@ -41,6 +38,8 @@ Future Ideas
 * per-request aggregations, stored in separate buckets
 * dynamic id3 tagging.
 * a class of rules that does not depend on the idea of a "main" file.
+* raw mode (way for wsgi to return unprocessed files if request meets
+  some criterion). 
 
 
 Bugs
@@ -86,6 +85,8 @@ DONE
 * when running as root, become another user/group. -- DONE
 * test wav support for extra masters -- DONE
 * in ewabatch also drop to user/group if running as root.  -- DONE
+* add whether to add Content-Disposition: attachment header to Config
+  -- DONE
 
 REJECTED
 ========

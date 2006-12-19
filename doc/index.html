@@ -404,11 +404,10 @@ ul.auto-toc {
   4.3  ``ewasplice``
 5  Appendix I. ``ewaconf`` Formal Grammar Specification
   5.1  Normative EBNF
-  5.2  Implemented BNF
-  5.3  Lexical Details
-    5.3.1  Significant Tokens
-    5.3.2  Ignored Tokens
-  5.4  Complete Example -->
+  5.2  Lexical Details
+    5.2.1  Significant Tokens
+    5.2.2  Ignored Tokens
+  5.3  Complete Example -->
 <div class="section">
 <h1><a class="toc-backref" href="#id8" id="overview" name="overview">Overview</a></h1>
 <p>Ewa (East-West Audio) is an application that manages the production of
@@ -709,6 +708,9 @@ even know about it.</dd>
 processes.  If the platform supports <tt class="docutils literal"><span class="pre">fork()</span></tt>, this will
 default to <tt class="docutils literal"><span class="pre">False</span></tt>; otherwise (that is, on Windows) to
 <tt class="docutils literal"><span class="pre">True</span></tt>.</dd>
+<dt>lame_path</dt>
+<dd>The path to the <tt class="docutils literal"><span class="pre">lame</span></tt> executable, for transcoding.  Default
+is <tt class="docutils literal"><span class="pre">/usr/bin/lame</span></tt>.</dd>
 </dl>
 </div>
 <div class="section">

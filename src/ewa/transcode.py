@@ -3,17 +3,15 @@ import subprocess
 
 from ewa.logutil import debug, warn, exception
 from ewa.mp3 import get_vbr_bitrate_samplerate_mode
+from ewa.config import Config
 
 class TranscodeError(RuntimeError): pass
-
-LAME_PATH = os.environ.get("EWA_LAMEPATH", "/usr/bin/lame")
 
 def lameTranscode(newBitRate, 
                   newSampleRate, 
                   newMode, 
                   masterPath,
                   newPath,
-                  lamePath=LAME_PATH,
                   quiet=True):
     """ Executes LAME to transcode a file to a new    
     bit rate, sample rate, and mode. """
@@ -21,11 +19,10 @@ def lameTranscode(newBitRate,
     if newMode=='m':
         newMode='f'
 
-    args = [lamePath,
+    args = [Config.lame_path,
             '--cbr',
             '-b',
             str(newBitRate),
-#            '--mp3input',
             '-t',
             '--resample',
             '%0.2f' % (newSampleRate / 1000.0),

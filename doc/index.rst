@@ -38,11 +38,10 @@
       4.3  ``ewasplice``
     5  Appendix I. ``ewaconf`` Formal Grammar Specification
       5.1  Normative EBNF
-      5.2  Implemented BNF
-      5.3  Lexical Details
-        5.3.1  Significant Tokens
-        5.3.2  Ignored Tokens
-      5.4  Complete Example
+      5.2  Lexical Details
+        5.2.1  Significant Tokens
+        5.2.2  Ignored Tokens
+      5.3  Complete Example
 
 
 
@@ -394,6 +393,9 @@ use_threads
 	processes.  If the platform supports ``fork()``, this will
 	default to ``False``; otherwise (that is, on Windows) to
 	``True``. 
+lame_path
+	The path to the ``lame`` executable, for transcoding.  Default
+	is ``/usr/bin/lame``.
 
 The EWA Rule Configuration File
 -------------------------------

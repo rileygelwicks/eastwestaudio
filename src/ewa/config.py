@@ -64,6 +64,7 @@ DEFAULTS=dict(loglevel='critical',
               user=None,
               group=None,
               content_disposition='attachment',
+              lame_path='/usr/bin/lame'
               )
 
 def initConfig(configfile):
