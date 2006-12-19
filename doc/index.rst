@@ -28,6 +28,10 @@
       3.1  The ``ewa.conf`` File
       3.2  The EWA Rule Configuration File
         3.2.1  The Ewaconf Configuration Language
+      3.3  Configuring the Web Server
+        3.3.1  Lighttpd
+        3.3.2  Apache with mod_xsendfile
+        3.3.3  Apache with mod_rewrite
     4  Using The CLI Programs
       4.1  ``ewabatch``
       4.2  ``ewa``
@@ -105,19 +109,31 @@ files or recursively on entire directories.
 Server Mode
 ~~~~~~~~~~~
 
+If you are using ``ewabatch`` to generate all your files, there is no
+need for any integration with the web server at all; you just need a
+cron job to generate the files periodically and perhaps rsync them.
+But if you have a large number of files, using ``ewabatch`` can be
+inconvenient; with batch mode processing, each new file must be
+processed before going live, and the bandwidth costs of changing
+intros for a large number of mp3s and having to rsync them up to your
+webserver may be prohibitive if undertaken frequently.  Even if cost
+is not the issue, it is highly inefficient to have to change a
+thousand files when really one thing has changed -- a single intro.
+The ewa server gets around this problem.
+
 The server mode, controlled by the script ewa_, is a persistent
 process which runs a simple WSGI_ application which normally should be
 connected to a web server via FCGI_ or SCGI_.  It generates the
 combined files on demand, leaving the file in the filesystem and
 returning the path to the file to the web server via the X-Sendfile_
 hack (which originated with lighttpd_ and is also supported by apache_
-with the `mod_xsendfile`_ module; nginx_ also has a `similar feature`_).
-If the corresponding file in the filesystem is new enough (depending
-on ewa's configuration), it doesn't regenerate at all, but simply
-sends the http server the path of the cached file.  As a result, the
-server application exits extremely quickly and files are served at
-essentially the same speed as static files, with excellent
-scaleability.
+with the `mod_xsendfile`_ module; nginx_ also has a `similar
+feature`_).  If the corresponding file in the filesystem is new enough
+(depending on ewa's configuration), it doesn't regenerate at all, but
+simply sends the http server the path of the cached file.  As a
+result, the server application processes each request extremely
+quickly and files are served at essentially the same speed as static
+files, with excellent scaleability.
 
 
 .. _WSGI: http://wsgi.org/wsgi
@@ -519,6 +535,35 @@ For a complete reference, see the `grammar specification`_ below.
 
 .. _`grammar specification`: `Appendix I. ewaconf Formal Grammar Specification`_
 
+Configuring the Web Server
+--------------------------
+
+
+Two recommended options for integrating ewa with a web server are
+discussed below. [#]_
+
+Lighttpd
+~~~~~~~~
+
+First of all, enable ``fastcgi`` in ``ewa.conf``.  If you are using
+lighttpd_ in version 1.4.11 or lower, set ``sendfile_header`` to
+``'X-LIGHTTPD-send-file'``.
+
+Then use something like the following lighttpd configuration:
+
+.. include :: ../conf/lighttpd.conf.sample
+  :literal:
+
+
+Apache with mod_xsendfile
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TBD. This should be a fairly straightforward combination of `mod_scgi`_ and
+`mod_xsendfile`_. 
+
+.. _`mod_scgi`: SCGI_
+
+
 Using The CLI Programs
 ======================
 
@@ -774,7 +819,13 @@ Complete Example
 
 .. _JSON: http://www.json.org/
 
-
+.. [#] Other options are possible.  In addition to nginx, mentioned
+   elsewhere, it would be possible run ewa's WSGI application in
+   another WSGI container or even a CGI.  With Apache's
+   ``mod_rewrite`` it is possible to detect whether a static file is
+   available and serve it directly if so, and only call a splicing
+   backend if not, which, if X-Sendfile were not available, could
+   accomplish much the same thing with an external redirect.  
 
 
 

@@ -3,13 +3,12 @@ server.modules = ( "mod_access",
                    "mod_accesslog",
                    "mod_staticfile" )
 
-server.document-root = "/home/smulloni/ewaroot"
-server.errorlog      = "/tmp/lighttpd.error.log"
-server.port          = 8000
-accesslog.filename   = "/tmp/lighttpd.access.log"
+server.document-root = "/path/to/basedir"
+server.errorlog      = "/var/log/lighttpd/error.log"
+server.port          = 80
+accesslog.filename   = "/var/log/lighttpd/access.log"
 
-$HTTP["url"] !~ "^/static/" {
- fastcgi.server = (
+fastcgi.server = (
                   "/" =>
                     ( "127.0.0.1" =>
                       (
@@ -20,4 +19,3 @@ $HTTP["url"] !~ "^/static/" {
                       )
                     )
                 )
-}
