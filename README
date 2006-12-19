@@ -8,6 +8,13 @@ ewa (EastWestAudio) is an application that quickly splices together
 mp3 audio files together into larger files according to user-defined
 rules.  It can be run as a commandline utility or in server mode.
 
+Documentation
+-------------
+
+The ewa manual is available in the doc/ directory of the source
+distribution.
+
+
 Installation
 ------------
 
@@ -19,29 +26,10 @@ or:
 
    python setup.py install
 
-Dependencies
-------------
+Ewa requires Python >=2.4.
 
-ewa has several Python dependencies:
+See the manual for details.
 
-  setuptools
-  eyeD3
-  simplejson
-  ply 
-  nose (optional, to run tests)
-  Python 2.4 or better.
-
-It also requires that lame be installed for transcoding.
-
-Documentation
--------------
-
-The documentation is available as man pages.  To install, cd to the
-doc directory and type 
-
-   make install
-
-(This is probably not going to remain true.)
 
 Tests
 -----
