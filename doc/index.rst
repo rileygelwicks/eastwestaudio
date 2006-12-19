@@ -303,7 +303,7 @@ might do this::
   chmod -r g+ws $targetdir $basedir/extras/transcoded
 
 While you are at it, creating directories for ewa's pid file and log
-file aren't a bad idea::
+file isn't a bad idea::
 
   mkdir -p /var/{run,log}/ewa && chown ewa /var/{run,log}/ewa
 
