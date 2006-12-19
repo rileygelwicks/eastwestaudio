@@ -469,7 +469,7 @@ information, see the `official Python documentation
 
 Globs support only one option: ``I``.  By default, globs are
 case-sensitive, but if this option is passed they will ignore case.
-(Globs are implemented with Python fnmatch_ module.)
+(Globs are implemented with Python's fnmatch_ module.)
 
 .. _fnmatch: http://www.python.org/doc/current/lib/module-fnmatch.html
 
