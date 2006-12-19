@@ -81,9 +81,9 @@ plug in your own, implemented in Python.
 Ewa also manages transcoding the extra audio to match the content
 files with which it may be spliced. Master files for each piece of
 extra audio are placed in a directory managed by ewa, and ewa
-transcodes them as needed, leaving the transcoded files in a managed
-directory for future runs. The masters may be in mp3, wav, or aiff
-format.  
+transcodes them as needed, leaving the transcoded files in another
+managed directory for future runs. The masters may be in mp3, wav, or
+aiff format.
 
 .. _mini-language: ewaconf_
 
