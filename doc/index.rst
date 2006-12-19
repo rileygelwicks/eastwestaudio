@@ -646,7 +646,7 @@ options:
 ``ewasplice``
 -------------
 
-usage: ewasplice [options] files
+usage: ``ewasplice`` [options] files
 
 This utility splices MP3 files together using the ewa splicer, but
 doesn't use the managed directories or perform automatic
