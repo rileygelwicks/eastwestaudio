@@ -28,9 +28,10 @@
       3.1  The ``ewa.conf`` File
       3.2  The EWA Rule Configuration File
         3.2.1  The Ewaconf Configuration Language
-      3.3  Configuring the Web Server
-        3.3.1  Lighttpd
-        3.3.2  Apache with mod_xsendfile
+      3.3  Checking the Syntax of the Configuration Files
+      3.4  Configuring the Web Server
+        3.4.1  Lighttpd
+        3.4.2  Apache with mod_xsendfile
     4  Using The CLI Programs
       4.1  ``ewabatch``
       4.2  ``ewa``
@@ -64,18 +65,18 @@ extra files. [#]_
 In order to know what extra files to combine with a particular content
 file, ewa consults a *rule*, which is a function that takes the name
 of the requested file and returns an ordered list of files that should
-be combined.  The rule ewa consults is normally actually a special
-rule called a *rule list* that contains a list of sub-rules; the first
+be combined.  The rule ewa consults is usually a special kind of rule
+called a *rule list* that contains a list of sub-rules; the first
 sub-rule that matches, i.e., that returns a non-empty list, is the
 return value of the parent rule.  Ewa provides a expressive
-`mini-language`_ for specifying such rule lists; with it, rules can match
-only for filenames that match glob or regular expression patterns, or
-that match date formats, or combinations of such criteria with "and",
-"or", and "not" operators.  Also, rules can be made active only for
-certain date ranges, so you can add configuration in January that will
-only become effective in February.  If the rule system isn't flexible
-enough and you have special needs, you can also configure the rule
-system in Python and implement your own rule system.
+`mini-language`_ for specifying such rule lists; with it, rules can
+apply only for filenames that match glob or regular expression
+patterns, or that match date formats, or combinations of such criteria
+with "and", "or", and "not" operators.  Also, rules can be made active
+only for certain date ranges, so you can add configuration in January
+that will only become effective in February.  If the rule system isn't
+flexible enough and you have special needs, you can also configure the
+rule system in Python and implement your own rule system.
 
 Any individual piece of promotional audio may be associated with
 various different content mp3s, and therefore need to be combined with
@@ -116,12 +117,12 @@ inconvenient; with batch mode processing, each new file must be
 processed before going live, and the bandwidth costs of changing
 intros for a large number of mp3s and having to rsync them up to your
 webserver may be prohibitive if undertaken frequently.  Even if cost
-is not the issue, it is highly inefficient to have to change a
-thousand files when really one thing has changed -- a single intro.
-The ewa server gets around this problem.
+is not the issue, it is highly inefficient to have to move a thousand
+files when really only one thing has changed -- a single intro.  The
+ewa server gets around this problem.
 
 The server mode, controlled by the script ewa_, is a persistent
-process which runs a simple WSGI_ application which normally should be
+process running a simple WSGI_ application which normally should be
 connected to a web server via FCGI_ or SCGI_.  It generates the
 combined files on demand, leaving the file in the filesystem and
 returning the path to the file to the web server via the X-Sendfile_
@@ -213,7 +214,7 @@ To run tests you also need:
 Ewa also requires that lame_ be installed for transcoding.  To run the
 ewa server, you want to run an http server that supports X-Sendfile_
 or something equivalent: either lighttpd_, apache_ with
-mod\_xsendfile_, or possibly nginx_.
+`mod_xsendfile`_, or possibly nginx_.
 
 Getting Ewa
 -----------
@@ -278,8 +279,8 @@ Ewa expects audio to be stored in a directory structure like:
 	Ewa manages this directory and needs write access to it; this
 	is where it stores the spliced files.
 
-``$basedir`` and ``$targetdir`` are configuration-defined.  You must
-specify ``$basedir`` in ``ewa.conf``; ``$targetdir`` will default to
+``basedir`` and ``targetdir`` are configuration-defined.  You must
+specify ``basedir`` in ``ewa.conf``; ``targetdir`` will default to
 ``$basedir/combined`` if not otherwise specified.
 
 
@@ -391,7 +392,11 @@ group
 engine
 	What splicing engine to use.  You don't want to change this or
 	even know about it.
-
+use_threads
+	Whether to use a pool of threads rather than a pool of forked
+	processes.  If the platform supports ``fork()``, this will
+	default to ``False``; otherwise (that is, on Windows) to
+	``True``. 
 
 The EWA Rule Configuration File
 -------------------------------
@@ -549,6 +554,15 @@ For a complete reference, see the `grammar specification`_ below.
 
 .. _`grammar specification`: `Appendix I. ewaconf Formal Grammar Specification`_
 
+Checking the Syntax of the Configuration Files
+----------------------------------------------
+
+The ``ewabatch``_ script, when run with the ``-t`` option, will
+perform a syntax check on both ``ewa.conf`` and the rulefile, and
+either exit with a ``Syntax OK`` message or blow up with a possibly
+helpful traceback.
+
+
 Configuring the Web Server
 --------------------------
 
@@ -607,6 +621,10 @@ options:
   -a, --absolute        interpret file paths relative to the filesystem rather
                         than the basedir (default: no)
   -t, --configtest      just test the config file for syntax errors
+
+.. hint:: With both ``ewabatch`` and ``ewa``, if you don't specify a config
+   file, ewa will look for it in ``~/.ewa/ewa.conf`` and
+   ``/etc/ewa.conf``.
 
 
 ``ewa``
