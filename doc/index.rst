@@ -373,6 +373,9 @@ user
 	drop credentials to another user/group, set this.
 group
 	Same as for user.
+engine
+	What splicing engine to use.  You don't want to change this or
+	even know about it.
 
 
 The EWA Rule Configuration File
@@ -519,23 +522,70 @@ For a complete reference, see the `grammar specification`_ below.
 Using The CLI Programs
 ======================
 
-Add summary of command-line options for ewa, ewabatch, and ewasplice.
+Below are summaries of the commandline options of ``ewa`` and
+``ewabatch``, and also for a third less important program,
+``ewasplice``, which provides lower-level access to ewa's splicing
+facilities.
 
 ``ewabatch``
 ------------
 
-TBD
+usage: ``ewabatch`` [options] [files]
+
+Produces a combined MP3 file according to the specified rules.
+
+options:
+  -h, --help            show this help message and exit
+  -c CONFIGFILE, --config=CONFIGFILE
+                        path to ewa config file
+  -r, --recursive       recurse through directories
+  --rulefile=RULEFILE   specify a rulefile
+  -d, --debug           print debugging information
+  -n, --dry-run         don't do anything, just print what would be done
+  -e ENGINE, --engine=ENGINE
+                        which splicing engine to use (default ewa splicer,
+                        mp3cat, or sox)
+  -a, --absolute        interpret file paths relative to the filesystem rather
+                        than the basedir (default: no)
+  -t, --configtest      just test the config file for syntax errors
+
 
 ``ewa``
 -------
 
-TBD
+usage: ``ewa`` [options]
+
+Starts ewa's WSGI application that produces combined MP3 files
+according to the specified rules.
+
+options:
+  -h, --help            show this help message and exit
+  -c CONFIGFILE, --config=CONFIGFILE
+                        path to ewa config file
+  -D, --nodaemonize     don't daemonize, regardless of config settings
+
+
 
 ``ewasplice``
 -------------
 
-TBD
+usage: ewasplice [options] files
 
+This utility splices MP3 files together using the ewa splicer, but
+doesn't use the managed directories or perform automatic
+transcoding. You have to specify a file as  "tagfile" so it knows
+where to get id3 tags.
+
+options:
+  -h, --help            show this help message and exit
+  -o OUT, --output=OUT  output file (default: stdout)
+  -t TAGFILE, --tagfile=TAGFILE
+                        tag file
+  -d, --debug           print debugging information
+  -s, --sanitycheck     sanity check the input mp3 files
+  -e ENGINE, --engine=ENGINE
+                        which splicing engine to use (default ewa splicer,
+                        mp3cat, or sox)
 
 
 Appendix I. ``ewaconf`` Formal Grammar Specification
