@@ -267,8 +267,12 @@ def do_audioprovider(args):
     else:
         _change_user_group()
         for file in args:
-            target=provider.create_combined(file, rule, splicer=engine)
-            debug('created %s', target)
+            try:
+                target=provider.create_combined(file, rule, splicer=engine)
+            except:
+                exception("error creating combined file for %s", file)
+            else:
+                debug('created %s', target)
     sys.exit(0)
         
 class RecursiveMp3FileIterator(object):

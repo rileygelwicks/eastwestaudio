@@ -53,7 +53,7 @@ OSS Infrastructure
 Gentoo Integration
 ==================
 
-* ebuilds for all dependences, including ply-2.2.
+* ebuilds for all dependencies, including ply-2.2.
 * ebuild for ewa.
 
 Upcoming Features
@@ -61,7 +61,7 @@ Upcoming Features
 
 * logging -- we need log rotation, which can be done with the logging
   module. 
-
+* add dependencies to setup.py. [?]
 
 Future Ideas
 ============
@@ -76,7 +76,9 @@ Future Ideas
 Bugs
 ====
 
-* add dependencies to setup.py.
+* ewabatch fails on files that can't be processed; they should be
+  skipped rather than blowing up.
+
 
 
 "Deploying EWA" Presentation
