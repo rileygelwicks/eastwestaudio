@@ -396,6 +396,23 @@ use_threads
 lame_path
 	The path to the ``lame`` executable, for transcoding.  Default
 	is ``/usr/bin/lame``.
+min_spare
+	For the `FCGI`_ and `SCGI`_ backends, the minimum number of
+	spare threads or processes.  Defaults to 1. [#]_
+max_spare
+	For the `FCGI`_ and `SCGI`_ backends, the maximum number of
+	spare threads or processes.  Defaults to 5.
+max_threads
+	For the `FCGI`_ and `SCGI`_ threaded backends, the maximum
+	number of threads.  Default is unlimited.
+max_children
+	For the `FCGI`_ and `SCGI`_ preforked backends, the maximum
+	number of child processes.  Default is 50.
+max_requests
+	For the `FCGI`_ and `SCGI`_ preforked backends, the maximum
+	number of requests a child process handles before it is
+	killed.  Default is 0 (unlimited).
+	
 
 The EWA Rule Configuration File
 -------------------------------
@@ -783,6 +800,11 @@ Complete Example
 .. [#] There are use cases in which you might want more than one
     content file -- one for each segment of a radio program, for
     instance -- but this usage is not currently supported. 
+
+.. [#] The stated default value of this config variable, and of the
+   several following which refer to the configuration of the FCGI_ and
+   SCGI_ daemons,  are actually enforced by flup_; the value help in
+   ``Config``  object for all of them is actually ``None``.
 
 .. [#] Actually, there is a third format -- a special dialect of JSON_
     -- but it isn't very useful and may be dropped in a future
