@@ -64,7 +64,12 @@ DEFAULTS=dict(loglevel='critical',
               user=None,
               group=None,
               content_disposition='attachment',
-              lame_path='/usr/bin/lame'
+              lame_path='/usr/bin/lame',
+              min_spare=None,
+              max_spare=None,
+              max_threads=None,
+              max_children=None,
+              max_requests=None
               )
 
 def initConfig(configfile):

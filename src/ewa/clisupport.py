@@ -364,9 +364,25 @@ def do_serve(args):
                 serverclass=FCGIThreadServer
             else:
                 serverclass=FCGIServer
+        if Config.protocol in ('fcgi', 'scgi'):
+            if Config.use_threads:
+                kw=dict(maxSpare=Config.max_spare,
+                        minSpare=Config.min_spare,
+                        maxThreads=Config.max_threads)
+            else:
+                kw=dict(maxSpare=Config.max_spare,
+                        minSpare=Config.min_spare,
+                        maxChildren=Config.max_children,
+                        maxRequests=Config.max_requests)
+            # clean out Nones
+            kw=dict(i for i in kw.items() if not i[1] is None)
+        else:
+            kw={}
+                
         runner=serverclass(app,
                            bindAddress=bindAddress,
-                           umask=Config.umask).run
+                           umask=Config.umask,
+                           **kw).run
         
     try:
         run_server(runner,
