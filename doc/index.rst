@@ -8,7 +8,7 @@
 :date: $Date$
 :revision: $Revision$
 :version: 0.62
-
+:copyright: Copyright 2006 WNYC New York Public Radio.
 
 .. contents:: 
 ..
