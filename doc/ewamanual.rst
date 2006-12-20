@@ -581,10 +581,10 @@ For a complete reference, see the `grammar specification`_ below.
 Checking the Syntax of the Configuration Files
 ----------------------------------------------
 
-The ``ewabatch``_ script, when run with the ``-t`` option, will
-perform a syntax check on both ``ewa.conf`` and the rulefile, and
-either exit with a ``Syntax OK`` message or blow up with a possibly
-helpful traceback.
+The ewabatch_ script, when run with the ``-t`` option, will perform
+a syntax check on both ``ewa.conf`` and the rulefile, and either exit
+with a ``Syntax OK`` message or blow up with a possibly helpful
+traceback.
 
 
 Configuring the Web Server
