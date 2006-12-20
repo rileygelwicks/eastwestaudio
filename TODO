@@ -10,24 +10,54 @@
   * finding the right files to combine
   * combining them
 * improve logging
-* performance testing: ewa versus static.  
 * try lighttpd 1.5.
-* acceptance testing of aggregated audio.
 * need updated ebuild for ply.
 * siege urls.txt for multi-file stress tests.
 
 * QA plan.  
 * Get QA guy.
-* cleanup.
+
 * docs.
 
+QA Plan
+=======
 
+* test with mpck on large number of generated files.
+* test transcoding from every accepted format to a variety
+  of combinations of modes, bitrates, and samplerates.
+* user test with flash player, itunes, quicktime, winamp.
+* siege testing with urls.txt with many files in it.
+* test handling of 404s.
+* more automated tests of the api.
+
+OSS Infrastructure
+==================
+
+*website:
+ * trac 
+ * separate svn repository
+ * separate hostname (code.wnyc.org?)
+ * front page
+ * FAQ
+ * link to manual
+ * link to api documentation
+ * link to downloads:
+   * source tarball
+   * eggs for various platforms
+   * RPMs
+* google group
+* cheeseshop
+* release script -- update freshmeat, comp.lang.python.announce
+
+
+Gentoo Integration
+==================
+
+* ebuilds for all dependences, including ply-2.2.
+* ebuild for ewa.
 
 Upcoming Features
 =================
-
-* move more defaults that should be configurable into Config:
-  * what transcodeFunc to use, or at least lame path
 
 * logging -- we need log rotation, which can be done with the logging
   module. 
@@ -87,6 +117,7 @@ DONE
 * in ewabatch also drop to user/group if running as root.  -- DONE
 * add whether to add Content-Disposition: attachment header to Config
   -- DONE
+* add lame path to config -- DONE
 
 REJECTED
 ========

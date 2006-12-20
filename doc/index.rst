@@ -98,7 +98,7 @@ Batch Mode
 
 The batch mode, controlled by the script ewabatch_, is convenient if
 you can't run your own persistent processes on the web server serving
-your audio files; you can use them to produce static files on a
+your audio files; you can use it to produce static files on a
 machine under your own control and rsync them up to the web server
 however often you need.  Batch mode can operate either on individual
 files or recursively on entire directories.
@@ -112,11 +112,11 @@ need for any integration with the web server at all; you just need a
 cron job to generate the files periodically and perhaps rsync them.
 But if you have a large number of files, this can become unwieldy. Not
 only must each new file must be processed before going live, but the
-bandwidth costs in both money and time of changing intros for a large
-number of mp3s and having to rsync them up to your webserver may be
-prohibitive if undertaken frequently.  It is highly inefficient to
-have to move thousands of files when really only one thing has changed
--- a single intro.  The ewa server gets around this problem.
+costs in time and bandwidth of changing intros for a large number of
+mp3s and having to rsync them up to your webserver may be prohibitive
+if undertaken frequently.  It is highly inefficient to have to move
+thousands of files just because an intro has changed.  The ewa server
+gets around this problem.
 
 The server mode, controlled by the script ewa_, is a persistent daemon
 running a simple WSGI_ application, normally connected to a web server
