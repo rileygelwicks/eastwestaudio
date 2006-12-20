@@ -14,8 +14,11 @@ ewamanual.tex: ewamanual.rst
 ewamanual.pdf: ewamanual.tex
 	${PDFLATEX} ewamanual.tex
 
-clean: 
-	-rm ewamanual.html ewamanual.tex ewamanual.pdf
+cleanjunk:
+	-rm ewamanual.{aux,log,out}
 
-.PHONY: clean
+clean: cleanjunk
+	-rm ewamanual.{html,tex,pdf}
+
+.PHONY: clean cleanjunk
 
