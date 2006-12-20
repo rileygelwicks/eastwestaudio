@@ -318,7 +318,7 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Date:</th>
 <td>2006-12-19</td></tr>
 <tr><th class="docinfo-name">Revision:</th>
-<td>5936</td></tr>
+<td>5939</td></tr>
 <tr><th class="docinfo-name">Version:</th>
 <td>0.62</td></tr>
 </tbody>
@@ -326,54 +326,54 @@ ul.auto-toc {
 <div class="contents topic">
 <p class="topic-title first"><a id="contents" name="contents">Contents</a></p>
 <ul class="simple">
-<li><a class="reference" href="#overview" id="id8" name="id8">Overview</a><ul>
-<li><a class="reference" href="#modes-of-operation" id="id9" name="id9">Modes of Operation</a><ul>
-<li><a class="reference" href="#batch-mode" id="id10" name="id10">Batch Mode</a></li>
-<li><a class="reference" href="#server-mode" id="id11" name="id11">Server Mode</a></li>
+<li><a class="reference" href="#overview" id="id10" name="id10">Overview</a><ul>
+<li><a class="reference" href="#modes-of-operation" id="id11" name="id11">Modes of Operation</a><ul>
+<li><a class="reference" href="#batch-mode" id="id12" name="id12">Batch Mode</a></li>
+<li><a class="reference" href="#server-mode" id="id13" name="id13">Server Mode</a></li>
 </ul>
 </li>
-<li><a class="reference" href="#limitations" id="id12" name="id12">Limitations</a><ul>
-<li><a class="reference" href="#a-note-on-mp3-splicing" id="id13" name="id13">A Note on Mp3 Splicing</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference" href="#installation" id="id14" name="id14">Installation</a><ul>
-<li><a class="reference" href="#supported-platforms" id="id15" name="id15">Supported Platforms</a></li>
-<li><a class="reference" href="#getting-ewa" id="id16" name="id16">Getting Ewa</a></li>
-<li><a class="reference" href="#software-installation" id="id17" name="id17">Software Installation</a></li>
-<li><a class="reference" href="#the-managed-audio-directory" id="id18" name="id18">The Managed Audio Directory</a></li>
-<li><a class="reference" href="#permissions-gotchas" id="id19" name="id19">Permissions Gotchas</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#configuration" id="id20" name="id20">Configuration</a><ul>
-<li><a class="reference" href="#the-ewa-conf-file" id="id21" name="id21">The <tt class="docutils literal"><span class="pre">ewa.conf</span></tt> File</a></li>
-<li><a class="reference" href="#the-ewa-rule-configuration-file" id="id22" name="id22">The EWA Rule Configuration File</a><ul>
-<li><a class="reference" href="#the-ewaconf-configuration-language" id="id23" name="id23">The Ewaconf Configuration Language</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#checking-the-syntax-of-the-configuration-files" id="id24" name="id24">Checking the Syntax of the Configuration Files</a></li>
-<li><a class="reference" href="#configuring-the-web-server" id="id25" name="id25">Configuring the Web Server</a><ul>
-<li><a class="reference" href="#id4" id="id26" name="id26">Lighttpd</a></li>
-<li><a class="reference" href="#apache-with-mod-xsendfile" id="id27" name="id27">Apache with mod_xsendfile</a></li>
+<li><a class="reference" href="#limitations" id="id14" name="id14">Limitations</a><ul>
+<li><a class="reference" href="#a-note-on-mp3-splicing" id="id15" name="id15">A Note on Mp3 Splicing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference" href="#using-the-cli-programs" id="id28" name="id28">Using The CLI Programs</a><ul>
-<li><a class="reference" href="#ewabatch" id="id29" name="id29"><tt class="docutils literal"><span class="pre">ewabatch</span></tt></a></li>
-<li><a class="reference" href="#ewa" id="id30" name="id30"><tt class="docutils literal"><span class="pre">ewa</span></tt></a></li>
-<li><a class="reference" href="#ewasplice" id="id31" name="id31"><tt class="docutils literal"><span class="pre">ewasplice</span></tt></a></li>
+<li><a class="reference" href="#installation" id="id16" name="id16">Installation</a><ul>
+<li><a class="reference" href="#supported-platforms" id="id17" name="id17">Supported Platforms</a></li>
+<li><a class="reference" href="#getting-ewa" id="id18" name="id18">Getting Ewa</a></li>
+<li><a class="reference" href="#software-installation" id="id19" name="id19">Software Installation</a></li>
+<li><a class="reference" href="#the-managed-audio-directory" id="id20" name="id20">The Managed Audio Directory</a></li>
+<li><a class="reference" href="#permissions-gotchas" id="id21" name="id21">Permissions Gotchas</a></li>
 </ul>
 </li>
-<li><a class="reference" href="#appendix-i-ewaconf-formal-grammar-specification" id="id32" name="id32">Appendix I. <tt class="docutils literal"><span class="pre">ewaconf</span></tt> Formal Grammar Specification</a><ul>
-<li><a class="reference" href="#normative-ebnf" id="id33" name="id33">Normative EBNF</a></li>
-<li><a class="reference" href="#lexical-details" id="id34" name="id34">Lexical Details</a><ul>
-<li><a class="reference" href="#significant-tokens" id="id35" name="id35">Significant Tokens</a></li>
-<li><a class="reference" href="#ignored-tokens" id="id36" name="id36">Ignored Tokens</a></li>
+<li><a class="reference" href="#configuration" id="id22" name="id22">Configuration</a><ul>
+<li><a class="reference" href="#the-ewa-conf-file" id="id23" name="id23">The <tt class="docutils literal"><span class="pre">ewa.conf</span></tt> File</a></li>
+<li><a class="reference" href="#the-ewa-rule-configuration-file" id="id24" name="id24">The EWA Rule Configuration File</a><ul>
+<li><a class="reference" href="#the-ewaconf-configuration-language" id="id25" name="id25">The Ewaconf Configuration Language</a></li>
 </ul>
 </li>
-<li><a class="reference" href="#complete-example" id="id37" name="id37">Complete Example</a></li>
+<li><a class="reference" href="#checking-the-syntax-of-the-configuration-files" id="id26" name="id26">Checking the Syntax of the Configuration Files</a></li>
+<li><a class="reference" href="#configuring-the-web-server" id="id27" name="id27">Configuring the Web Server</a><ul>
+<li><a class="reference" href="#id5" id="id28" name="id28">Lighttpd</a></li>
+<li><a class="reference" href="#apache-with-mod-xsendfile" id="id29" name="id29">Apache with mod_xsendfile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference" href="#using-the-cli-programs" id="id30" name="id30">Using The CLI Programs</a><ul>
+<li><a class="reference" href="#ewabatch" id="id31" name="id31"><tt class="docutils literal"><span class="pre">ewabatch</span></tt></a></li>
+<li><a class="reference" href="#ewa" id="id32" name="id32"><tt class="docutils literal"><span class="pre">ewa</span></tt></a></li>
+<li><a class="reference" href="#ewasplice" id="id33" name="id33"><tt class="docutils literal"><span class="pre">ewasplice</span></tt></a></li>
+</ul>
+</li>
+<li><a class="reference" href="#appendix-i-ewaconf-formal-grammar-specification" id="id34" name="id34">Appendix I. <tt class="docutils literal"><span class="pre">ewaconf</span></tt> Formal Grammar Specification</a><ul>
+<li><a class="reference" href="#normative-ebnf" id="id35" name="id35">Normative EBNF</a></li>
+<li><a class="reference" href="#lexical-details" id="id36" name="id36">Lexical Details</a><ul>
+<li><a class="reference" href="#significant-tokens" id="id37" name="id37">Significant Tokens</a></li>
+<li><a class="reference" href="#ignored-tokens" id="id38" name="id38">Ignored Tokens</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#complete-example" id="id39" name="id39">Complete Example</a></li>
 </ul>
 </li>
 </ul>
@@ -409,7 +409,7 @@ ul.auto-toc {
     5.2.2  Ignored Tokens
   5.3  Complete Example -->
 <div class="section">
-<h1><a class="toc-backref" href="#id8" id="overview" name="overview">Overview</a></h1>
+<h1><a class="toc-backref" href="#id10" id="overview" name="overview">Overview</a></h1>
 <p>Ewa (East-West Audio) is an application that manages the production of
 spliced mp3 files.  It is meant to solve a common audio production
 problem facing producers of audio for the web who would like to add
@@ -420,7 +420,7 @@ without having to remaster all their mp3s from scratch.</p>
 content files contain the material of main interest; the extra files
 are the promotional material.  Ewa assumes that one resultant mp3 is
 normally an aggregation of exactly one content file with any number of
-extra files. <a class="footnote-reference" href="#id5" id="id1" name="id1">[1]</a></p>
+extra files. <a class="footnote-reference" href="#id6" id="id1" name="id1">[1]</a></p>
 <p>In order to know what extra files to combine with a particular content
 file, ewa consults a <em>rule</em>, which is a function that takes the name
 of the requested file and returns an ordered list of files that should
@@ -443,12 +443,12 @@ transcodes them as needed, leaving the transcoded files in another
 managed directory for future runs. The masters may be in mp3, wav, or
 aiff format.</p>
 <div class="section">
-<h2><a class="toc-backref" href="#id9" id="modes-of-operation" name="modes-of-operation">Modes of Operation</a></h2>
+<h2><a class="toc-backref" href="#id11" id="modes-of-operation" name="modes-of-operation">Modes of Operation</a></h2>
 <p>Ewa can operate either in batch mode, in which case it produces
 combined files for the content files specified on the command line, or
 in server mode.</p>
 <div class="section">
-<h3><a class="toc-backref" href="#id10" id="batch-mode" name="batch-mode">Batch Mode</a></h3>
+<h3><a class="toc-backref" href="#id12" id="batch-mode" name="batch-mode">Batch Mode</a></h3>
 <p>The batch mode, controlled by the script <a class="reference" href="#ewabatch">ewabatch</a>, is convenient if
 you can't run your own persistent processes on the web server serving
 your audio files; you can use it to produce static files on a
@@ -457,7 +457,7 @@ however often you need.  Batch mode can operate either on individual
 files or recursively on entire directories.</p>
 </div>
 <div class="section">
-<h3><a class="toc-backref" href="#id11" id="server-mode" name="server-mode">Server Mode</a></h3>
+<h3><a class="toc-backref" href="#id13" id="server-mode" name="server-mode">Server Mode</a></h3>
 <p>If you are using <tt class="docutils literal"><span class="pre">ewabatch</span></tt> to generate all your files, there is no
 need for any integration with the web server at all; you just need a
 cron job to generate the files periodically and perhaps rsync them.
@@ -483,7 +483,7 @@ static files, with excellent scaleability.</p>
 </div>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id12" id="limitations" name="limitations">Limitations</a></h2>
+<h2><a class="toc-backref" href="#id14" id="limitations" name="limitations">Limitations</a></h2>
 <p>Ewa has a few limitations that the user should be aware of.</p>
 <ol class="arabic simple">
 <li>Mp3 is the only supported audio format.</li>
@@ -501,7 +501,7 @@ scenarios with multiple content files aren't supported.</li>
 <p>Some or all of these may be addressed in future revisions, depending
 on community interest.</p>
 <div class="section">
-<h3><a class="toc-backref" href="#id13" id="a-note-on-mp3-splicing" name="a-note-on-mp3-splicing">A Note on Mp3 Splicing</a></h3>
+<h3><a class="toc-backref" href="#id15" id="a-note-on-mp3-splicing" name="a-note-on-mp3-splicing">A Note on Mp3 Splicing</a></h3>
 <p>You will occasionally read that mp3s cannot be reliably spliced, as
 mp3 frames may store information used by later frames in the bit
 reservoir.  This is not quite true; the reality is that mp3s cannot be
@@ -519,9 +519,9 @@ ewa are broken, the ones coming out will be too.</p>
 </div>
 </div>
 <div class="section">
-<h1><a class="toc-backref" href="#id14" id="installation" name="installation">Installation</a></h1>
+<h1><a class="toc-backref" href="#id16" id="installation" name="installation">Installation</a></h1>
 <div class="section">
-<h2><a class="toc-backref" href="#id15" id="supported-platforms" name="supported-platforms">Supported Platforms</a></h2>
+<h2><a class="toc-backref" href="#id17" id="supported-platforms" name="supported-platforms">Supported Platforms</a></h2>
 <p>Ewa has been developed and tested on Linux, but should work fine on
 any flavor of BSD, including Mac OS X, and commercial UNIX
 implementations.  It hasn't been tested on Windows, but in future
@@ -546,7 +546,7 @@ or something equivalent: either <a class="reference" href="http://lighttpd.net/"
 <a class="reference" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>, or possibly <a class="reference" href="http://nginx.net/">nginx</a>.</p>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id16" id="getting-ewa" name="getting-ewa">Getting Ewa</a></h2>
+<h2><a class="toc-backref" href="#id18" id="getting-ewa" name="getting-ewa">Getting Ewa</a></h2>
 <p>Ewa releases are available in binary and source form from
 <a class="reference" href="http://cheeseshop.python.org/pypi/ewa">http://cheeseshop.python.org/pypi/ewa</a>.</p>
 <p>If you want to follow the bleeding edge development version, you can
@@ -558,7 +558,7 @@ svn co svn+ssh://svn.wnyc.org/var/svn/repos/ewa/trunk ewa
 will be switched to our public repository when it exists. -->
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id17" id="software-installation" name="software-installation">Software Installation</a></h2>
+<h2><a class="toc-backref" href="#id19" id="software-installation" name="software-installation">Software Installation</a></h2>
 <p>To install, if you already have <a class="reference" href="http://cheeseshop.python.org/pypi/setuptools">setuptools</a> installed, you can simply
 do:</p>
 <pre class="literal-block">
@@ -576,7 +576,7 @@ python setup.py install
 <p>The latter will install <a class="reference" href="http://cheeseshop.python.org/pypi/setuptools">setuptools</a> if you don't already have it.</p>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id18" id="the-managed-audio-directory" name="the-managed-audio-directory">The Managed Audio Directory</a></h2>
+<h2><a class="toc-backref" href="#id20" id="the-managed-audio-directory" name="the-managed-audio-directory">The Managed Audio Directory</a></h2>
 <p>Ewa expects audio to be stored in a directory structure like:</p>
 <blockquote>
 <dl class="docutils">
@@ -601,7 +601,7 @@ specify <tt class="docutils literal"><span class="pre">basedir</span></tt> in <t
 <tt class="docutils literal"><span class="pre">$basedir/combined</span></tt> if not otherwise specified.</p>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id19" id="permissions-gotchas" name="permissions-gotchas">Permissions Gotchas</a></h2>
+<h2><a class="toc-backref" href="#id21" id="permissions-gotchas" name="permissions-gotchas">Permissions Gotchas</a></h2>
 <p>Some care is necessary to ensure that file permissions will be right
 for your deployment, especially if you are running both the ewa server
 and ewa batch processes, as a variety of users may then be creating
@@ -629,12 +629,12 @@ credentials to your user/group before it creates any files.</p>
 </div>
 </div>
 <div class="section">
-<h1><a class="toc-backref" href="#id20" id="configuration" name="configuration">Configuration</a></h1>
+<h1><a class="toc-backref" href="#id22" id="configuration" name="configuration">Configuration</a></h1>
 <p>Ewa has two configuration files: <tt class="docutils literal"><span class="pre">ewa.conf</span></tt>, for adminstrative
 options, and a rule configuration file, which is used to determine
 the playlists.</p>
 <div class="section">
-<h2><a class="toc-backref" href="#id21" id="the-ewa-conf-file" name="the-ewa-conf-file">The <tt class="docutils literal"><span class="pre">ewa.conf</span></tt> File</a></h2>
+<h2><a class="toc-backref" href="#id23" id="the-ewa-conf-file" name="the-ewa-conf-file">The <tt class="docutils literal"><span class="pre">ewa.conf</span></tt> File</a></h2>
 <p><tt class="docutils literal"><span class="pre">ewa.conf</span></tt> is written in Python; keys defined there that don't start
 with an underscore become attributes of the <tt class="docutils literal"><span class="pre">ewa.config.Config</span></tt>
 object.  The following are meaningful keys:</p>
@@ -711,12 +711,28 @@ default to <tt class="docutils literal"><span class="pre">False</span></tt>; oth
 <dt>lame_path</dt>
 <dd>The path to the <tt class="docutils literal"><span class="pre">lame</span></tt> executable, for transcoding.  Default
 is <tt class="docutils literal"><span class="pre">/usr/bin/lame</span></tt>.</dd>
+<dt>min_spare</dt>
+<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> backends, the minimum number of
+spare threads or processes.  Defaults to 1. <a class="footnote-reference" href="#id7" id="id2" name="id2">[2]</a></dd>
+<dt>max_spare</dt>
+<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> backends, the maximum number of
+spare threads or processes.  Defaults to 5.</dd>
+<dt>max_threads</dt>
+<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> threaded backends, the maximum
+number of threads.  Default is unlimited.</dd>
+<dt>max_children</dt>
+<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> preforked backends, the maximum
+number of child processes.  Default is 50.</dd>
+<dt>max_requests</dt>
+<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> preforked backends, the maximum
+number of requests a child process handles before it is
+killed.  Default is 0 (unlimited).</dd>
 </dl>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id22" id="the-ewa-rule-configuration-file" name="the-ewa-rule-configuration-file">The EWA Rule Configuration File</a></h2>
+<h2><a class="toc-backref" href="#id24" id="the-ewa-rule-configuration-file" name="the-ewa-rule-configuration-file">The EWA Rule Configuration File</a></h2>
 <p>The rule file can be written either in Python or in a special
-configuration mini-language, <a class="reference" href="#the-ewaconf-configuration-language">ewaconf</a>. <a class="footnote-reference" href="#id6" id="id2" name="id2">[2]</a></p>
+configuration mini-language, <a class="reference" href="#the-ewaconf-configuration-language">ewaconf</a>. <a class="footnote-reference" href="#id8" id="id3" name="id3">[3]</a></p>
 <p>A rule file in Python format gives you maximum flexibility, at the
 cost of requiring you to know Python and understand the ewa API.  The
 Python file can contain anything as long as it defines a global with
@@ -729,7 +745,7 @@ which case, they will interpreted as file paths relative to the
 <tt class="docutils literal"><span class="pre">main</span></tt> managed directory.)  With this hook you can load into ewa
 just about any sort of rule system that you might like to devise.</p>
 <div class="section">
-<h3><a class="toc-backref" href="#id23" id="the-ewaconf-configuration-language" name="the-ewaconf-configuration-language">The Ewaconf Configuration Language</a></h3>
+<h3><a class="toc-backref" href="#id25" id="the-ewaconf-configuration-language" name="the-ewaconf-configuration-language">The Ewaconf Configuration Language</a></h3>
 <p>Ewa's rule configuration format is designed to make it easy to define
 a list of rules that say, for a given mp3 file, what files ewa should
 combine to make an aggregate file, and in what order.  The rules are
@@ -860,18 +876,18 @@ regex:shows/(?P&lt;showname&gt;[^/]+)/.*: [
 </div>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id24" id="checking-the-syntax-of-the-configuration-files" name="checking-the-syntax-of-the-configuration-files">Checking the Syntax of the Configuration Files</a></h2>
+<h2><a class="toc-backref" href="#id26" id="checking-the-syntax-of-the-configuration-files" name="checking-the-syntax-of-the-configuration-files">Checking the Syntax of the Configuration Files</a></h2>
 <p>The <tt class="docutils literal"><span class="pre">ewabatch``_</span> <span class="pre">script,</span> <span class="pre">when</span> <span class="pre">run</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">``-t</span></tt> option, will
 perform a syntax check on both <tt class="docutils literal"><span class="pre">ewa.conf</span></tt> and the rulefile, and
 either exit with a <tt class="docutils literal"><span class="pre">Syntax</span> <span class="pre">OK</span></tt> message or blow up with a possibly
 helpful traceback.</p>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id25" id="configuring-the-web-server" name="configuring-the-web-server">Configuring the Web Server</a></h2>
+<h2><a class="toc-backref" href="#id27" id="configuring-the-web-server" name="configuring-the-web-server">Configuring the Web Server</a></h2>
 <p>Two recommended options for integrating ewa with a web server are
-discussed below. <a class="footnote-reference" href="#id7" id="id3" name="id3">[3]</a></p>
+discussed below. <a class="footnote-reference" href="#id9" id="id4" name="id4">[4]</a></p>
 <div class="section">
-<h3><a class="toc-backref" href="#id26" id="id4" name="id4">Lighttpd</a></h3>
+<h3><a class="toc-backref" href="#id28" id="id5" name="id5">Lighttpd</a></h3>
 <p>First of all, enable <tt class="docutils literal"><span class="pre">fastcgi</span></tt> in <tt class="docutils literal"><span class="pre">ewa.conf</span></tt>.  If you are using
 <a class="reference" href="http://lighttpd.net/">lighttpd</a> in version 1.4.11 or lower, set <tt class="docutils literal"><span class="pre">sendfile_header</span></tt> to
 <tt class="docutils literal"><span class="pre">'X-LIGHTTPD-send-file'</span></tt>.</p>
@@ -905,20 +921,20 @@ fastcgi.server = (
 </pre>
 </div>
 <div class="section">
-<h3><a class="toc-backref" href="#id27" id="apache-with-mod-xsendfile" name="apache-with-mod-xsendfile">Apache with mod_xsendfile</a></h3>
+<h3><a class="toc-backref" href="#id29" id="apache-with-mod-xsendfile" name="apache-with-mod-xsendfile">Apache with mod_xsendfile</a></h3>
 <p>TBD. This should be a fairly straightforward combination of <a class="reference" href="http://www.mems-exchange.org/software/scgi/">mod_scgi</a> and
 <a class="reference" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>.</p>
 </div>
 </div>
 </div>
 <div class="section">
-<h1><a class="toc-backref" href="#id28" id="using-the-cli-programs" name="using-the-cli-programs">Using The CLI Programs</a></h1>
+<h1><a class="toc-backref" href="#id30" id="using-the-cli-programs" name="using-the-cli-programs">Using The CLI Programs</a></h1>
 <p>Below are summaries of the commandline options of <tt class="docutils literal"><span class="pre">ewa</span></tt> and
 <tt class="docutils literal"><span class="pre">ewabatch</span></tt>, and also for a third less important program,
 <tt class="docutils literal"><span class="pre">ewasplice</span></tt>, which provides lower-level access to ewa's splicing
 facilities.</p>
 <div class="section">
-<h2><a class="toc-backref" href="#id29" id="ewabatch" name="ewabatch"><tt class="docutils literal"><span class="pre">ewabatch</span></tt></a></h2>
+<h2><a class="toc-backref" href="#id31" id="ewabatch" name="ewabatch"><tt class="docutils literal"><span class="pre">ewabatch</span></tt></a></h2>
 <p>usage: <tt class="docutils literal"><span class="pre">ewabatch</span></tt> [options] [files]</p>
 <p>Produces a combined MP3 file according to the specified rules.</p>
 <dl class="docutils">
@@ -973,7 +989,7 @@ file, ewa will look for it in <tt class="docutils literal"><span class="pre">~/.
 </div>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id30" id="ewa" name="ewa"><tt class="docutils literal"><span class="pre">ewa</span></tt></a></h2>
+<h2><a class="toc-backref" href="#id32" id="ewa" name="ewa"><tt class="docutils literal"><span class="pre">ewa</span></tt></a></h2>
 <p>usage: <tt class="docutils literal"><span class="pre">ewa</span></tt> [options]</p>
 <p>Starts ewa's WSGI application that produces combined MP3 files
 according to the specified rules.</p>
@@ -1000,7 +1016,7 @@ according to the specified rules.</p>
 </dl>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id31" id="ewasplice" name="ewasplice"><tt class="docutils literal"><span class="pre">ewasplice</span></tt></a></h2>
+<h2><a class="toc-backref" href="#id33" id="ewasplice" name="ewasplice"><tt class="docutils literal"><span class="pre">ewasplice</span></tt></a></h2>
 <p>usage: <tt class="docutils literal"><span class="pre">ewasplice</span></tt> [options] files</p>
 <p>This utility splices MP3 files together using the ewa splicer, but
 doesn't use the managed directories or perform automatic
@@ -1042,9 +1058,9 @@ mp3cat, or sox)</td></tr>
 </div>
 </div>
 <div class="section">
-<h1><a class="toc-backref" href="#id32" id="appendix-i-ewaconf-formal-grammar-specification" name="appendix-i-ewaconf-formal-grammar-specification">Appendix I. <tt class="docutils literal"><span class="pre">ewaconf</span></tt> Formal Grammar Specification</a></h1>
+<h1><a class="toc-backref" href="#id34" id="appendix-i-ewaconf-formal-grammar-specification" name="appendix-i-ewaconf-formal-grammar-specification">Appendix I. <tt class="docutils literal"><span class="pre">ewaconf</span></tt> Formal Grammar Specification</a></h1>
 <div class="section">
-<h2><a class="toc-backref" href="#id33" id="normative-ebnf" name="normative-ebnf">Normative EBNF</a></h2>
+<h2><a class="toc-backref" href="#id35" id="normative-ebnf" name="normative-ebnf">Normative EBNF</a></h2>
 <p>The below is an EBNF grammar for the rule configuration format:</p>
 <pre class="literal-block">
 grammar        := cond_rule [','? cond_rule]*
@@ -1073,9 +1089,9 @@ condopt        := BAREWORD | BAREWORD '=' BAREWORD
 </pre>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id34" id="lexical-details" name="lexical-details">Lexical Details</a></h2>
+<h2><a class="toc-backref" href="#id36" id="lexical-details" name="lexical-details">Lexical Details</a></h2>
 <div class="section">
-<h3><a class="toc-backref" href="#id35" id="significant-tokens" name="significant-tokens">Significant Tokens</a></h3>
+<h3><a class="toc-backref" href="#id37" id="significant-tokens" name="significant-tokens">Significant Tokens</a></h3>
 <p>The tokens that the lexer must produce will be:</p>
 <blockquote>
 <dl class="docutils">
@@ -1132,14 +1148,14 @@ a space or the previously used separator.</dd>
 </blockquote>
 </div>
 <div class="section">
-<h3><a class="toc-backref" href="#id36" id="ignored-tokens" name="ignored-tokens">Ignored Tokens</a></h3>
+<h3><a class="toc-backref" href="#id38" id="ignored-tokens" name="ignored-tokens">Ignored Tokens</a></h3>
 <p>Any text on a line after a pound sign (#) is a comment and is ignored.
 Whitespace, including line returns, is ignored between tokens.
 Indentation may be freely used to clarify patterns.</p>
 </div>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id37" id="complete-example" name="complete-example">Complete Example</a></h2>
+<h2><a class="toc-backref" href="#id39" id="complete-example" name="complete-example">Complete Example</a></h2>
 <pre class="literal-block">
 # test rule file.
 
@@ -1166,26 +1182,35 @@ regex:&quot;^/shows/(?P&lt;nick&gt;[a-z][a-z0-9]+)/(?P=nick).*\.mp3&quot; [I]:
    ]
 default
 </pre>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1" name="id5">[1]</a></td><td>There are use cases in which you might want more than one
-content file -- one for each segment of a radio program, for
-instance -- but this usage is not currently supported.</td></tr>
-</tbody>
-</table>
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2" name="id6">[2]</a></td><td>Actually, there is a third format -- a special dialect of <a class="reference" href="http://www.json.org/">JSON</a>
--- but it isn't very useful and may be dropped in a future
-release.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1" name="id6">[1]</a></td><td>There are use cases in which you might want more than one
+content file -- one for each segment of a radio program, for
+instance -- but this usage is not currently supported.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id7" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3" name="id7">[3]</a></td><td>Other options are possible.  In addition to nginx, mentioned
+<tr><td class="label"><a class="fn-backref" href="#id2" name="id7">[2]</a></td><td>The stated default value of this config variable, and of the
+several following which refer to the configuration of the <a class="reference" href="http://fastcgi.com/">FCGI</a> and
+<a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> daemons,  are actually enforced by <a class="reference" href="http://cheeseshop.python.org/pypi/flup">flup</a>; the value help in
+<tt class="docutils literal"><span class="pre">Config</span></tt>  object for all of them is actually <tt class="docutils literal"><span class="pre">None</span></tt>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3" name="id8">[3]</a></td><td>Actually, there is a third format -- a special dialect of <a class="reference" href="http://www.json.org/">JSON</a>
+-- but it isn't very useful and may be dropped in a future
+release.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4" name="id9">[4]</a></td><td>Other options are possible.  In addition to nginx, mentioned
 elsewhere, it would be possible run ewa's WSGI application in
 another WSGI container or even a CGI.  With Apache's
 <tt class="docutils literal"><span class="pre">mod_rewrite</span></tt> it is possible to detect whether a static file is
