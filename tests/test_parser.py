@@ -213,8 +213,9 @@ def test_backreference5():
     res=list(rules(orig))
     assert res==['nougat_intro.mp3', orig]
 
-# this one is broken.... requires fairly deep fix.
-
+# this one is subtle.  The match returned by "and" is the last
+# thing matched; you can't use backreferences with "and" except
+# on the last sub-condition.
 def test_backreference6():
     s="""
     and(regex:"(pingpong|nougat|follicle)\d{6}[a-z]?\.mp3",
@@ -226,6 +227,5 @@ def test_backreference6():
     rules=R.parse_string(s)
     orig='nougat060605a.mp3'
     res=list(rules(orig))
-    print res
-    assert res==['nougat_intro.mp3', orig]
+    assert res==['${1}_intro.mp3', orig]
         

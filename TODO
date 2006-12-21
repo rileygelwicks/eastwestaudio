@@ -65,8 +65,7 @@ Upcoming Features
 * rules that depend on whether a given file (extra audio or main
   audio) exists, both in the condition part of the rule or in the
   pre/post part.  
-* make the match group dict available throughout the whole condition,
-  thus dealing with the case of compound conditions.
+
 
 Future Ideas
 ============
@@ -81,8 +80,6 @@ Future Ideas
 Bugs
 ====
 
-* ewabatch fails on files that can't be processed; they should be
-  skipped rather than blowing up.
 
 
 
@@ -128,6 +125,8 @@ DONE
 * add lame path to config -- DONE
 * make the ewa flup server more configurable -- min and max
   procs/threads. -- DONE
+* ewabatch fails on files that can't be processed; they should be
+  skipped rather than blowing up. -- FIXED
 
 REJECTED
 ========
@@ -143,3 +142,5 @@ REJECTED
   
   ewasplice can stay the way it is.  Also, add 'stop' option to ewa,
   to kill the server; and configtest option.  -- REJECTED
+* make the match group dict available throughout the whole condition,
+  thus dealing with the case of compound conditions. -- REJECTED
