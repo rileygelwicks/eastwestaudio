@@ -154,7 +154,7 @@ def test_date5():
 
 def test_backreference1():
     s="""
-    regex:(pingpong|nougat|follicle)\d{6}[a-z]?.mp3:
+    regex:(pingpong|nougat|follicle)\d{6}[a-z]?\.mp3:
         pre: ["\\1_intro.mp3"]
         post: []
     default
@@ -162,12 +162,11 @@ def test_backreference1():
     rules=R.parse_string(s)
     orig='nougat060605a.mp3'
     res=list(rules(orig))
-    print res
     assert res==['nougat_intro.mp3', orig]
 
 def test_backreference2():
     s="""
-    regex:(?P<show>pingpong|nougat|follicle)\d{6}[a-z]?.mp3:
+    regex:(?P<show>pingpong|nougat|follicle)\d{6}[a-z]?\.mp3:
         pre: ["\\g<show>_intro.mp3"]
         post: []
     default
@@ -179,7 +178,7 @@ def test_backreference2():
 
 def test_backreference3():
     s="""
-    regex:(?P<show>pingpong|nougat|follicle)\d{6}[a-z]?.mp3:
+    regex:(?P<show>pingpong|nougat|follicle)\d{6}[a-z]?\.mp3:
         pre: ["${show}_intro.mp3"]
         post: []
     default
@@ -191,7 +190,35 @@ def test_backreference3():
     
 def test_backreference4():
     s="""
-    regex:(pingpong|nougat|follicle)\d{6}[a-z]?.mp3:
+    regex:(pingpong|nougat|follicle)\d{6}[a-z]?\.mp3:
+        pre: ["${1}_intro.mp3"]
+        post: []
+    default
+    """
+    rules=R.parse_string(s)
+    orig='nougat060605a.mp3'
+    res=list(rules(orig))
+    assert res==['nougat_intro.mp3', orig]
+
+def test_backreference5():
+    s="""
+    and(>12-01-2001,
+        regex:"(pingpong|nougat|follicle)\d{6}[a-z]?\.mp3"):
+        pre: ["${1}_intro.mp3"]
+        post: []
+    default
+    """
+    rules=R.parse_string(s)
+    orig='nougat060605a.mp3'
+    res=list(rules(orig))
+    assert res==['nougat_intro.mp3', orig]
+
+# this one is broken.... requires fairly deep fix.
+
+def test_backreference6():
+    s="""
+    and(regex:"(pingpong|nougat|follicle)\d{6}[a-z]?\.mp3",
+        >12-01-2001):
         pre: ["${1}_intro.mp3"]
         post: []
     default
@@ -201,3 +228,4 @@ def test_backreference4():
     res=list(rules(orig))
     print res
     assert res==['nougat_intro.mp3', orig]
+        

@@ -62,6 +62,11 @@ Upcoming Features
 * logging -- we need log rotation, which can be done with the logging
   module. 
 * add dependencies to setup.py. [?]
+* rules that depend on whether a given file (extra audio or main
+  audio) exists, both in the condition part of the rule or in the
+  pre/post part.  
+* make the match group dict available throughout the whole condition,
+  thus dealing with the case of compound conditions.
 
 Future Ideas
 ============
