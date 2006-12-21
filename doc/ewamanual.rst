@@ -543,7 +543,7 @@ may be omitted.  Therefore, the following four forms are equivalent::
    default
 
 For regex rules, it is possible for the filenames in the pre and post
-lists to backreference named groups in the matching regex.  Named or
+lists to back-reference named groups in the matching regex.  Named or
 numbered group references can be used, with either a shell-like
 interpolation style::
 
@@ -557,6 +557,32 @@ expansions`_::
    regex:^/shows/(?P<showname>[^/]+)/.*\.mp3: 
       pre:  [intro/\\g<showname>.mp3]
       post: [outro/\\1.mp3]
+
+.. warning:: Back-references can be used with compound conditions only
+   if they refer to the last matching element in the compound
+   condition -- and if the last element is itself compound, the last
+   matching element of it, etc.  For instance, the first of the next
+   two rules will work, and the second will not::
+
+     # if this matches, the match result of the regex will be 
+     # returned, and the back-reference will work
+     and(>01-01-2001, (and(*nougat*, regex:"(foo|bar)"))):
+         pre: [$1.mp3]
+         post: []
+     
+     # if this matches, the match result of the date match 
+     # will be returned, and back-references don't work
+     # with those, so the literal string '$1.mp3' will be
+     # used instead -- probably not what you want
+     and((and(*nougat*, regex:"(foo|bar)"), >01-01-2001)):
+         pre: [$1.mp3]
+         post: []
+
+   With ``and``, the last matching element will always the very last
+   element.   With ``or``, however, that is not the case -- as soon as
+   one of an ``or`` compound condition's sub-matchers matches, that
+   match is returned and subsequent sub-matchers are ignored. 
+
 
 .. _`regular expression expansions`: http://www.python.org/doc/current/lib/match-objects.html
 
