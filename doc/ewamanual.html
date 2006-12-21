@@ -7,7 +7,7 @@
 <title>EWA Manual</title>
 <meta name="author" content="Jacob Smullyan" />
 <meta name="organization" content="WNYC New York Public Radio" />
-<meta name="date" content="2006-12-20" />
+<meta name="date" content="2006-12-21" />
 <meta name="copyright" content="Copyright 2006 WNYC New York Public Radio." />
 <style type="text/css">
 
@@ -317,9 +317,9 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Organization:</th>
 <td>WNYC New York Public Radio</td></tr>
 <tr><th class="docinfo-name">Date:</th>
-<td>2006-12-20</td></tr>
+<td>2006-12-21</td></tr>
 <tr><th class="docinfo-name">Revision:</th>
-<td>5949</td></tr>
+<td>63</td></tr>
 <tr><th class="docinfo-name">Version:</th>
 <td>0.62</td></tr>
 <tr><th class="docinfo-name">Copyright:</th>
@@ -846,7 +846,7 @@ pre: [], post: []
 default
 </pre>
 <p>For regex rules, it is possible for the filenames in the pre and post
-lists to backreference named groups in the matching regex.  Named or
+lists to back-reference named groups in the matching regex.  Named or
 numbered group references can be used, with either a shell-like
 interpolation style:</p>
 <pre class="literal-block">
@@ -861,6 +861,33 @@ regex:^/shows/(?P&lt;showname&gt;[^/]+)/.*\.mp3:
    pre:  [intro/\\g&lt;showname&gt;.mp3]
    post: [outro/\\1.mp3]
 </pre>
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<p>Back-references can be used with compound conditions only
+if they refer to the last matching element in the compound
+condition -- and if the last element is itself compound, the last
+matching element of it, etc.  For instance, the first of the next
+two rules will work, and the second will not:</p>
+<pre class="literal-block">
+# if this matches, the match result of the regex will be
+# returned, and the back-reference will work
+and(&gt;01-01-2001, (and(*nougat*, regex:&quot;(foo|bar)&quot;))):
+    pre: [$1.mp3]
+    post: []
+
+# if this matches, the match result of the date match
+# will be returned, and back-references don't work
+# with those, so the literal string '$1.mp3' will be
+# used instead -- probably not what you want
+and((and(*nougat*, regex:&quot;(foo|bar)&quot;), &gt;01-01-2001)):
+    pre: [$1.mp3]
+    post: []
+</pre>
+<p class="last">With <tt class="docutils literal"><span class="pre">and</span></tt>, the last matching element will always the very last
+element.   With <tt class="docutils literal"><span class="pre">or</span></tt>, however, that is not the case -- as soon as
+one of an <tt class="docutils literal"><span class="pre">or</span></tt> compound condition's sub-matchers matches, that
+match is returned and subsequent sub-matchers are ignored.</p>
+</div>
 <p>It is convenient under some circumstances to nest lists of rules, with
 a conditional qualifier shared by all of them.  To do this, enclose
 the nested list of rules in matching brackets:</p>
