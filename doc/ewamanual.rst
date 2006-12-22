@@ -221,10 +221,7 @@ http://cheeseshop.python.org/pypi/ewa.
 If you want to follow the bleeding edge development version, you can
 check out the latest source code from our subversion repository::
 
-  svn co svn+ssh://svn.wnyc.org/var/svn/repos/ewa/trunk ewa
-
-.. the above refers to our private WNYC repository;  this
-   will be switched to our public repository when it exists. 
+  svn co svn://svn.wnyc.org/public/ewa/trunk ewa
 
 
 Software Installation
