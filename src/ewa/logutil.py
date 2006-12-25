@@ -45,7 +45,7 @@ def initLogging(level=_logging.CRITICAL,
         handler=_logging.StreamHandler(stream)
     formatter=_logging.Formatter(format, datefmt)
     handler.setFormatter(formatter)
-    logger.setHandler(handler)
+    logger.addHandler(handler)
     logger.setLevel(level)
 
         
