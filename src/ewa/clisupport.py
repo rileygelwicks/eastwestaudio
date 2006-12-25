@@ -183,9 +183,11 @@ def resolve_engine(enginename):
 def do_splice(args):
     parser=get_splice_parser()
     opts, args=parser.parse_args(args)
-    initLogging()
     if opts.debugmode:
-        logger.setLevel(logging.DEBUG)
+        Config.loglevel=logging.DEBUG
+    initLogging(level=Config.loglevel,
+                filename=Config.logfile)
+
     engine=resolve_engine(opts.engine)
     if opts.sanitycheck:
         try:
@@ -223,7 +225,7 @@ def do_audioprovider(args):
     if opts.engine:
         Config.engine=engine
     engine=resolve_engine(Config.engine)    
-    initLogging(Config.loglevel)
+    initLogging(level=Config.loglevel)
     rule=FileRule(Config.rulefile)
 
     if opts.configtest:
@@ -327,7 +329,9 @@ def do_serve(args):
         parser.error("a rulefile needs to be specified")
     rule=FileRule(Config.rulefile)
     if Config.logfile:
-        initLogging(level=Config.loglevel, filename=Config.logfile)
+        initLogging(level=Config.loglevel,
+                    filename=Config.logfile,
+                    rotate=Config.logrotate)
     # check for incompatible options
     if Config.protocol=='http' and Config.unixsocket:
         parser.error('unix sockets not supported for http server')

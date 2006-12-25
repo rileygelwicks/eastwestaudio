@@ -45,6 +45,7 @@ Config=_config()
 
 DEFAULTS=dict(loglevel='critical',
               logfile=None,
+              logrotate=None,
               daemonize=True,
               use_xsendfile=True,
               sendfile_header='X-Sendfile',
