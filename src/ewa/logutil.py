@@ -48,10 +48,6 @@ def initLogging(level=_logging.CRITICAL,
                 interval=int(interval)
             else:
                 when=rotate
-
-            if interval:
-                interval=int(interval)
-            else:
                 interval=1
             # special values
             if when=='weekly':
