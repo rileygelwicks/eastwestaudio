@@ -34,7 +34,7 @@ def initLogging(level=_logging.CRITICAL,
                                                      maxBytes=rotate,
                                                      backupCount=10)
         elif isinstance(rotate, tuple) and len(rotate==2):
-            handler=_loghandlers.RotatingFileHandler(filename
+            handler=_loghandlers.RotatingFileHandler(filename,
                                                      mode='a',
                                                      maxBytes=rotate[0],
                                                      backupCount=rotate[1])
