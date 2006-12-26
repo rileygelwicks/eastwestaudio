@@ -43,7 +43,12 @@ def initLogging(level=_logging.CRITICAL,
         else:
             #rotate can be two values, corresponding to "when" and
             #"interval" in logging.TimedRotatingHandler
-            when, interval=[(x, y[:-1]) for x, y in (rotate+':').split(':', 1)]
+            if ':' in rotate:
+                when, interval=rotate.split(':', 1)
+                interval=int(interval)
+            else:
+                when=rotate
+
             if interval:
                 interval=int(interval)
             else:
