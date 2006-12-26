@@ -1,23 +1,8 @@
 .. -*-rst-*-
 
-======================
- WNYC EWA Integration
-======================
-
-* lots more tests:
-  * conf parser
-  * Python config file
-  * finding the right files to combine
-  * combining them
-* improve logging
 * try lighttpd 1.5.
-* need updated ebuild for ply.
 * siege urls.txt for multi-file stress tests.
 
-* QA plan.  
-* Get QA guy.
-
-* docs.
 
 QA Plan
 =======
