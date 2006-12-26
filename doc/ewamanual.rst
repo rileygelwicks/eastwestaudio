@@ -356,11 +356,11 @@ loglevel
 logrotate
 	if you want to rotate your logfiles, set this to one of the
 	following: 
+
 	* ``True``.  This will result in a logfile that rotates when
-          the file reaches 10M in size; up to 10 backups will be
-          kept. 
+          the file reaches 10M in size; up to 10 backups will be kept.   
 	* an integer meaning the maximum number of bytes that should
-          be stored before rollover; up to 10 backups will be kept.
+          be stored before rollover; up to 10 backups will be kept. 
 	* a two-tuple of integers specifying the maximum number of
           bytes that should be stored before rollover and the number
           of backups to retain: e.g., ``(1e7, 5)``.
