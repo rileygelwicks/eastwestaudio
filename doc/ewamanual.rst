@@ -353,6 +353,27 @@ logfile
 loglevel
 	how much to log -- should be one of ``'debug'``, ``'info'``,
 	``'warn'``,  or ``'critical'``, defaulting to ``'critical'``.  
+logrotate
+	if you want to rotate your logfiles, set this to one of the
+	following: 
+	* ``True``.  This will result in a logfile that rotates when
+          the file reaches 10M in size; up to 10 backups will be
+          kept. 
+	* an integer meaning the maximum number of bytes that should
+          be stored before rollover; up to 10 backups will be kept.
+	* a two-tuple of integers specifying the maximum number of
+          bytes that should be stored before rollover and the number
+          of backups to retain: e.g., ``(1e7, 5)``.
+	* ``'daily'`` (rotates every day at midnight regardless of
+          size) 
+	* ``'weekly'`` (rotates on Monday at midnight)
+	* a value accepted for the ``when`` constructor parameter of
+	  ``logging.handlers.TimedRotatingFileHandler`` (see Python's 
+          `logging documentation`_ for details): e.g., ``"D"``.
+	* a ``when`` parameter, as above, followed by a colon and 
+          a value accepted for ``TimedRotatingFileHandler``'s
+          ``interval`` parameter (an integer); e.g, ``"D:3"``.
+
 daemonize
 	whether the server process should daemonize (default:
 	``True``). 
@@ -410,6 +431,7 @@ max_requests
 	number of requests a child process handles before it is
 	killed.  Default is 0 (unlimited).
 	
+.. _`logging documentation`: http://www.python.org/doc/current/lib/node414.html
 
 The EWA Rule Configuration File
 -------------------------------

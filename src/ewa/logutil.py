@@ -21,12 +21,28 @@ def initLogging(level=_logging.CRITICAL,
         levels=dict((v,k) for k, v in _logging._levelNames.iteritems())
         level=levels.get(level, levels[level.upper()])
     if filename:
-        if rotate is None:
+        if not rotate:
             handler=_logging.FileHandler(filename, 'a')
+        elif rotate == True:
+            handler=_loghandlers.RotatingFileHandler(filename,
+                                                     mode='a',
+                                                     maxBytes=1e7,
+                                                     backupCount=10)
+        elif isinstance(rotate, int):
+            handler=_loghandlers.RotatingFileHandler(filename,
+                                                     mode='a',
+                                                     maxBytes=rotate,
+                                                     backupCount=10)
+        elif isinstance(rotate, tuple) and len(rotate==2):
+            handler=_loghandlers.RotatingFileHandler(filename
+                                                     mode='a',
+                                                     maxBytes=rotate[0],
+                                                     backupCount=rotate[1])
+        elif not isinstance(rotate, str):
+            raise ValueError, "illegal value for logrotate: %s" % rotate
         else:
             #rotate can be two values, corresponding to "when" and
             #"interval" in logging.TimedRotatingHandler
-            
             when, interval=[(x, y[:-1]) for x, y in (rotate+':').split(':', 1)]
             if interval:
                 interval=int(interval)
@@ -47,7 +63,4 @@ def initLogging(level=_logging.CRITICAL,
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     logger.setLevel(level)
-
-        
-
-
+    

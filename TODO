@@ -59,8 +59,7 @@ Gentoo Integration
 Upcoming Features
 =================
 
-* logging -- we need log rotation, which can be done with the logging
-  module. 
+
 * add dependencies to setup.py. [?]
 * rules that depend on whether a given file (extra audio or main
   audio) exists, both in the condition part of the rule or in the
@@ -127,6 +126,9 @@ DONE
   procs/threads. -- DONE
 * ewabatch fails on files that can't be processed; they should be
   skipped rather than blowing up. -- FIXED
+* logging -- we need log rotation, which can be done with the logging
+  module. -- DONE
+* log rotation is not documented. -- DONE
 
 REJECTED
 ========

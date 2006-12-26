@@ -672,6 +672,20 @@ logging.</dd>
 <dt>loglevel</dt>
 <dd>how much to log -- should be one of <tt class="docutils literal"><span class="pre">'debug'</span></tt>, <tt class="docutils literal"><span class="pre">'info'</span></tt>,
 <tt class="docutils literal"><span class="pre">'warn'</span></tt>,  or <tt class="docutils literal"><span class="pre">'critical'</span></tt>, defaulting to <tt class="docutils literal"><span class="pre">'critical'</span></tt>.</dd>
+<dt>logrotate</dt>
+<dd><p class="first">if you want to rotate your logfiles, set this to one of the
+following:</p>
+<ul class="last simple">
+<li><tt class="docutils literal"><span class="pre">'daily'</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">'weekly'</span></tt> (will rotate on Monday at midnight)</li>
+<li>a value accepted for the <tt class="docutils literal"><span class="pre">when</span></tt> constructor parameter of
+<tt class="docutils literal"><span class="pre">logging.handlers.TimedRotatingFileHandler</span></tt> (see Python's
+<a class="reference" href="http://www.python.org/doc/current/lib/node414.html">logging documentation</a> for details): e.g., <tt class="docutils literal"><span class="pre">&quot;D&quot;</span></tt>.</li>
+<li>a <tt class="docutils literal"><span class="pre">when</span></tt> parameter, as above, followed by a colon and
+a value accepted for <tt class="docutils literal"><span class="pre">TimedRotatingFileHandler</span></tt>'s
+<tt class="docutils literal"><span class="pre">interval</span></tt> parameter (an integer); e.g, <tt class="docutils literal"><span class="pre">&quot;D:3&quot;</span></tt>.</li>
+</ul>
+</dd>
 <dt>daemonize</dt>
 <dd>whether the server process should daemonize (default:
 <tt class="docutils literal"><span class="pre">True</span></tt>).</dd>
