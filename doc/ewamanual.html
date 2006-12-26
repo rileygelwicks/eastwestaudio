@@ -319,7 +319,7 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Date:</th>
 <td>2006-12-25</td></tr>
 <tr><th class="docinfo-name">Revision:</th>
-<td>112</td></tr>
+<td>117</td></tr>
 <tr><th class="docinfo-name">Version:</th>
 <td>0.62</td></tr>
 <tr><th class="docinfo-name">Copyright:</th>
@@ -674,18 +674,10 @@ logging.</dd>
 <tt class="docutils literal"><span class="pre">'warn'</span></tt>,  or <tt class="docutils literal"><span class="pre">'critical'</span></tt>, defaulting to <tt class="docutils literal"><span class="pre">'critical'</span></tt>.</dd>
 <dt>logrotate</dt>
 <dd><p class="first">if you want to rotate your logfiles, set this to one of the
-following:
-* <tt class="docutils literal"><span class="pre">True</span></tt>.  This will result in a logfile that rotates when</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">ewamanual.rst</tt>, line 360)</p>
-Unexpected indentation.</div>
-<blockquote>
-the file reaches 10M in size; up to 10 backups will be
-kept.</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">ewamanual.rst</tt>, line 362)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
+following:</p>
 <ul class="last simple">
+<li><tt class="docutils literal"><span class="pre">True</span></tt>.  This will result in a logfile that rotates when
+the file reaches 10M in size; up to 10 backups will be kept.</li>
 <li>an integer meaning the maximum number of bytes that should
 be stored before rollover; up to 10 backups will be kept.</li>
 <li>a two-tuple of integers specifying the maximum number of
