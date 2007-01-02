@@ -1,0 +1,4 @@
+include README LICENSE
+recursive-include conf *.sample
+recursive-include tests  *.py
+recursive-include doc Makefile *.rst *.html *.css *.pdf
