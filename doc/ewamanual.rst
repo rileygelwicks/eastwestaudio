@@ -453,21 +453,18 @@ which case, they will interpreted as file paths relative to the
 ``main`` managed directory.)  With this hook you can load into ewa
 just about any sort of rule system that you might like to devise.
 
+
 The Ewaconf Configuration Language
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-Ewa's rule configuration format is designed to make it easy to define
-a list of rules that say, for a given mp3 file, what files ewa should
-combine to make an aggregate file, and in what order.  The rules are
-consulted in order, and checked to see if they match the input mp3
-file; the first one that matches returns a list of files to combine,
-and those are then combined.
-
-This format is not the only way of setting file combination rules for
-ewa.  Rules can also be defined in Python, which permits the rule
-system to be extended or even replaced.  This format supports the core
-rule feature set only.
+Ewa's default rule configuration format is designed to make it easy to
+define a list of rules that say, for a given mp3 file, what files ewa
+should combine to make an aggregate file, and in what order.  The
+rules are consulted in order, and checked to see if they match the
+input mp3 file; the first one that matches returns a list of files to
+combine, and those are then combined.  ``ewaconf`` only supports a
+limited number of rule types, but nonetheless the system is quite
+powerful. 
 
 A rule is normally written in the form::
 
