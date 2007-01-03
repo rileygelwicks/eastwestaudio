@@ -19,6 +19,10 @@ Installation
 ------------
 
 Ewa may installed through setuptools:
+   
+   easy_install ewa
+
+or if you have unpacked the source tarball:
 
    easy_install .
 
@@ -34,7 +38,11 @@ See the manual for details.
 Tests
 -----
 
-The test suite may be run through nosetests.
+The test suite is not comprehensive, but what there is requires 
+nose (the Python unit test package, not the part of your face).
+To run it:
+
+  python setup.py test
 
 License
 -------
