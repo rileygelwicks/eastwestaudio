@@ -384,8 +384,9 @@ use_xsendfile
 sendfile_header
 	what flavor of X-Sendfile-ish header to send.
 	``'X-Sendfile'`` is the default, but lighttpd in versions
-	<=`.4.11 requires ``'X-LIGHTTPD-send-file'`` instead, and uses
-	``'X-Accel-Redirect'`` (with slightly different semantics). 
+	<=`.4.11 requires ``'X-LIGHTTPD-send-file'`` instead, and
+	nginx uses ``'X-Accel-Redirect'`` (with slightly different
+	semantics).  
 stream
 	whether to stream the concatenated file directly rather than
 	saving to disk.  This is not a production-quality option;
