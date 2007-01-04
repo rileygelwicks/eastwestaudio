@@ -7,7 +7,7 @@
 <title>EWA Manual</title>
 <meta name="author" content="Jacob Smullyan" />
 <meta name="organization" content="WNYC New York Public Radio" />
-<meta name="date" content="2007-01-02" />
+<meta name="date" content="2007-01-03" />
 <meta name="copyright" content="Copyright 2006 WNYC New York Public Radio." />
 <style type="text/css">
 
@@ -317,9 +317,9 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Organization:</th>
 <td>WNYC New York Public Radio</td></tr>
 <tr><th class="docinfo-name">Date:</th>
-<td>2007-01-02</td></tr>
+<td>2007-01-03</td></tr>
 <tr><th class="docinfo-name">Revision:</th>
-<td>132</td></tr>
+<td>150</td></tr>
 <tr><th class="docinfo-name">Version:</th>
 <td>0.62</td></tr>
 <tr><th class="docinfo-name">Copyright:</th>
@@ -704,8 +704,9 @@ server process to the front-end web server (default:
 <dt>sendfile_header</dt>
 <dd>what flavor of X-Sendfile-ish header to send.
 <tt class="docutils literal"><span class="pre">'X-Sendfile'</span></tt> is the default, but lighttpd in versions
-&lt;=`.4.11 requires <tt class="docutils literal"><span class="pre">'X-LIGHTTPD-send-file'</span></tt> instead, and uses
-<tt class="docutils literal"><span class="pre">'X-Accel-Redirect'</span></tt> (with slightly different semantics).</dd>
+&lt;=`.4.11 requires <tt class="docutils literal"><span class="pre">'X-LIGHTTPD-send-file'</span></tt> instead, and
+nginx uses <tt class="docutils literal"><span class="pre">'X-Accel-Redirect'</span></tt> (with slightly different
+semantics).</dd>
 <dt>stream</dt>
 <dd>whether to stream the concatenated file directly rather than
 saving to disk.  This is not a production-quality option;
