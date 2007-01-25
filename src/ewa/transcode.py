@@ -16,8 +16,9 @@ def lameTranscode(newBitRate,
     """ Executes LAME to transcode a file to a new    
     bit rate, sample rate, and mode. """
 
-    if newMode=='m':
-        newMode='f'
+##     # why is this here?
+##     if newMode=='m':
+##         newMode='f'
 
     args = [Config.lame_path,
             '--cbr',
