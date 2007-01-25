@@ -565,15 +565,17 @@ numbered group references can be used, with either a shell-like
 interpolation style::
 
    regex:^/shows/(?P<showname>[^/]+)/.*\.mp3: 
-      pre:  [intro/$showname.mp3, ad/${showname}.mp3]
-      post: [notices/$1.mp3, outro/${1}.mp3]
+      pre:  ["intro/$showname.mp3", "ad/${showname}.mp3"]
+      post: ["notices/$1.mp3", "outro/${1}.mp3"]
 
 or the style used by backreferences in Python `regular expression
 expansions`_::
 
    regex:^/shows/(?P<showname>[^/]+)/.*\.mp3: 
-      pre:  [intro/\\g<showname>.mp3]
-      post: [outro/\\1.mp3]
+      pre:  ["intro/\\g<showname>.mp3"]
+      post: ["outro/\\1.mp3"]
+
+Note that these forms need to be quoted.
 
 .. warning:: Back-references can be used with compound conditions only
    if they refer to the last matching element in the compound
@@ -584,7 +586,7 @@ expansions`_::
      # if this matches, the match result of the regex will be 
      # returned, and the back-reference will work
      and(>01-01-2001, (and(*nougat*, regex:"(foo|bar)"))):
-         pre: [$1.mp3]
+         pre: ["$1.mp3"]
          post: []
      
      # if this matches, the match result of the date match 
@@ -592,7 +594,7 @@ expansions`_::
      # with those, so the literal string '$1.mp3' will be
      # used instead -- probably not what you want
      and((and(*nougat*, regex:"(foo|bar)"), >01-01-2001)):
-         pre: [$1.mp3]
+         pre: ["$1.mp3"]
          post: []
 
    With ``and``, the last matching element will always the very last
@@ -610,7 +612,7 @@ the nested list of rules in matching brackets::
    regex:shows/(?P<showname>[^/]+)/.*: [
        <=09-01-2005 [F]: default
        09-02-2005 - 10-14-2006 [F]: 
-          pre: [intro/$showname.mp3]
+          pre: ["intro/$showname.mp3"]
           post: []
        >10-15-2006 [F]: 
           pre: [current.mp3]
