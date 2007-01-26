@@ -56,6 +56,8 @@ SPLICE_DESCRIPTION="""\
 Splices MP3 files together.
 """
 
+
+
 def get_serve_parser():
     protocols=[]
     if haveflup:
@@ -78,6 +80,10 @@ def get_serve_parser():
                       default=False,
                       dest='nodaemonize',
                       help="don't daemonize, regardless of config settings")
+    parser.add_option('--version',
+                      action="store_true",
+                      dest="version",
+                      help="show version and exit")
     return parser
 
 
@@ -115,6 +121,10 @@ def get_splice_parser():
                       metavar='ENGINE',
                       choices=('default', 'mp3cat', 'sox'),
                       help="which splicing engine to use (default ewa splicer, mp3cat, or sox)")
+    parser.add_option('--version',
+                      action="store_true",
+                      dest="version",
+                      help="show version and exit")    
     return parser
                       
 
@@ -169,6 +179,11 @@ def get_ap_parser():
                       dest='configtest',
                       action='store_true',
                       help="just test the config file for syntax errors")
+
+    parser.add_option('--version',
+                      action="store_true",
+                      dest="version",
+                      help="show version and exit")    
     return parser
 
 def resolve_engine(enginename):
@@ -183,6 +198,10 @@ def resolve_engine(enginename):
 def do_splice(args):
     parser=get_splice_parser()
     opts, args=parser.parse_args(args)
+    if opts.version:
+        from ewa import __version__
+        print __version__
+        sys.exit(0)
     if opts.debugmode:
         Config.loglevel=logging.DEBUG
     initLogging(level=Config.loglevel,
@@ -209,7 +228,10 @@ def do_splice(args):
 def do_audioprovider(args):
     parser=gs=get_ap_parser()
     opts, args=parser.parse_args(args)
-
+    if opts.version:
+        from ewa import __version__
+        print __version__
+        sys.exit(0)
     configfile=_find_config(opts.configfile)
     if not configfile:
         parser.error('no config file specified or found in the usual places')
@@ -316,6 +338,10 @@ def _find_config(givenpath):
 def do_serve(args):
     parser=get_serve_parser()
     opts, args=parser.parse_args(args)
+    if opts.version:
+        from ewa import __version__
+        print __version__
+        sys.exit(0)    
     configfile=_find_config(opts.configfile)
     if not configfile:
         parser.error('no config file specified or found in the usual places')
