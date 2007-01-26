@@ -42,6 +42,18 @@ from ewa.config import Config, initConfig
 from ewa.logutil import debug, exception, logger, initLogging
 from ewa.wsgiapp import EwaApp
 from ewa.rules import FileRule
+from ewa import __version__
+
+VERSION_TEXT="""\
+%%s %s
+
+Copyright (C) 2007 WNYC New York Public Radio.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Written by Jacob Smullyan and others, not necessarily in that order.
+""" % __version__
+
 
 SERVE_DESCRIPTION="""\
 Starts a WSGI application that produces combined MP3 files
@@ -199,8 +211,7 @@ def do_splice(args):
     parser=get_splice_parser()
     opts, args=parser.parse_args(args)
     if opts.version:
-        from ewa import __version__
-        print __version__
+        print VERSION_TEXT % os.path.basename(sys.argv[0])
         sys.exit(0)
     if opts.debugmode:
         Config.loglevel=logging.DEBUG
@@ -229,8 +240,7 @@ def do_audioprovider(args):
     parser=gs=get_ap_parser()
     opts, args=parser.parse_args(args)
     if opts.version:
-        from ewa import __version__
-        print __version__
+        print VERSION_TEXT % os.path.basename(sys.argv[0])
         sys.exit(0)
     configfile=_find_config(opts.configfile)
     if not configfile:
@@ -339,8 +349,7 @@ def do_serve(args):
     parser=get_serve_parser()
     opts, args=parser.parse_args(args)
     if opts.version:
-        from ewa import __version__
-        print __version__
+        print VERSION_TEXT % os.path.basename(sys.argv[0])
         sys.exit(0)    
     configfile=_find_config(opts.configfile)
     if not configfile:
