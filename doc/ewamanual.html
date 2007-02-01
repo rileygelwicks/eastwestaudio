@@ -7,7 +7,7 @@
 <title>EWA Manual</title>
 <meta name="author" content="Jacob Smullyan" />
 <meta name="organization" content="WNYC New York Public Radio" />
-<meta name="date" content="2007-01-25" />
+<meta name="date" content="2007-02-01" />
 <meta name="copyright" content="Copyright 2006 WNYC New York Public Radio." />
 <style type="text/css">
 
@@ -317,9 +317,9 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Organization:</th>
 <td>WNYC New York Public Radio</td></tr>
 <tr><th class="docinfo-name">Date:</th>
-<td>2007-01-25</td></tr>
+<td>2007-02-01</td></tr>
 <tr><th class="docinfo-name">Revision:</th>
-<td>155</td></tr>
+<td>160</td></tr>
 <tr><th class="docinfo-name">Version:</th>
 <td>0.62</td></tr>
 <tr><th class="docinfo-name">Copyright:</th>
@@ -584,13 +584,13 @@ python setup.py install
 <dt>$basedir/main</dt>
 <dd>Your content mp3s go here; you manage this directory and can
 organize it however you like. Ewa needs read access to it.</dd>
-<dt>$basedir/extras/masters</dt>
+<dt>$basedir/extra/masters</dt>
 <dd>Your &quot;extra&quot; files -- intros, outros, ads, etc. -- go here;
 you manage this directory also.  Ewa needs read access to it
 also.</dd>
-<dt>$basedir/extras/transcoded</dt>
+<dt>$basedir/extra/transcoded</dt>
 <dd>Ewa manages this directory and needs write access to it; it
-stores transcoded versions of the audio files extras/masters
+stores transcoded versions of the audio files extra/masters
 here.</dd>
 <dt>$targetdir</dt>
 <dd>Ewa manages this directory and needs write access to it; this
@@ -614,8 +614,8 @@ might do this:</p>
 <pre class="literal-block">
 groupadd ewa
 useradd -g ewa -s /bin/false  -d $targetdir -c &quot;ewa user&quot; ewa
-chown -r ewa:ewa $targetdir $basedir/extras/transcoded
-chmod -r g+ws $targetdir $basedir/extras/transcoded
+chown -R ewa:ewa $targetdir $basedir/extra/transcoded
+chmod -R g+ws $targetdir $basedir/extra/transcoded
 </pre>
 <p>While you are at it, creating directories for ewa's pid file and log
 file isn't a bad idea:</p>
@@ -763,7 +763,7 @@ Python file can contain anything as long as it defines a global with
 the name <tt class="docutils literal"><span class="pre">rules</span></tt>, which should be a Python callable that, when
 called, returns an iterator that yields symbolic names for the files
 that should be combined.  (These names will be interpreted as file
-paths relative to the <tt class="docutils literal"><span class="pre">extras/masters</span></tt> managed directory, unless
+paths relative to the <tt class="docutils literal"><span class="pre">extra/masters</span></tt> managed directory, unless
 they have the Python attribute <tt class="docutils literal"><span class="pre">is_original</span></tt> set to a true value, in
 which case, they will interpreted as file paths relative to the
 <tt class="docutils literal"><span class="pre">main</span></tt> managed directory.)  With this hook you can load into ewa
