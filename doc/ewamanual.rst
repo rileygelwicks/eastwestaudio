@@ -260,13 +260,13 @@ Ewa expects audio to be stored in a directory structure like:
  $basedir/main
 	Your content mp3s go here; you manage this directory and can
 	organize it however you like. Ewa needs read access to it.
- $basedir/extras/masters
+ $basedir/extra/masters
 	Your "extra" files -- intros, outros, ads, etc. -- go here;
 	you manage this directory also.  Ewa needs read access to it
 	also. 
- $basedir/extras/transcoded
+ $basedir/extra/transcoded
 	Ewa manages this directory and needs write access to it; it
-	stores transcoded versions of the audio files extras/masters
+	stores transcoded versions of the audio files extra/masters
 	here. 
  $targetdir
 	Ewa manages this directory and needs write access to it; this
@@ -292,8 +292,8 @@ might do this::
 
   groupadd ewa
   useradd -g ewa -s /bin/false  -d $targetdir -c "ewa user" ewa
-  chown -r ewa:ewa $targetdir $basedir/extras/transcoded
-  chmod -r g+ws $targetdir $basedir/extras/transcoded
+  chown -R ewa:ewa $targetdir $basedir/extra/transcoded
+  chmod -R g+ws $targetdir $basedir/extra/transcoded
 
 While you are at it, creating directories for ewa's pid file and log
 file isn't a bad idea::
@@ -448,7 +448,7 @@ Python file can contain anything as long as it defines a global with
 the name ``rules``, which should be a Python callable that, when
 called, returns an iterator that yields symbolic names for the files
 that should be combined.  (These names will be interpreted as file
-paths relative to the ``extras/masters`` managed directory, unless
+paths relative to the ``extra/masters`` managed directory, unless
 they have the Python attribute ``is_original`` set to a true value, in
 which case, they will interpreted as file paths relative to the
 ``main`` managed directory.)  With this hook you can load into ewa
