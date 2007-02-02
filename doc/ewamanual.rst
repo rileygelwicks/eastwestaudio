@@ -7,7 +7,7 @@
 :organization: WNYC New York Public Radio
 :date: $Date$
 :revision: $Revision$
-:version: 0.62
+:version: 0.62.1
 :copyright: Copyright 2006 WNYC New York Public Radio.
 
 .. contents:: 
