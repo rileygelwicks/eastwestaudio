@@ -48,7 +48,7 @@ setup(author='Jacob Smullyan',
       scripts=['bin/ewasplice',
                'bin/ewabatch',
                'bin/ewa'],
-##       install_requires=['ply >=2.2',
+##       install_requires=['ply >=2.3',
 ##                         'eyeD3',
 ##                         'setuptools',
 ##                         'simplejson >=1.3']
