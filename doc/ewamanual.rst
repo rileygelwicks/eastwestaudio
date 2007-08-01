@@ -200,7 +200,6 @@ addition, the following Python packages need to be installed:
 * setuptools_ 
 * simplejson_
 * eyeD3_
-* ply_ (>=2.2)
 * flup_
 
 To run tests you also need:
@@ -247,7 +246,6 @@ The latter will install setuptools_ if you don't already have it.
 .. _setuptools: http://cheeseshop.python.org/pypi/setuptools
 .. _simplejson: http://cheeseshop.python.org/pypi/simplejson
 .. _eyeD3: http://eyed3.nicfit.net/
-.. _ply: http://www.dabeaz.com/ply/
 .. _flup: http://cheeseshop.python.org/pypi/flup
 .. _nose: http://somethingaboutorange.com/mrl/projects/nose/
 .. _lame: http://lame.sourceforge.net/

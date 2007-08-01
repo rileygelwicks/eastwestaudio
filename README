@@ -61,5 +61,9 @@ contributions from:
 
 Ewa contains code derived from mp3cat by Tom Clegg.
 
+Ewa 0.62.2 and later includes a bundled copy of PLY by David Beazley
+(LGPL license -- see http://www.dabeaz.com/ply/).
+
+
 Copyright 2007 WNYC New York Public Radio.
 

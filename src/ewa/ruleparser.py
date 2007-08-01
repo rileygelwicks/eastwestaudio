@@ -14,7 +14,7 @@ import sys
 PARSEDEBUG=os.environ.get('PARSEDEBUG', False)
 
 from pkg_resources import resource_filename    
-from ply import lex, yacc
+from ewa.ply import lex, yacc
 
 from ewa.logutil import logger, critical, error, debug
 import ewa.rules as rules

@@ -1,0 +1,15 @@
+2007-08-01    <smulloni@smullyan.org>
+
+	* setup.py: add ewa.ply package.
+
+	* doc/ewamanual.rst: remove statement of ply dependency.
+
+	* README: note bundled version of ply.
+
+	* src/ewa/__init__.py: version bump to 0.62.2.
+
+	* src/ewa/_ruletab.py: regenerated ruletab with new bundled ply. 
+
+	* src/ewa/ruleparser.py: use bundled version of ply.
+
+	
