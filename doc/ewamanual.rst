@@ -239,8 +239,6 @@ or equivalently::
 
   python setup.py install
 
-The latter will install setuptools_ if you don't already have it.
-
 .. _Python: http://www.python.org/
 .. _setuptools: http://cheeseshop.python.org/pypi/setuptools
 .. _simplejson: http://cheeseshop.python.org/pypi/simplejson
