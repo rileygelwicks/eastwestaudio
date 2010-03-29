@@ -26,7 +26,10 @@ import re
 from string import Template
 import time
 
-import simplejson
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 from ewa.logutil import warn
 
@@ -259,12 +262,12 @@ def from_jsondata(data):
         
 
 def from_json(json):
-    data=simplejson.loads(json)
+    data=json.loads(json)
     return from_jsondata(data)
 
 def to_json(data):
     jd=to_jsondata(data)
-    return simplejson.dumps(jd)
+    return json.dumps(jd)
 
 # to avoid a circular dependency, this is a stand-in for
 # ewa.ruleparser.parse_file for the first run, and is the real thing

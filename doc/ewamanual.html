@@ -3,11 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.4: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
 <title>EWA Manual</title>
 <meta name="author" content="Jacob Smullyan" />
 <meta name="organization" content="WNYC New York Public Radio" />
-<meta name="date" content="2007-08-01" />
+<meta name="date" content="$Date$" />
 <meta name="copyright" content="Copyright 2006 WNYC New York Public Radio." />
 <style type="text/css">
 
@@ -313,70 +313,70 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Author:</th>
 <td>Jacob Smullyan</td></tr>
 <tr><th class="docinfo-name">Contact:</th>
-<td><a class="first last reference" href="mailto:jsmullyan&#64;gmail.com">jsmullyan&#64;gmail.com</a></td></tr>
+<td><a class="first last reference external" href="mailto:jsmullyan&#64;gmail.com">jsmullyan&#64;gmail.com</a></td></tr>
 <tr><th class="docinfo-name">Organization:</th>
 <td>WNYC New York Public Radio</td></tr>
 <tr><th class="docinfo-name">Date:</th>
-<td>2007-08-01</td></tr>
+<td>$Date$</td></tr>
 <tr><th class="docinfo-name">Revision:</th>
-<td>176</td></tr>
+<td>$Revision$</td></tr>
 <tr><th class="docinfo-name">Version:</th>
 <td>0.62.1</td></tr>
 <tr><th class="docinfo-name">Copyright:</th>
 <td>Copyright 2006 WNYC New York Public Radio.</td></tr>
 </tbody>
 </table>
-<div class="contents topic">
-<p class="topic-title first"><a id="contents" name="contents">Contents</a></p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference" href="#overview" id="id10" name="id10">Overview</a><ul>
-<li><a class="reference" href="#modes-of-operation" id="id11" name="id11">Modes of Operation</a><ul>
-<li><a class="reference" href="#batch-mode" id="id12" name="id12">Batch Mode</a></li>
-<li><a class="reference" href="#server-mode" id="id13" name="id13">Server Mode</a></li>
+<li><a class="reference internal" href="#overview" id="id10">Overview</a><ul>
+<li><a class="reference internal" href="#modes-of-operation" id="id11">Modes of Operation</a><ul>
+<li><a class="reference internal" href="#batch-mode" id="id12">Batch Mode</a></li>
+<li><a class="reference internal" href="#server-mode" id="id13">Server Mode</a></li>
 </ul>
 </li>
-<li><a class="reference" href="#limitations" id="id14" name="id14">Limitations</a><ul>
-<li><a class="reference" href="#a-note-on-mp3-splicing" id="id15" name="id15">A Note on Mp3 Splicing</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference" href="#installation" id="id16" name="id16">Installation</a><ul>
-<li><a class="reference" href="#supported-platforms" id="id17" name="id17">Supported Platforms</a></li>
-<li><a class="reference" href="#getting-ewa" id="id18" name="id18">Getting Ewa</a></li>
-<li><a class="reference" href="#software-installation" id="id19" name="id19">Software Installation</a></li>
-<li><a class="reference" href="#the-managed-audio-directory" id="id20" name="id20">The Managed Audio Directory</a></li>
-<li><a class="reference" href="#permissions-gotchas" id="id21" name="id21">Permissions Gotchas</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#configuration" id="id22" name="id22">Configuration</a><ul>
-<li><a class="reference" href="#the-ewa-conf-file" id="id23" name="id23">The <tt class="docutils literal"><span class="pre">ewa.conf</span></tt> File</a></li>
-<li><a class="reference" href="#the-ewa-rule-configuration-file" id="id24" name="id24">The EWA Rule Configuration File</a><ul>
-<li><a class="reference" href="#the-ewaconf-configuration-language" id="id25" name="id25">The Ewaconf Configuration Language</a></li>
-</ul>
-</li>
-<li><a class="reference" href="#checking-the-syntax-of-the-configuration-files" id="id26" name="id26">Checking the Syntax of the Configuration Files</a></li>
-<li><a class="reference" href="#configuring-the-web-server" id="id27" name="id27">Configuring the Web Server</a><ul>
-<li><a class="reference" href="#id5" id="id28" name="id28">Lighttpd</a></li>
-<li><a class="reference" href="#apache-with-mod-xsendfile" id="id29" name="id29">Apache with mod_xsendfile</a></li>
+<li><a class="reference internal" href="#limitations" id="id14">Limitations</a><ul>
+<li><a class="reference internal" href="#a-note-on-mp3-splicing" id="id15">A Note on Mp3 Splicing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference" href="#using-the-cli-programs" id="id30" name="id30">Using The CLI Programs</a><ul>
-<li><a class="reference" href="#ewabatch" id="id31" name="id31"><tt class="docutils literal"><span class="pre">ewabatch</span></tt></a></li>
-<li><a class="reference" href="#ewa" id="id32" name="id32"><tt class="docutils literal"><span class="pre">ewa</span></tt></a></li>
-<li><a class="reference" href="#ewasplice" id="id33" name="id33"><tt class="docutils literal"><span class="pre">ewasplice</span></tt></a></li>
+<li><a class="reference internal" href="#installation" id="id16">Installation</a><ul>
+<li><a class="reference internal" href="#supported-platforms" id="id17">Supported Platforms</a></li>
+<li><a class="reference internal" href="#getting-ewa" id="id18">Getting Ewa</a></li>
+<li><a class="reference internal" href="#software-installation" id="id19">Software Installation</a></li>
+<li><a class="reference internal" href="#the-managed-audio-directory" id="id20">The Managed Audio Directory</a></li>
+<li><a class="reference internal" href="#permissions-gotchas" id="id21">Permissions Gotchas</a></li>
 </ul>
 </li>
-<li><a class="reference" href="#appendix-i-ewaconf-formal-grammar-specification" id="id34" name="id34">Appendix I. <tt class="docutils literal"><span class="pre">ewaconf</span></tt> Formal Grammar Specification</a><ul>
-<li><a class="reference" href="#normative-ebnf" id="id35" name="id35">Normative EBNF</a></li>
-<li><a class="reference" href="#lexical-details" id="id36" name="id36">Lexical Details</a><ul>
-<li><a class="reference" href="#significant-tokens" id="id37" name="id37">Significant Tokens</a></li>
-<li><a class="reference" href="#ignored-tokens" id="id38" name="id38">Ignored Tokens</a></li>
+<li><a class="reference internal" href="#configuration" id="id22">Configuration</a><ul>
+<li><a class="reference internal" href="#the-ewa-conf-file" id="id23">The <tt class="docutils literal">ewa.conf</tt> File</a></li>
+<li><a class="reference internal" href="#the-ewa-rule-configuration-file" id="id24">The EWA Rule Configuration File</a><ul>
+<li><a class="reference internal" href="#the-ewaconf-configuration-language" id="id25">The Ewaconf Configuration Language</a></li>
 </ul>
 </li>
-<li><a class="reference" href="#complete-example" id="id39" name="id39">Complete Example</a></li>
+<li><a class="reference internal" href="#checking-the-syntax-of-the-configuration-files" id="id26">Checking the Syntax of the Configuration Files</a></li>
+<li><a class="reference internal" href="#configuring-the-web-server" id="id27">Configuring the Web Server</a><ul>
+<li><a class="reference internal" href="#id5" id="id28">Lighttpd</a></li>
+<li><a class="reference internal" href="#apache-with-mod-xsendfile" id="id29">Apache with mod_xsendfile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-the-cli-programs" id="id30">Using The CLI Programs</a><ul>
+<li><a class="reference internal" href="#ewabatch" id="id31"><tt class="docutils literal">ewabatch</tt></a></li>
+<li><a class="reference internal" href="#ewa" id="id32"><tt class="docutils literal">ewa</tt></a></li>
+<li><a class="reference internal" href="#ewasplice" id="id33"><tt class="docutils literal">ewasplice</tt></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#appendix-i-ewaconf-formal-grammar-specification" id="id34">Appendix I. <tt class="docutils literal">ewaconf</tt> Formal Grammar Specification</a><ul>
+<li><a class="reference internal" href="#normative-ebnf" id="id35">Normative EBNF</a></li>
+<li><a class="reference internal" href="#lexical-details" id="id36">Lexical Details</a><ul>
+<li><a class="reference internal" href="#significant-tokens" id="id37">Significant Tokens</a></li>
+<li><a class="reference internal" href="#ignored-tokens" id="id38">Ignored Tokens</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#complete-example" id="id39">Complete Example</a></li>
 </ul>
 </li>
 </ul>
@@ -411,8 +411,8 @@ ul.auto-toc {
     5.2.1  Significant Tokens
     5.2.2  Ignored Tokens
   5.3  Complete Example -->
-<div class="section">
-<h1><a class="toc-backref" href="#id10" id="overview" name="overview">Overview</a></h1>
+<div class="section" id="overview">
+<h1><a class="toc-backref" href="#id10">Overview</a></h1>
 <p>Ewa (East-West Audio) is an application that manages the production of
 spliced mp3 files.  It is meant to solve a common audio production
 problem facing producers of audio for the web who would like to add
@@ -423,7 +423,7 @@ without having to remaster all their mp3s from scratch.</p>
 content files contain the material of main interest; the extra files
 are the promotional material.  Ewa assumes that one resultant mp3 is
 normally an aggregation of exactly one content file with any number of
-extra files. <a class="footnote-reference" href="#id6" id="id1" name="id1">[1]</a></p>
+extra files. <a class="footnote-reference" href="#id6" id="id1">[1]</a></p>
 <p>In order to know what extra files to combine with a particular content
 file, ewa consults a <em>rule</em>, which is a function that takes the name
 of the requested file and returns an ordered list of files that should
@@ -431,7 +431,7 @@ be combined.  The rule ewa consults is usually a special kind of rule
 called a <em>rule list</em> that contains a list of sub-rules; the first
 sub-rule that matches, i.e., that returns a non-empty list, is the
 return value of the parent rule.  Ewa provides a expressive
-<a class="reference" href="#the-ewaconf-configuration-language">mini-language</a> for specifying such rule lists; with it, rules can
+<a class="reference internal" href="#the-ewaconf-configuration-language">mini-language</a> for specifying such rule lists; with it, rules can
 apply only for filenames that match glob or regular expression
 patterns, or that match date formats, or combinations of such criteria
 with &quot;and&quot;, &quot;or&quot;, and &quot;not&quot; operators.  Also, rules can be made active
@@ -445,23 +445,23 @@ extra audio are placed in a directory managed by ewa, and ewa
 transcodes them as needed, leaving the transcoded files in another
 managed directory for future runs. The masters may be in mp3, wav, or
 aiff format.</p>
-<div class="section">
-<h2><a class="toc-backref" href="#id11" id="modes-of-operation" name="modes-of-operation">Modes of Operation</a></h2>
+<div class="section" id="modes-of-operation">
+<h2><a class="toc-backref" href="#id11">Modes of Operation</a></h2>
 <p>Ewa can operate either in batch mode, in which case it produces
 combined files for the content files specified on the command line, or
 in server mode.</p>
-<div class="section">
-<h3><a class="toc-backref" href="#id12" id="batch-mode" name="batch-mode">Batch Mode</a></h3>
-<p>The batch mode, controlled by the script <a class="reference" href="#ewabatch">ewabatch</a>, is convenient if
+<div class="section" id="batch-mode">
+<h3><a class="toc-backref" href="#id12">Batch Mode</a></h3>
+<p>The batch mode, controlled by the script <a class="reference internal" href="#ewabatch">ewabatch</a>, is convenient if
 you can't run your own persistent processes on the web server serving
 your audio files; you can use it to produce static files on a
 machine under your own control and rsync them up to the web server
 however often you need.  Batch mode can operate either on individual
 files or recursively on entire directories.</p>
 </div>
-<div class="section">
-<h3><a class="toc-backref" href="#id13" id="server-mode" name="server-mode">Server Mode</a></h3>
-<p>If you are using <tt class="docutils literal"><span class="pre">ewabatch</span></tt> to generate all your files, there is no
+<div class="section" id="server-mode">
+<h3><a class="toc-backref" href="#id13">Server Mode</a></h3>
+<p>If you are using <tt class="docutils literal">ewabatch</tt> to generate all your files, there is no
 need for any integration with the web server at all; you just need a
 cron job to generate the files periodically and perhaps rsync them.
 But if you have a large number of files, this can become unwieldy. Not
@@ -471,22 +471,22 @@ mp3s and having to rsync them up to your webserver may be prohibitive
 if undertaken frequently.  It is highly inefficient to have to move
 thousands of files just because an intro has changed.  The ewa server
 gets around this problem.</p>
-<p>The server mode, controlled by the script <a class="reference" href="#ewa">ewa</a>, is a persistent daemon
-running a simple <a class="reference" href="http://wsgi.org/wsgi">WSGI</a> application, normally connected to a web server
-via <a class="reference" href="http://fastcgi.com/">FCGI</a> or <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a>, which generates the composite files on demand,
+<p>The server mode, controlled by the script <a class="reference internal" href="#ewa">ewa</a>, is a persistent daemon
+running a simple <a class="reference external" href="http://wsgi.org/wsgi">WSGI</a> application, normally connected to a web server
+via <a class="reference external" href="http://fastcgi.com/">FCGI</a> or <a class="reference external" href="http://www.mems-exchange.org/software/scgi/">SCGI</a>, which generates the composite files on demand,
 caching them on the filesystem and rebuilding them upon request with a
 configurable frequency.  The path to the composite file is passed to
-the webserver via the <a class="reference" href="http://blog.lighttpd.net/articles/2006/07/02/x-sendfile">X-Sendfile</a> technique (which originated with
-<a class="reference" href="http://lighttpd.net/">lighttpd</a> and is also supported by <a class="reference" href="http://httpd.apache.org/">apache</a> with the <a class="reference" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>
-module; <a class="reference" href="http://nginx.net/">nginx</a> also has a <a class="reference" href="http://blog.kovyrin.net/2006/11/01/nginx-x-accel-redirect-php-rails/">similar feature</a>).  The webserver is
+the webserver via the <a class="reference external" href="http://blog.lighttpd.net/articles/2006/07/02/x-sendfile">X-Sendfile</a> technique (which originated with
+<a class="reference external" href="http://lighttpd.net/">lighttpd</a> and is also supported by <a class="reference external" href="http://httpd.apache.org/">apache</a> with the <a class="reference external" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>
+module; <a class="reference external" href="http://nginx.net/">nginx</a> also has a <a class="reference external" href="http://blog.kovyrin.net/2006/11/01/nginx-x-accel-redirect-php-rails/">similar feature</a>).  The webserver is
 responsible for returning the actual file over HTTP, and ewa
 does not need to do IO; as a result, ewa processes each request
 extremely quickly, and files are served at almost the same speed as
 static files, with excellent scaleability.</p>
 </div>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id14" id="limitations" name="limitations">Limitations</a></h2>
+<div class="section" id="limitations">
+<h2><a class="toc-backref" href="#id14">Limitations</a></h2>
 <p>Ewa has a few limitations that the user should be aware of.</p>
 <ol class="arabic simple">
 <li>Mp3 is the only supported audio format.</li>
@@ -503,8 +503,8 @@ scenarios with multiple content files aren't supported.</li>
 </ol>
 <p>Some or all of these may be addressed in future revisions, depending
 on community interest.</p>
-<div class="section">
-<h3><a class="toc-backref" href="#id15" id="a-note-on-mp3-splicing" name="a-note-on-mp3-splicing">A Note on Mp3 Splicing</a></h3>
+<div class="section" id="a-note-on-mp3-splicing">
+<h3><a class="toc-backref" href="#id15">A Note on Mp3 Splicing</a></h3>
 <p>You will occasionally read that mp3s cannot be reliably spliced, as
 mp3 frames may store information used by later frames in the bit
 reservoir.  This is not quite true; the reality is that mp3s cannot be
@@ -521,45 +521,44 @@ ewa are broken, the ones coming out will be too.</p>
 </div>
 </div>
 </div>
-<div class="section">
-<h1><a class="toc-backref" href="#id16" id="installation" name="installation">Installation</a></h1>
-<div class="section">
-<h2><a class="toc-backref" href="#id17" id="supported-platforms" name="supported-platforms">Supported Platforms</a></h2>
+<div class="section" id="installation">
+<h1><a class="toc-backref" href="#id16">Installation</a></h1>
+<div class="section" id="supported-platforms">
+<h2><a class="toc-backref" href="#id17">Supported Platforms</a></h2>
 <p>Ewa has been developed and tested on Linux, but should work fine on
 any flavor of BSD, including Mac OS X, and commercial UNIX
 implementations.  It hasn't been tested on Windows, but in future
 might work there in whole or in part.  Please note that some parts of
 this manual presuppose a UNIX platform.</p>
-<p>Ewa is written in <a class="reference" href="http://www.python.org/">Python</a>, and requires Python 2.4 or later. In
+<p>Ewa is written in <a class="reference external" href="http://www.python.org/">Python</a>, and requires Python 2.4 or later. In
 addition, the following Python packages need to be installed:</p>
 <ul class="simple">
-<li><a class="reference" href="http://cheeseshop.python.org/pypi/setuptools">setuptools</a></li>
-<li><a class="reference" href="http://cheeseshop.python.org/pypi/simplejson">simplejson</a></li>
-<li><a class="reference" href="http://eyed3.nicfit.net/">eyeD3</a></li>
-<li><a class="reference" href="http://cheeseshop.python.org/pypi/flup">flup</a></li>
+<li><a class="reference external" href="http://cheeseshop.python.org/pypi/setuptools">setuptools</a></li>
+<li><a class="reference external" href="http://eyed3.nicfit.net/">eyeD3</a></li>
+<li><a class="reference external" href="http://cheeseshop.python.org/pypi/flup">flup</a></li>
 </ul>
 <p>To run tests you also need:</p>
 <ul class="simple">
-<li><a class="reference" href="http://somethingaboutorange.com/mrl/projects/nose/">nose</a></li>
+<li><a class="reference external" href="http://somethingaboutorange.com/mrl/projects/nose/">nose</a></li>
 </ul>
-<p>Ewa also requires that <a class="reference" href="http://lame.sourceforge.net/">lame</a> be installed for transcoding.  To run the
-ewa server, you need to run an http server that supports <a class="reference" href="http://blog.lighttpd.net/articles/2006/07/02/x-sendfile">X-Sendfile</a>
-or something equivalent: either <a class="reference" href="http://lighttpd.net/">lighttpd</a>, <a class="reference" href="http://httpd.apache.org/">apache</a> with
-<a class="reference" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>, or possibly <a class="reference" href="http://nginx.net/">nginx</a>.</p>
+<p>Ewa also requires that <a class="reference external" href="http://lame.sourceforge.net/">lame</a> be installed for transcoding.  To run the
+ewa server, you need to run an http server that supports <a class="reference external" href="http://blog.lighttpd.net/articles/2006/07/02/x-sendfile">X-Sendfile</a>
+or something equivalent: either <a class="reference external" href="http://lighttpd.net/">lighttpd</a>, <a class="reference external" href="http://httpd.apache.org/">apache</a> with
+<a class="reference external" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>, or possibly <a class="reference external" href="http://nginx.net/">nginx</a>.</p>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id18" id="getting-ewa" name="getting-ewa">Getting Ewa</a></h2>
+<div class="section" id="getting-ewa">
+<h2><a class="toc-backref" href="#id18">Getting Ewa</a></h2>
 <p>Ewa releases are available in binary and source form from
-<a class="reference" href="http://cheeseshop.python.org/pypi/ewa">http://cheeseshop.python.org/pypi/ewa</a>.</p>
+<a class="reference external" href="http://cheeseshop.python.org/pypi/ewa">http://cheeseshop.python.org/pypi/ewa</a>.</p>
 <p>If you want to follow the bleeding edge development version, you can
 check out the latest source code from our subversion repository:</p>
 <pre class="literal-block">
 svn co svn://svn.wnyc.org/public/ewa/trunk ewa
 </pre>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id19" id="software-installation" name="software-installation">Software Installation</a></h2>
-<p>To install, if you already have <a class="reference" href="http://cheeseshop.python.org/pypi/setuptools">setuptools</a> installed, you can simply
+<div class="section" id="software-installation">
+<h2><a class="toc-backref" href="#id19">Software Installation</a></h2>
+<p>To install, if you already have <a class="reference external" href="http://cheeseshop.python.org/pypi/setuptools">setuptools</a> installed, you can simply
 do:</p>
 <pre class="literal-block">
 easy_install ewa
@@ -573,10 +572,10 @@ easy_install .
 <pre class="literal-block">
 python setup.py install
 </pre>
-<p>The latter will install <a class="reference" href="http://cheeseshop.python.org/pypi/setuptools">setuptools</a> if you don't already have it.</p>
+<p>The latter will install <a class="reference external" href="http://cheeseshop.python.org/pypi/setuptools">setuptools</a> if you don't already have it.</p>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id20" id="the-managed-audio-directory" name="the-managed-audio-directory">The Managed Audio Directory</a></h2>
+<div class="section" id="the-managed-audio-directory">
+<h2><a class="toc-backref" href="#id20">The Managed Audio Directory</a></h2>
 <p>Ewa expects audio to be stored in a directory structure like:</p>
 <blockquote>
 <dl class="docutils">
@@ -589,19 +588,19 @@ you manage this directory also.  Ewa needs read access to it
 also.</dd>
 <dt>$basedir/extra/transcoded</dt>
 <dd>Ewa manages this directory and needs write access to it; it
-stores transcoded versions of the audio files in <tt class="docutils literal"><span class="pre">extra/master</span></tt>
+stores transcoded versions of the audio files in <tt class="docutils literal">extra/master</tt>
 here.</dd>
 <dt>$targetdir</dt>
 <dd>Ewa manages this directory and needs write access to it; this
 is where it stores the spliced files.</dd>
 </dl>
 </blockquote>
-<p><tt class="docutils literal"><span class="pre">basedir</span></tt> and <tt class="docutils literal"><span class="pre">targetdir</span></tt> are configuration-defined.  You must
-specify <tt class="docutils literal"><span class="pre">basedir</span></tt> in <tt class="docutils literal"><span class="pre">ewa.conf</span></tt>; <tt class="docutils literal"><span class="pre">targetdir</span></tt> will default to
-<tt class="docutils literal"><span class="pre">$basedir/combined</span></tt> if not otherwise specified.</p>
+<p><tt class="docutils literal">basedir</tt> and <tt class="docutils literal">targetdir</tt> are configuration-defined.  You must
+specify <tt class="docutils literal">basedir</tt> in <tt class="docutils literal">ewa.conf</tt>; <tt class="docutils literal">targetdir</tt> will default to
+<tt class="docutils literal">$basedir/combined</tt> if not otherwise specified.</p>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id21" id="permissions-gotchas" name="permissions-gotchas">Permissions Gotchas</a></h2>
+<div class="section" id="permissions-gotchas">
+<h2><a class="toc-backref" href="#id21">Permissions Gotchas</a></h2>
 <p>Some care is necessary to ensure that file permissions will be right
 for your deployment, especially if you are running both the ewa server
 and ewa batch processes, as a variety of users may then be creating
@@ -621,22 +620,22 @@ file isn't a bad idea:</p>
 <pre class="literal-block">
 mkdir -p /var/{run,log}/ewa &amp;&amp; chown ewa /var/{run,log}/ewa
 </pre>
-<p>In <tt class="docutils literal"><span class="pre">ewa.conf</span></tt> you'll want to set the <tt class="docutils literal"><span class="pre">user</span></tt> and <tt class="docutils literal"><span class="pre">group</span></tt>
+<p>In <tt class="docutils literal">ewa.conf</tt> you'll want to set the <tt class="docutils literal">user</tt> and <tt class="docutils literal">group</tt>
 variables to match the user and group you created.  If you do this,
-<tt class="docutils literal"><span class="pre">ewa</span></tt> and <tt class="docutils literal"><span class="pre">ewabatch</span></tt> will need to be run as root (in the case of
-<tt class="docutils literal"><span class="pre">ewabatch</span></tt>, most conveniently through <tt class="docutils literal"><span class="pre">sudo</span></tt>), but will drop
+<tt class="docutils literal">ewa</tt> and <tt class="docutils literal">ewabatch</tt> will need to be run as root (in the case of
+<tt class="docutils literal">ewabatch</tt>, most conveniently through <tt class="docutils literal">sudo</tt>), but will drop
 credentials to your user/group before it creates any files.</p>
 </div>
 </div>
-<div class="section">
-<h1><a class="toc-backref" href="#id22" id="configuration" name="configuration">Configuration</a></h1>
-<p>Ewa has two configuration files: <tt class="docutils literal"><span class="pre">ewa.conf</span></tt>, for adminstrative
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#id22">Configuration</a></h1>
+<p>Ewa has two configuration files: <tt class="docutils literal">ewa.conf</tt>, for adminstrative
 options, and a rule configuration file, which is used to determine
 the playlists.</p>
-<div class="section">
-<h2><a class="toc-backref" href="#id23" id="the-ewa-conf-file" name="the-ewa-conf-file">The <tt class="docutils literal"><span class="pre">ewa.conf</span></tt> File</a></h2>
-<p><tt class="docutils literal"><span class="pre">ewa.conf</span></tt> is written in Python; keys defined there that don't start
-with an underscore become attributes of the <tt class="docutils literal"><span class="pre">ewa.config.Config</span></tt>
+<div class="section" id="the-ewa-conf-file">
+<h2><a class="toc-backref" href="#id23">The <tt class="docutils literal">ewa.conf</tt> File</a></h2>
+<p><tt class="docutils literal">ewa.conf</tt> is written in Python; keys defined there that don't start
+with an underscore become attributes of the <tt class="docutils literal">ewa.config.Config</tt>
 object.  The following are meaningful keys:</p>
 <dl class="docutils">
 <dt>basedir</dt>
@@ -644,62 +643,62 @@ object.  The following are meaningful keys:</p>
 there is no default.</dd>
 <dt>rulefile</dt>
 <dd>The path to the file with ewa rules, either in Python, JSON or
-ewaconf.  If the file ends with <tt class="docutils literal"><span class="pre">.py</span></tt>, it is assumed to be in
-Python; if with <tt class="docutils literal"><span class="pre">.json</span></tt> or <tt class="docutils literal"><span class="pre">.js</span></tt>, in JSON; otherwise
+ewaconf.  If the file ends with <tt class="docutils literal">.py</tt>, it is assumed to be in
+Python; if with <tt class="docutils literal">.json</tt> or <tt class="docutils literal">.js</tt>, in JSON; otherwise
 ewaconf.  This also must be supplied.</dd>
 <dt>targetdir</dt>
 <dd>The path to the directory where ewa will place generated
-composite files.  If not supplied, basedir + <tt class="docutils literal"><span class="pre">/combined</span></tt>
+composite files.  If not supplied, basedir + <tt class="docutils literal">/combined</tt>
 will be used.</dd>
 <dt>protocol</dt>
-<dd>what server protocol to use: one of <tt class="docutils literal"><span class="pre">'fcgi'</span></tt>, <tt class="docutils literal"><span class="pre">'scgi'</span></tt> or
-<tt class="docutils literal"><span class="pre">'http'</span></tt>, defaulting to <tt class="docutils literal"><span class="pre">'fcgi'</span></tt>.  <tt class="docutils literal"><span class="pre">'http'</span></tt> is for
+<dd>what server protocol to use: one of <tt class="docutils literal">'fcgi'</tt>, <tt class="docutils literal">'scgi'</tt> or
+<tt class="docutils literal">'http'</tt>, defaulting to <tt class="docutils literal">'fcgi'</tt>.  <tt class="docutils literal">'http'</tt> is for
 development only and should not be used otherwise.</dd>
 <dt>interface</dt>
-<dd>an ip address like <tt class="docutils literal"><span class="pre">'127.0.0.1'</span></tt>, which is the default.</dd>
+<dd>an ip address like <tt class="docutils literal">'127.0.0.1'</tt>, which is the default.</dd>
 <dt>port</dt>
-<dd>default: <tt class="docutils literal"><span class="pre">5000</span></tt>.</dd>
+<dd>default: <tt class="docutils literal">5000</tt>.</dd>
 <dt>unixsocket</dt>
 <dd>if you want to use a UNIX rather than a TCP/IP socket, put the
-path to the socket file here; e.g., <tt class="docutils literal"><span class="pre">'/var/run/ewa.socket'</span></tt>.</dd>
+path to the socket file here; e.g., <tt class="docutils literal">'/var/run/ewa.socket'</tt>.</dd>
 <dt>umask</dt>
 <dd>if you are using a UNIX socket, this will determine its
-permissions; e.g., <tt class="docutils literal"><span class="pre">0600</span></tt>.</dd>
+permissions; e.g., <tt class="docutils literal">0600</tt>.</dd>
 <dt>logfile</dt>
 <dd>path to logfile.  By default there is no logfile and hence no
 logging.</dd>
 <dt>loglevel</dt>
-<dd>how much to log -- should be one of <tt class="docutils literal"><span class="pre">'debug'</span></tt>, <tt class="docutils literal"><span class="pre">'info'</span></tt>,
-<tt class="docutils literal"><span class="pre">'warn'</span></tt>,  or <tt class="docutils literal"><span class="pre">'critical'</span></tt>, defaulting to <tt class="docutils literal"><span class="pre">'critical'</span></tt>.</dd>
+<dd>how much to log -- should be one of <tt class="docutils literal">'debug'</tt>, <tt class="docutils literal">'info'</tt>,
+<tt class="docutils literal">'warn'</tt>,  or <tt class="docutils literal">'critical'</tt>, defaulting to <tt class="docutils literal">'critical'</tt>.</dd>
 <dt>logrotate</dt>
 <dd><p class="first">if you want to rotate your logfiles, set this to one of the
 following:</p>
 <ul class="last simple">
-<li><tt class="docutils literal"><span class="pre">True</span></tt>.  This will result in a logfile that rotates when
+<li><tt class="docutils literal">True</tt>.  This will result in a logfile that rotates when
 the file reaches 10M in size; up to 10 backups will be kept.</li>
 <li>an integer meaning the maximum number of bytes that should
 be stored before rollover; up to 10 backups will be kept.</li>
 <li>a two-tuple of integers specifying the maximum number of
 bytes that should be stored before rollover and the number
-of backups to retain: e.g., <tt class="docutils literal"><span class="pre">(1e7,</span> <span class="pre">5)</span></tt>.</li>
-<li><tt class="docutils literal"><span class="pre">'daily'</span></tt> (rotates every day at midnight regardless of
+of backups to retain: e.g., <tt class="docutils literal">(1e7, 5)</tt>.</li>
+<li><tt class="docutils literal">'daily'</tt> (rotates every day at midnight regardless of
 size)</li>
-<li><tt class="docutils literal"><span class="pre">'weekly'</span></tt> (rotates on Monday at midnight)</li>
-<li>a value accepted for the <tt class="docutils literal"><span class="pre">when</span></tt> constructor parameter of
-<tt class="docutils literal"><span class="pre">logging.handlers.TimedRotatingFileHandler</span></tt> (see Python's
-<a class="reference" href="http://www.python.org/doc/current/lib/node414.html">logging documentation</a> for details): e.g., <tt class="docutils literal"><span class="pre">&quot;D&quot;</span></tt>.</li>
-<li>a <tt class="docutils literal"><span class="pre">when</span></tt> parameter, as above, followed by a colon and
-a value accepted for <tt class="docutils literal"><span class="pre">TimedRotatingFileHandler</span></tt>'s
-<tt class="docutils literal"><span class="pre">interval</span></tt> parameter (an integer); e.g, <tt class="docutils literal"><span class="pre">&quot;D:3&quot;</span></tt>.</li>
+<li><tt class="docutils literal">'weekly'</tt> (rotates on Monday at midnight)</li>
+<li>a value accepted for the <tt class="docutils literal">when</tt> constructor parameter of
+<tt class="docutils literal">logging.handlers.TimedRotatingFileHandler</tt> (see Python's
+<a class="reference external" href="http://www.python.org/doc/current/lib/node414.html">logging documentation</a> for details): e.g., <tt class="docutils literal">&quot;D&quot;</tt>.</li>
+<li>a <tt class="docutils literal">when</tt> parameter, as above, followed by a colon and
+a value accepted for <tt class="docutils literal">TimedRotatingFileHandler</tt>'s
+<tt class="docutils literal">interval</tt> parameter (an integer); e.g, <tt class="docutils literal">&quot;D:3&quot;</tt>.</li>
 </ul>
 </dd>
 <dt>daemonize</dt>
 <dd>whether the server process should daemonize (default:
-<tt class="docutils literal"><span class="pre">True</span></tt>).</dd>
+<tt class="docutils literal">True</tt>).</dd>
 <dt>use_xsendfile</dt>
 <dd>whether to send an X-Sendfile or equivalent header from the
 server process to the front-end web server (default:
-<tt class="docutils literal"><span class="pre">True</span></tt>).</dd>
+<tt class="docutils literal">True</tt>).</dd>
 <dt>sendfile_header</dt>
 <dd>what flavor of X-Sendfile-ish header to send.
 <tt class="docutils literal"><span class="pre">'X-Sendfile'</span></tt> is the default, but lighttpd in versions
@@ -712,12 +711,12 @@ saving to disk.  This is not a production-quality option;
 don't use it.</dd>
 <dt>refresh_rate</dt>
 <dd>how often to refresh combined files, in seconds.  Default is
-<tt class="docutils literal"><span class="pre">0</span></tt> (never refresh).</dd>
+<tt class="docutils literal">0</tt> (never refresh).</dd>
 <dt>pidfile</dt>
-<dd>if daemonizing, where to put a pidfile (default: <tt class="docutils literal"><span class="pre">None</span></tt>).</dd>
+<dd>if daemonizing, where to put a pidfile (default: <tt class="docutils literal">None</tt>).</dd>
 <dt>content_disposition</dt>
-<dd>if you want a <tt class="docutils literal"><span class="pre">Content-Disposition:</span> <span class="pre">attachment</span></tt> header, set
-this to <tt class="docutils literal"><span class="pre">'attachment'</span></tt>.  Default is <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
+<dd>if you want a <tt class="docutils literal"><span class="pre">Content-Disposition:</span> attachment</tt> header, set
+this to <tt class="docutils literal">'attachment'</tt>.  Default is <tt class="docutils literal">None</tt>.</dd>
 <dt>user</dt>
 <dd>If you run in either server or batch mode as root and want to
 drop credentials to another user/group, set this.</dd>
@@ -728,53 +727,53 @@ drop credentials to another user/group, set this.</dd>
 even know about it.</dd>
 <dt>use_threads</dt>
 <dd>Whether to use a pool of threads rather than a pool of forked
-processes.  If the platform supports <tt class="docutils literal"><span class="pre">fork()</span></tt>, this will
-default to <tt class="docutils literal"><span class="pre">False</span></tt>; otherwise (that is, on Windows) to
-<tt class="docutils literal"><span class="pre">True</span></tt>.</dd>
+processes.  If the platform supports <tt class="docutils literal">fork()</tt>, this will
+default to <tt class="docutils literal">False</tt>; otherwise (that is, on Windows) to
+<tt class="docutils literal">True</tt>.</dd>
 <dt>lame_path</dt>
-<dd>The path to the <tt class="docutils literal"><span class="pre">lame</span></tt> executable, for transcoding.  Default
-is <tt class="docutils literal"><span class="pre">/usr/bin/lame</span></tt>.</dd>
+<dd>The path to the <tt class="docutils literal">lame</tt> executable, for transcoding.  Default
+is <tt class="docutils literal">/usr/bin/lame</tt>.</dd>
 <dt>min_spare</dt>
-<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> backends, the minimum number of
-spare threads or processes.  Defaults to 1. <a class="footnote-reference" href="#id7" id="id2" name="id2">[2]</a></dd>
+<dd>For the <a class="reference external" href="http://fastcgi.com/">FCGI</a> and <a class="reference external" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> backends, the minimum number of
+spare threads or processes.  Defaults to 1. <a class="footnote-reference" href="#id7" id="id2">[2]</a></dd>
 <dt>max_spare</dt>
-<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> backends, the maximum number of
+<dd>For the <a class="reference external" href="http://fastcgi.com/">FCGI</a> and <a class="reference external" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> backends, the maximum number of
 spare threads or processes.  Defaults to 5.</dd>
 <dt>max_threads</dt>
-<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> threaded backends, the maximum
+<dd>For the <a class="reference external" href="http://fastcgi.com/">FCGI</a> and <a class="reference external" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> threaded backends, the maximum
 number of threads.  Default is unlimited.</dd>
 <dt>max_children</dt>
-<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> preforked backends, the maximum
+<dd>For the <a class="reference external" href="http://fastcgi.com/">FCGI</a> and <a class="reference external" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> preforked backends, the maximum
 number of child processes.  Default is 50.</dd>
 <dt>max_requests</dt>
-<dd>For the <a class="reference" href="http://fastcgi.com/">FCGI</a> and <a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> preforked backends, the maximum
+<dd>For the <a class="reference external" href="http://fastcgi.com/">FCGI</a> and <a class="reference external" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> preforked backends, the maximum
 number of requests a child process handles before it is
 killed.  Default is 0 (unlimited).</dd>
 </dl>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id24" id="the-ewa-rule-configuration-file" name="the-ewa-rule-configuration-file">The EWA Rule Configuration File</a></h2>
+<div class="section" id="the-ewa-rule-configuration-file">
+<h2><a class="toc-backref" href="#id24">The EWA Rule Configuration File</a></h2>
 <p>The rule file can be written either in Python or in a special
-configuration mini-language, <a class="reference" href="#the-ewaconf-configuration-language">ewaconf</a>. <a class="footnote-reference" href="#id8" id="id3" name="id3">[3]</a></p>
+configuration mini-language, <a class="reference internal" href="#the-ewaconf-configuration-language">ewaconf</a>. <a class="footnote-reference" href="#id8" id="id3">[3]</a></p>
 <p>A rule file in Python format gives you maximum flexibility, at the
 cost of requiring you to know Python and understand the ewa API.  The
 Python file can contain anything as long as it defines a global with
-the name <tt class="docutils literal"><span class="pre">rules</span></tt>, which should be a Python callable that, when
+the name <tt class="docutils literal">rules</tt>, which should be a Python callable that, when
 called, returns an iterator that yields symbolic names for the files
 that should be combined.  (These names will be interpreted as file
-paths relative to the <tt class="docutils literal"><span class="pre">extra/master</span></tt> managed directory, unless
-they have the Python attribute <tt class="docutils literal"><span class="pre">is_original</span></tt> set to a true value, in
+paths relative to the <tt class="docutils literal">extra/master</tt> managed directory, unless
+they have the Python attribute <tt class="docutils literal">is_original</tt> set to a true value, in
 which case, they will interpreted as file paths relative to the
-<tt class="docutils literal"><span class="pre">main</span></tt> managed directory.)  With this hook you can load into ewa
+<tt class="docutils literal">main</tt> managed directory.)  With this hook you can load into ewa
 just about any sort of rule system that you might like to devise.</p>
-<div class="section">
-<h3><a class="toc-backref" href="#id25" id="the-ewaconf-configuration-language" name="the-ewaconf-configuration-language">The Ewaconf Configuration Language</a></h3>
+<div class="section" id="the-ewaconf-configuration-language">
+<h3><a class="toc-backref" href="#id25">The Ewaconf Configuration Language</a></h3>
 <p>Ewa's default rule configuration format is designed to make it easy to
 define a list of rules that say, for a given mp3 file, what files ewa
 should combine to make an aggregate file, and in what order.  The
 rules are consulted in order, and checked to see if they match the
 input mp3 file; the first one that matches returns a list of files to
-combine, and those are then combined.  <tt class="docutils literal"><span class="pre">ewaconf</span></tt> only supports a
+combine, and those are then combined.  <tt class="docutils literal">ewaconf</tt> only supports a
 limited number of rule types, but nonetheless the system is quite
 powerful.</p>
 <p>A rule is normally written in the form:</p>
@@ -785,12 +784,12 @@ condition [options]:
 </pre>
 <p>where a condition is a glob pattern, a regex pattern, or a date
 specification, or combinations of the above with with the logical
-operators <tt class="docutils literal"><span class="pre">and</span></tt>, <tt class="docutils literal"><span class="pre">or</span></tt>, and <tt class="docutils literal"><span class="pre">not</span></tt>.  The <tt class="docutils literal"><span class="pre">pre</span></tt> and <tt class="docutils literal"><span class="pre">post</span></tt>
+operators <tt class="docutils literal">and</tt>, <tt class="docutils literal">or</tt>, and <tt class="docutils literal">not</tt>.  The <tt class="docutils literal">pre</tt> and <tt class="docutils literal">post</tt>
 lists indicate what files should go before or after the main content
 file in the aggregate file ewa produces.  Condition options are put in
 brackets after the condition and separated by commas; they can either
-be a single symbol, such as <tt class="docutils literal"><span class="pre">F</span></tt> or <tt class="docutils literal"><span class="pre">I</span></tt>, or a name-value pair,
-separated by <tt class="docutils literal"><span class="pre">=</span></tt>.  For example:</p>
+be a single symbol, such as <tt class="docutils literal">F</tt> or <tt class="docutils literal">I</tt>, or a name-value pair,
+separated by <tt class="docutils literal">=</tt>.  For example:</p>
 <pre class="literal-block">
 bigband*.mp3 [I]:
   pre: [bigbandintro.wav]
@@ -804,13 +803,13 @@ and(09/01/2006 - 11/01/2006 [F,fmt=YYYYMMDD],
   post: [specialoutro.mp3]
 </pre>
 <p>The regular expression follows Python regular expression rules.   If you want a
-regex to ignore case, you can pass the <tt class="docutils literal"><span class="pre">I</span></tt> option.  Two other regex
-options are supported: <tt class="docutils literal"><span class="pre">U</span></tt> (unicode) and <tt class="docutils literal"><span class="pre">L</span></tt> (locale).  These
-correspond to the same options in the Python <tt class="docutils literal"><span class="pre">re</span></tt> module.  For more
-information, see the <a class="reference" href="http://www.python.org/doc/current/lib/module-re.html">official Python documentation</a>.</p>
-<p>Globs support only one option: <tt class="docutils literal"><span class="pre">I</span></tt>.  By default, globs are
+regex to ignore case, you can pass the <tt class="docutils literal">I</tt> option.  Two other regex
+options are supported: <tt class="docutils literal">U</tt> (unicode) and <tt class="docutils literal">L</tt> (locale).  These
+correspond to the same options in the Python <tt class="docutils literal">re</tt> module.  For more
+information, see the <a class="reference external" href="http://www.python.org/doc/current/lib/module-re.html">official Python documentation</a>.</p>
+<p>Globs support only one option: <tt class="docutils literal">I</tt>.  By default, globs are
 case-sensitive, but if this option is passed they will ignore case.
-(Globs are implemented with Python's <a class="reference" href="http://www.python.org/doc/current/lib/module-fnmatch.html">fnmatch</a> module.)</p>
+(Globs are implemented with Python's <a class="reference external" href="http://www.python.org/doc/current/lib/module-fnmatch.html">fnmatch</a> module.)</p>
 <p>Both globs and regexes can contain arbitary characters if they are
 delimited with either single or double quotation marks.  They can also
 be written without quotation marks, with some restrictions.  Spaces
@@ -822,24 +821,24 @@ question marks, underscores, and periods.  When in doubt, quote.</p>
 <p class="first admonition-title">Hint</p>
 <p class="last">Both globs and regexes need to match the <em>entire path</em> to
 requested file, relative to the main content file directory
-(<tt class="docutils literal"><span class="pre">$basedir/main</span></tt>); and furthermore globs and regexes have
+(<tt class="docutils literal">$basedir/main</tt>); and furthermore globs and regexes have
 different matching behavior, in that a regex will match as long it
 matches against the beginning of the target string, but a glob
 needs to match all the way to the end.  So if someone requests
 <tt class="docutils literal"><span class="pre">http://bozoland.org/dingdong/frogling.mp3</span></tt>, the path against which
-your pattern will be matched will be <tt class="docutils literal"><span class="pre">dingdong/frogling.mp3</span></tt>,
-<em>without</em> a leading forward slash.  <tt class="docutils literal"><span class="pre">*frogling*</span></tt> would match it,
-as would <tt class="docutils literal"><span class="pre">regex:.*frogling</span></tt>; <tt class="docutils literal"><span class="pre">frogling.mp3</span></tt> wouldn't, and
-neither would <tt class="docutils literal"><span class="pre">dingdong</span></tt>, but <tt class="docutils literal"><span class="pre">regex:dingdong</span></tt> would.</p>
+your pattern will be matched will be <tt class="docutils literal">dingdong/frogling.mp3</tt>,
+<em>without</em> a leading forward slash.  <tt class="docutils literal">*frogling*</tt> would match it,
+as would <tt class="docutils literal"><span class="pre">regex:.*frogling</span></tt>; <tt class="docutils literal">frogling.mp3</tt> wouldn't, and
+neither would <tt class="docutils literal">dingdong</tt>, but <tt class="docutils literal">regex:dingdong</tt> would.</p>
 </div>
-<p>The date options are <tt class="docutils literal"><span class="pre">F</span></tt>, <tt class="docutils literal"><span class="pre">T</span></tt>, and the name-value option <tt class="docutils literal"><span class="pre">fmt</span></tt>.
-<tt class="docutils literal"><span class="pre">F</span></tt> and <tt class="docutils literal"><span class="pre">T</span></tt> are incompatible.  <tt class="docutils literal"><span class="pre">T</span></tt> is the default (so its use is
+<p>The date options are <tt class="docutils literal">F</tt>, <tt class="docutils literal">T</tt>, and the name-value option <tt class="docutils literal">fmt</tt>.
+<tt class="docutils literal">F</tt> and <tt class="docutils literal">T</tt> are incompatible.  <tt class="docutils literal">T</tt> is the default (so its use is
 actually not necessary except perhaps for readability); it means that
 the condition will return true only if the current time matches
 against the date range specified.</p>
-<p><tt class="docutils literal"><span class="pre">F</span></tt> means that the date is matched against the filename using a
-regular expression derived from a format (the <tt class="docutils literal"><span class="pre">fmt</span></tt> option); the
-default format is <tt class="docutils literal"><span class="pre">MMDDYYYY</span></tt>.  Formats may be specified with the
+<p><tt class="docutils literal">F</tt> means that the date is matched against the filename using a
+regular expression derived from a format (the <tt class="docutils literal">fmt</tt> option); the
+default format is <tt class="docutils literal">MMDDYYYY</tt>.  Formats may be specified with the
 following symbols:</p>
 <ul class="simple">
 <li>MM (months)</li>
@@ -852,9 +851,9 @@ following symbols:</p>
 <li>hh (hours, 12 hour clock)</li>
 </ul>
 <p>Any additional characters in the format become a literal part of the
-regular expression.  The <tt class="docutils literal"><span class="pre">fmt</span></tt> option has no meaning and may not be
+regular expression.  The <tt class="docutils literal">fmt</tt> option has no meaning and may not be
 used when matching against the current time.</p>
-<p>If the pre and post lists are both empty, the special form <tt class="docutils literal"><span class="pre">default</span></tt>
+<p>If the pre and post lists are both empty, the special form <tt class="docutils literal">default</tt>
 may be used.   Also, if a rule applies unconditionally, the condition
 may be omitted.  Therefore, the following four forms are equivalent:</p>
 <pre class="literal-block">
@@ -872,7 +871,7 @@ regex:^/shows/(?P&lt;showname&gt;[^/]+)/.*\.mp3:
    pre:  [&quot;intro/$showname.mp3&quot;, &quot;ad/${showname}.mp3&quot;]
    post: [&quot;notices/$1.mp3&quot;, &quot;outro/${1}.mp3&quot;]
 </pre>
-<p>or the style used by backreferences in Python <a class="reference" href="http://www.python.org/doc/current/lib/match-objects.html">regular expression
+<p>or the style used by backreferences in Python <a class="reference external" href="http://www.python.org/doc/current/lib/match-objects.html">regular expression
 expansions</a>:</p>
 <pre class="literal-block">
 regex:^/shows/(?P&lt;showname&gt;[^/]+)/.*\.mp3:
@@ -902,9 +901,9 @@ and((and(*nougat*, regex:&quot;(foo|bar)&quot;), &gt;01-01-2001)):
     pre: [&quot;$1.mp3&quot;]
     post: []
 </pre>
-<p class="last">With <tt class="docutils literal"><span class="pre">and</span></tt>, the last matching element will always the very last
-element.   With <tt class="docutils literal"><span class="pre">or</span></tt>, however, that is not the case -- as soon as
-one of an <tt class="docutils literal"><span class="pre">or</span></tt> compound condition's sub-matchers matches, that
+<p class="last">With <tt class="docutils literal">and</tt>, the last matching element will always the very last
+element.   With <tt class="docutils literal">or</tt>, however, that is not the case -- as soon as
+one of an <tt class="docutils literal">or</tt> compound condition's sub-matchers matches, that
 match is returned and subsequent sub-matchers are ignored.</p>
 </div>
 <p>It is convenient under some circumstances to nest lists of rules, with
@@ -921,24 +920,24 @@ regex:shows/(?P&lt;showname&gt;[^/]+)/.*: [
        post: [current.mp3]
     ]
 </pre>
-<p>For a complete reference, see the <a class="reference" href="#appendix-i-ewaconf-formal-grammar-specification">grammar specification</a> below.</p>
+<p>For a complete reference, see the <a class="reference internal" href="#appendix-i-ewaconf-formal-grammar-specification">grammar specification</a> below.</p>
 </div>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id26" id="checking-the-syntax-of-the-configuration-files" name="checking-the-syntax-of-the-configuration-files">Checking the Syntax of the Configuration Files</a></h2>
-<p>The <a class="reference" href="#ewabatch">ewabatch</a> script, when run with the <tt class="docutils literal"><span class="pre">-t</span></tt> option, will perform
-a syntax check on both <tt class="docutils literal"><span class="pre">ewa.conf</span></tt> and the rulefile, and either exit
-with a <tt class="docutils literal"><span class="pre">Syntax</span> <span class="pre">OK</span></tt> message or blow up with a possibly helpful
+<div class="section" id="checking-the-syntax-of-the-configuration-files">
+<h2><a class="toc-backref" href="#id26">Checking the Syntax of the Configuration Files</a></h2>
+<p>The <a class="reference internal" href="#ewabatch">ewabatch</a> script, when run with the <tt class="docutils literal"><span class="pre">-t</span></tt> option, will perform
+a syntax check on both <tt class="docutils literal">ewa.conf</tt> and the rulefile, and either exit
+with a <tt class="docutils literal">Syntax OK</tt> message or blow up with a possibly helpful
 traceback.</p>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id27" id="configuring-the-web-server" name="configuring-the-web-server">Configuring the Web Server</a></h2>
+<div class="section" id="configuring-the-web-server">
+<h2><a class="toc-backref" href="#id27">Configuring the Web Server</a></h2>
 <p>Two recommended options for integrating ewa with a web server are
-discussed below. <a class="footnote-reference" href="#id9" id="id4" name="id4">[4]</a></p>
-<div class="section">
-<h3><a class="toc-backref" href="#id28" id="id5" name="id5">Lighttpd</a></h3>
-<p>First of all, enable <tt class="docutils literal"><span class="pre">fastcgi</span></tt> in <tt class="docutils literal"><span class="pre">ewa.conf</span></tt>.  If you are using
-<a class="reference" href="http://lighttpd.net/">lighttpd</a> in version 1.4.11 or lower, set <tt class="docutils literal"><span class="pre">sendfile_header</span></tt> to
+discussed below. <a class="footnote-reference" href="#id9" id="id4">[4]</a></p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id28">Lighttpd</a></h3>
+<p>First of all, enable <tt class="docutils literal">fastcgi</tt> in <tt class="docutils literal">ewa.conf</tt>.  If you are using
+<a class="reference external" href="http://lighttpd.net/">lighttpd</a> in version 1.4.11 or lower, set <tt class="docutils literal">sendfile_header</tt> to
 <tt class="docutils literal"><span class="pre">'X-LIGHTTPD-send-file'</span></tt>.</p>
 <p>Then use something like the following lighttpd configuration:</p>
 <pre class="literal-block">
@@ -962,29 +961,29 @@ fastcgi.server = (
                         # note: this is for lighttpd &lt; 1.5.
                         # for 1.5, apparently you do instead:
                         # proxy-core.allow-x-sendfile = &quot;enable&quot;
-			&quot;allow-x-send-file&quot; =&gt; &quot;enable&quot;
+                        &quot;allow-x-send-file&quot; =&gt; &quot;enable&quot;
                       )
                     )
                 )
 
 </pre>
 </div>
-<div class="section">
-<h3><a class="toc-backref" href="#id29" id="apache-with-mod-xsendfile" name="apache-with-mod-xsendfile">Apache with mod_xsendfile</a></h3>
-<p>TBD. This should be a fairly straightforward combination of <a class="reference" href="http://www.mems-exchange.org/software/scgi/">mod_scgi</a> and
-<a class="reference" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>.</p>
+<div class="section" id="apache-with-mod-xsendfile">
+<h3><a class="toc-backref" href="#id29">Apache with mod_xsendfile</a></h3>
+<p>TBD. This should be a fairly straightforward combination of <a class="reference external" href="http://www.mems-exchange.org/software/scgi/">mod_scgi</a> and
+<a class="reference external" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>.</p>
 </div>
 </div>
 </div>
-<div class="section">
-<h1><a class="toc-backref" href="#id30" id="using-the-cli-programs" name="using-the-cli-programs">Using The CLI Programs</a></h1>
-<p>Below are summaries of the commandline options of <tt class="docutils literal"><span class="pre">ewa</span></tt> and
-<tt class="docutils literal"><span class="pre">ewabatch</span></tt>, and also for a third less important program,
-<tt class="docutils literal"><span class="pre">ewasplice</span></tt>, which provides lower-level access to ewa's splicing
+<div class="section" id="using-the-cli-programs">
+<h1><a class="toc-backref" href="#id30">Using The CLI Programs</a></h1>
+<p>Below are summaries of the commandline options of <tt class="docutils literal">ewa</tt> and
+<tt class="docutils literal">ewabatch</tt>, and also for a third less important program,
+<tt class="docutils literal">ewasplice</tt>, which provides lower-level access to ewa's splicing
 facilities.</p>
-<div class="section">
-<h2><a class="toc-backref" href="#id31" id="ewabatch" name="ewabatch"><tt class="docutils literal"><span class="pre">ewabatch</span></tt></a></h2>
-<p>usage: <tt class="docutils literal"><span class="pre">ewabatch</span></tt> [options] [files]</p>
+<div class="section" id="ewabatch">
+<h2><a class="toc-backref" href="#id31"><tt class="docutils literal">ewabatch</tt></a></h2>
+<p>usage: <tt class="docutils literal">ewabatch</tt> [options] [files]</p>
 <p>Produces a combined MP3 file according to the specified rules.</p>
 <dl class="docutils">
 <dt>options:</dt>
@@ -1032,14 +1031,14 @@ than the basedir (default: no)</td></tr>
 </dl>
 <div class="hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">With both <tt class="docutils literal"><span class="pre">ewabatch</span></tt> and <tt class="docutils literal"><span class="pre">ewa</span></tt>, if you don't specify a config
+<p class="last">With both <tt class="docutils literal">ewabatch</tt> and <tt class="docutils literal">ewa</tt>, if you don't specify a config
 file, ewa will look for it in <tt class="docutils literal"><span class="pre">~/.ewa/ewa.conf</span></tt> and
-<tt class="docutils literal"><span class="pre">/etc/ewa.conf</span></tt>.</p>
+<tt class="docutils literal">/etc/ewa.conf</tt>.</p>
 </div>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id32" id="ewa" name="ewa"><tt class="docutils literal"><span class="pre">ewa</span></tt></a></h2>
-<p>usage: <tt class="docutils literal"><span class="pre">ewa</span></tt> [options]</p>
+<div class="section" id="ewa">
+<h2><a class="toc-backref" href="#id32"><tt class="docutils literal">ewa</tt></a></h2>
+<p>usage: <tt class="docutils literal">ewa</tt> [options]</p>
 <p>Starts ewa's WSGI application that produces combined MP3 files
 according to the specified rules.</p>
 <dl class="docutils">
@@ -1064,9 +1063,9 @@ according to the specified rules.</p>
 </dd>
 </dl>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id33" id="ewasplice" name="ewasplice"><tt class="docutils literal"><span class="pre">ewasplice</span></tt></a></h2>
-<p>usage: <tt class="docutils literal"><span class="pre">ewasplice</span></tt> [options] files</p>
+<div class="section" id="ewasplice">
+<h2><a class="toc-backref" href="#id33"><tt class="docutils literal">ewasplice</tt></a></h2>
+<p>usage: <tt class="docutils literal">ewasplice</tt> [options] files</p>
 <p>This utility splices MP3 files together using the ewa splicer, but
 doesn't use the managed directories or perform automatic
 transcoding. You have to specify a file as  &quot;tagfile&quot; so it knows
@@ -1106,10 +1105,10 @@ mp3cat, or sox)</td></tr>
 </dl>
 </div>
 </div>
-<div class="section">
-<h1><a class="toc-backref" href="#id34" id="appendix-i-ewaconf-formal-grammar-specification" name="appendix-i-ewaconf-formal-grammar-specification">Appendix I. <tt class="docutils literal"><span class="pre">ewaconf</span></tt> Formal Grammar Specification</a></h1>
-<div class="section">
-<h2><a class="toc-backref" href="#id35" id="normative-ebnf" name="normative-ebnf">Normative EBNF</a></h2>
+<div class="section" id="appendix-i-ewaconf-formal-grammar-specification">
+<h1><a class="toc-backref" href="#id34">Appendix I. <tt class="docutils literal">ewaconf</tt> Formal Grammar Specification</a></h1>
+<div class="section" id="normative-ebnf">
+<h2><a class="toc-backref" href="#id35">Normative EBNF</a></h2>
 <p>The below is an EBNF grammar for the rule configuration format:</p>
 <pre class="literal-block">
 grammar        := cond_rule [','? cond_rule]*
@@ -1137,10 +1136,10 @@ condopts       := '[' condopt [',' condopt]* ']'
 condopt        := BAREWORD | BAREWORD '=' BAREWORD
 </pre>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id36" id="lexical-details" name="lexical-details">Lexical Details</a></h2>
-<div class="section">
-<h3><a class="toc-backref" href="#id37" id="significant-tokens" name="significant-tokens">Significant Tokens</a></h3>
+<div class="section" id="lexical-details">
+<h2><a class="toc-backref" href="#id36">Lexical Details</a></h2>
+<div class="section" id="significant-tokens">
+<h3><a class="toc-backref" href="#id37">Significant Tokens</a></h3>
 <p>The tokens that the lexer must produce will be:</p>
 <blockquote>
 <dl class="docutils">
@@ -1152,11 +1151,11 @@ backslashes, question marks, underscores, or periods.</dd>
 quotation marks of the same type used as the delimiter must be
 escaped.</dd>
 <dt>BAREREGEX</dt>
-<dd>a string that matches a regex; should start with <tt class="docutils literal"><span class="pre">regex:</span></tt>,
+<dd>a string that matches a regex; should start with <tt class="docutils literal">regex:</tt>,
 followed by an unquoted string with the same restrictions as
 BAREWORD above.</dd>
 <dt>QREGEX</dt>
-<dd>like a BAREREGEX, but the regex, after the <tt class="docutils literal"><span class="pre">regex:</span></tt> prefix,
+<dd>like a BAREREGEX, but the regex, after the <tt class="docutils literal">regex:</tt> prefix,
 is delimited by single or double quotation marks, and escaping
 (except of quotation marks) is not necessary.</dd>
 <dt>DATE</dt>
@@ -1196,15 +1195,15 @@ a space or the previously used separator.</dd>
 </dl>
 </blockquote>
 </div>
-<div class="section">
-<h3><a class="toc-backref" href="#id38" id="ignored-tokens" name="ignored-tokens">Ignored Tokens</a></h3>
+<div class="section" id="ignored-tokens">
+<h3><a class="toc-backref" href="#id38">Ignored Tokens</a></h3>
 <p>Any text on a line after a pound sign (#) is a comment and is ignored.
 Whitespace, including line returns, is ignored between tokens.
 Indentation may be freely used to clarify patterns.</p>
 </div>
 </div>
-<div class="section">
-<h2><a class="toc-backref" href="#id39" id="complete-example" name="complete-example">Complete Example</a></h2>
+<div class="section" id="complete-example">
+<h2><a class="toc-backref" href="#id39">Complete Example</a></h2>
 <pre class="literal-block">
 # test rule file.
 
@@ -1234,7 +1233,7 @@ default
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1" name="id6">[1]</a></td><td>There are use cases in which you might want more than one
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>There are use cases in which you might want more than one
 content file -- one for each segment of a radio program, for
 instance -- but this usage is not currently supported.</td></tr>
 </tbody>
@@ -1242,16 +1241,16 @@ instance -- but this usage is not currently supported.</td></tr>
 <table class="docutils footnote" frame="void" id="id7" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2" name="id7">[2]</a></td><td>The stated default value of this config variable, and of the
-several following which refer to the configuration of the <a class="reference" href="http://fastcgi.com/">FCGI</a> and
-<a class="reference" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> daemons,  are actually enforced by <a class="reference" href="http://cheeseshop.python.org/pypi/flup">flup</a>; the value help in
-<tt class="docutils literal"><span class="pre">Config</span></tt>  object for all of them is actually <tt class="docutils literal"><span class="pre">None</span></tt>.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>The stated default value of this config variable, and of the
+several following which refer to the configuration of the <a class="reference external" href="http://fastcgi.com/">FCGI</a> and
+<a class="reference external" href="http://www.mems-exchange.org/software/scgi/">SCGI</a> daemons,  are actually enforced by <a class="reference external" href="http://cheeseshop.python.org/pypi/flup">flup</a>; the value help in
+<tt class="docutils literal">Config</tt>  object for all of them is actually <tt class="docutils literal">None</tt>.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3" name="id8">[3]</a></td><td>Actually, there is a third format -- a special dialect of <a class="reference" href="http://www.json.org/">JSON</a>
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Actually, there is a third format -- a special dialect of <a class="reference external" href="http://www.json.org/">JSON</a>
 -- but it isn't very useful and may be dropped in a future
 release.</td></tr>
 </tbody>
@@ -1259,10 +1258,10 @@ release.</td></tr>
 <table class="docutils footnote" frame="void" id="id9" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4" name="id9">[4]</a></td><td>Other options are possible.  In addition to nginx, mentioned
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Other options are possible.  In addition to nginx, mentioned
 elsewhere, it would be possible run ewa's WSGI application in
 another WSGI container or even a CGI.  With Apache's
-<tt class="docutils literal"><span class="pre">mod_rewrite</span></tt> it is possible to detect whether a static file is
+<tt class="docutils literal">mod_rewrite</tt> it is possible to detect whether a static file is
 available and serve it directly if so, and only call a splicing
 backend if not, which, if X-Sendfile were not available, could
 accomplish much the same thing with an external redirect.</td></tr>
@@ -1273,7 +1272,7 @@ accomplish much the same thing with an external redirect.</td></tr>
 </div>
 <div class="footer">
 <hr class="footer" />
-<a class="reference" href="ewamanual.rst">View document source</a>.
+<a class="reference external" href="ewamanual.rst">View document source</a>.
 
 </div>
 </body>

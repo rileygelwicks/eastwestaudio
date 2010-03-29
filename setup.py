@@ -1,7 +1,8 @@
-import ez_setup
-ez_setup.use_setuptools()
-
-from setuptools import setup, Extension
+try:
+    from setuptools import setup, Extension
+except ImportError:
+    from distutils import setup, Extension
+    
 import os
 import sys
 sys.path.insert(0, 'src')
@@ -48,8 +49,6 @@ setup(author='Jacob Smullyan',
       scripts=['bin/ewasplice',
                'bin/ewabatch',
                'bin/ewa'],
-##       install_requires=['eyeD3',
-##                         'setuptools',
-##                         'simplejson >=1.3']
+      install_requires=['eyeD3'],
       )
       

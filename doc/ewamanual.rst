@@ -198,7 +198,6 @@ Ewa is written in Python_, and requires Python 2.4 or later. In
 addition, the following Python packages need to be installed:
 
 * setuptools_ 
-* simplejson_
 * eyeD3_
 * flup_
 
