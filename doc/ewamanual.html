@@ -478,11 +478,11 @@ caching them on the filesystem and rebuilding them upon request with a
 configurable frequency.  The path to the composite file is passed to
 the webserver via the <a class="reference external" href="http://blog.lighttpd.net/articles/2006/07/02/x-sendfile">X-Sendfile</a> technique (which originated with
 <a class="reference external" href="http://lighttpd.net/">lighttpd</a> and is also supported by <a class="reference external" href="http://httpd.apache.org/">apache</a> with the <a class="reference external" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>
-module; <a class="reference external" href="http://nginx.net/">nginx</a> also has a <a class="reference external" href="http://blog.kovyrin.net/2006/11/01/nginx-x-accel-redirect-php-rails/">similar feature</a>).  The webserver is
-responsible for returning the actual file over HTTP, and ewa
-does not need to do IO; as a result, ewa processes each request
-extremely quickly, and files are served at almost the same speed as
-static files, with excellent scaleability.</p>
+module; <a class="reference external" href="http://nginx.net/">nginx</a> also has a <a class="reference external" href="http://blog.kovyrin.net/2006/11/01/nginx-x-accel-redirect-php-rails/">similar feature</a> and <a class="reference external" href="http://www.cherokee-project.com/">cherokee</a> supports it
+as well).  The webserver is responsible for returning the actual file
+over HTTP, and ewa does not need to do IO; as a result, ewa processes
+each request extremely quickly, and files are served at almost the
+same speed as static files, with excellent scaleability.</p>
 </div>
 </div>
 <div class="section" id="limitations">
@@ -544,16 +544,16 @@ addition, the following Python packages need to be installed:</p>
 <p>Ewa also requires that <a class="reference external" href="http://lame.sourceforge.net/">lame</a> be installed for transcoding.  To run the
 ewa server, you need to run an http server that supports <a class="reference external" href="http://blog.lighttpd.net/articles/2006/07/02/x-sendfile">X-Sendfile</a>
 or something equivalent: either <a class="reference external" href="http://lighttpd.net/">lighttpd</a>, <a class="reference external" href="http://httpd.apache.org/">apache</a> with
-<a class="reference external" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>, or possibly <a class="reference external" href="http://nginx.net/">nginx</a>.</p>
+<a class="reference external" href="http://celebnamer.celebworld.ws/stuff/mod_xsendfile/">mod_xsendfile</a>, or possibly <a class="reference external" href="http://nginx.net/">nginx</a> or <a class="reference external" href="http://www.cherokee-project.com/">cherokee</a>.</p>
 </div>
 <div class="section" id="getting-ewa">
 <h2><a class="toc-backref" href="#id18">Getting Ewa</a></h2>
 <p>Ewa releases are available in binary and source form from
 <a class="reference external" href="http://cheeseshop.python.org/pypi/ewa">http://cheeseshop.python.org/pypi/ewa</a>.</p>
 <p>If you want to follow the bleeding edge development version, you can
-check out the latest source code from our subversion repository:</p>
+check out the latest source code from our mercurial repository:</p>
 <pre class="literal-block">
-svn co svn://svn.wnyc.org/public/ewa/trunk ewa
+hg clone https://eastwestaudio.googlecode.com/hg/ ewa
 </pre>
 </div>
 <div class="section" id="software-installation">

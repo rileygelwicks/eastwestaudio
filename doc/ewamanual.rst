@@ -125,11 +125,11 @@ caching them on the filesystem and rebuilding them upon request with a
 configurable frequency.  The path to the composite file is passed to
 the webserver via the X-Sendfile_ technique (which originated with
 lighttpd_ and is also supported by apache_ with the `mod_xsendfile`_
-module; nginx_ also has a `similar feature`_).  The webserver is
-responsible for returning the actual file over HTTP, and ewa
-does not need to do IO; as a result, ewa processes each request
-extremely quickly, and files are served at almost the same speed as
-static files, with excellent scaleability.
+module; nginx_ also has a `similar feature`_ and cherokee_ supports it
+as well).  The webserver is responsible for returning the actual file
+over HTTP, and ewa does not need to do IO; as a result, ewa processes
+each request extremely quickly, and files are served at almost the
+same speed as static files, with excellent scaleability.
 
 
 .. _WSGI: http://wsgi.org/wsgi
@@ -141,6 +141,7 @@ static files, with excellent scaleability.
 .. _mod\_xsendfile: http://celebnamer.celebworld.ws/stuff/mod_xsendfile/
 .. _nginx: http://nginx.net/
 .. _`similar feature`: http://blog.kovyrin.net/2006/11/01/nginx-x-accel-redirect-php-rails/
+.. _cherokee: http://www.cherokee-project.com/
 
 
 Limitations
@@ -208,7 +209,7 @@ To run tests you also need:
 Ewa also requires that lame_ be installed for transcoding.  To run the
 ewa server, you need to run an http server that supports X-Sendfile_
 or something equivalent: either lighttpd_, apache_ with
-`mod_xsendfile`_, or possibly nginx_.
+`mod_xsendfile`_, or possibly nginx_ or cherokee_.
 
 Getting Ewa
 -----------
@@ -217,9 +218,9 @@ Ewa releases are available in binary and source form from
 http://cheeseshop.python.org/pypi/ewa. 
 
 If you want to follow the bleeding edge development version, you can
-check out the latest source code from our subversion repository::
+check out the latest source code from our mercurial repository::
 
-  svn co svn://svn.wnyc.org/public/ewa/trunk ewa
+  hg clone https://eastwestaudio.googlecode.com/hg/ ewa
 
 
 Software Installation
