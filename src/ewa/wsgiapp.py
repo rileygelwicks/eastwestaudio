@@ -103,7 +103,7 @@ class EwaApp(object):
             try:
                 mtime=os.path.getmtime(path)
             except OSError:
-                exception("OSError in getting mod time")
+                debug("OSError in getting mod time (ok)")
                 pass
             else:
                 # if the main file modified?

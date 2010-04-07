@@ -705,7 +705,9 @@ options:
   -c CONFIGFILE, --config=CONFIGFILE
                         path to ewa config file
   -D, --nodaemonize     don't daemonize, regardless of config settings
-
+  --lighttpd-hack       force SCRIPT_NAME to be "", regardless of what
+                        was sent by the web server. (Needed for some 
+                        versions of lighttpd under some circumstances.)
 
 
 ``ewasplice``

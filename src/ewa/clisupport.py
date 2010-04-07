@@ -39,7 +39,8 @@ except ImportError:
 import ewa.mp3
 import ewa.audio
 from ewa.config import Config, initConfig
-from ewa.logutil import debug, exception, logger, initLogging
+from ewa.lighttpd_hack_middleware import LighttpdHackMiddleware
+from ewa.logutil import debug, exception, logger, initLogging, warn
 from ewa.wsgiapp import EwaApp
 from ewa.rules import FileRule
 from ewa import __version__
@@ -47,7 +48,7 @@ from ewa import __version__
 VERSION_TEXT="""\
 %%s %s
 
-Copyright (C) 2007 WNYC New York Public Radio.
+Copyright (C) 2007, 2010 WNYC New York Public Radio.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -96,6 +97,11 @@ def get_serve_parser():
                       action="store_true",
                       dest="version",
                       help="show version and exit")
+    parser.add_option('--lighttpd-hack',
+                      action='store_true',
+                      default=False,
+                      dest='lighttpd_hack',
+                      help="hack for some versions of lighttpd to force SCRIPT_NAME to ''")
     return parser
 
 
@@ -385,6 +391,9 @@ def do_serve(args):
                sendfile_header=Config.sendfile_header,
                content_disposition=Config.content_disposition,
                splicer=engine)
+
+    if opts.lighttpd_hack:
+        app = LighttpdHackMiddleware(app)
             
     if Config.protocol=='http':
         runner=partial(httpserver.serve,
@@ -505,6 +514,6 @@ def run_server(func, pidfile=None, daemonize=True):
             except OSError, e:
                 # if it doesn't exist, that's OK
                 if e.errno!=errno.ENOENT:
-                    exception("problem unlinking pid file %s", pidfile)
+                    warn("problem unlinking pid file %s", pidfile)
 
 

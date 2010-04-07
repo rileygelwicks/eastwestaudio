@@ -1,3 +1,8 @@
+2010-04-07    <smulloni@smullyan.org>
+	
+	* added lighttpd hack, for versions of lighttpd that don't know
+	what SCRIPT_NAME and PATH_INFO are for.
+	
 2007-08-01    <smulloni@smullyan.org>
 
 	* setup.py: add ewa.ply package.
