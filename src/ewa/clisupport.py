@@ -5,6 +5,7 @@ import os
 from os import path
 import re
 import sys
+import time
 
 try:
     import grp
@@ -366,6 +367,8 @@ class RecursiveChangedMp3FileIterator(RecursiveMp3FileIterator):
     def __init__(self, files, basedir, max_age=0):
         super(RecursiveChangedMp3FileIterator, self).__init__(files, basedir)
         self.targetdir = Config.targetdir
+        if self.targetdir is None:
+            self.targetdir = path.join(Config.basedir, 'combined')
         self.max_age = max_age
 
     def _walk(self, f):
@@ -373,6 +376,9 @@ class RecursiveChangedMp3FileIterator(RecursiveMp3FileIterator):
             for f in files:
                 if f.endswith('.mp3') or f.endswith('MP3'):
                     fullpath = path.join(root, f)
+                    debug('fullpath is %s', fullpath)
+                    debug('basedir: %s; targetdir: %s',
+                          self.basedir, self.targetdir)
                     targetpath = os.path.join(self.targetdir,
                                               path.relpath(fullpath,
                                                            self.basedir))
@@ -381,36 +387,36 @@ class RecursiveChangedMp3FileIterator(RecursiveMp3FileIterator):
                     except OSError, ozzie:
                         if ozzie.errno == errno.ENOENT:
                             # target doesn't exist
+                            debug("target doesn't exist: %s", targetpath)
                             yield fullpath
                         else:
                             exception("error statting targetfile")
                             # should we return this, or continue? ????
-                            yield fullpath
-
-                    # we know the file exists
-                    target_mtime = stats.st_mtime
-                    try:
-                        original_mtime = os.getmtime(fullpath)
-                    except OSError:
-                        exception('peculiar error getting mtime of %s',
-                                  fullpath)
-                        continue
-
-                    if original_mtime > target_mtime:
-                        # if original file has changed, we need to
-                        # regenerate regardless
-                        yield fullpath
-                    elif max_age <= 0:
-                        # max_age of zero or less means we never
-                        # regenerate the files
-                        continue
                     else:
-                        # regenerate if the file is older than
-                        # max_age minutes
-                        mtime = stats.st_mtime
-                        age = time.time() - mtime
-                        if age > max_age * 60:
+                        # we know the file exists
+                        target_mtime = stats.st_mtime
+                        try:
+                            original_mtime = path.getmtime(fullpath)
+                        except OSError:
+                            exception('peculiar error getting mtime of %s',
+                                      fullpath)
+                            continue
+
+                        if original_mtime > target_mtime:
+                            # if original file has changed, we need to
+                            # regenerate regardless
                             yield fullpath
+                        elif self.max_age <= 0:
+                            # max_age of zero or less means we never
+                            # regenerate the files
+                            continue
+                        else:
+                            # regenerate if the file is older than
+                            # max_age minutes
+                            mtime = stats.st_mtime
+                            age = time.time() - mtime
+                            if age > self.max_age * 60:
+                                yield fullpath
 
 
 def _find_config(givenpath):

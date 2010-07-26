@@ -7,7 +7,7 @@
 :organization: WNYC New York Public Radio
 :date: $Date$
 :revision: $Revision$
-:version: 0.62.3
+:version: 0.62.5
 :copyright: Copyright 2006,2010 WNYC New York Public Radio.
 
 .. contents:: 
@@ -686,6 +686,11 @@ options:
   -a, --absolute        interpret file paths relative to the filesystem rather
                         than the basedir (default: no)
   -t, --configtest      just test the config file for syntax errors
+  -x, --max-age         in recursive mode, to force regeneration of all files, 
+                        pass ``-1``.  To regenerate only files that have changed,
+                        pass ``0``.  If you pass a higher number ``N``, any file 
+                        older than ``N`` minutes will be regenerated.  
+                          
 
 .. hint:: With both ``ewabatch`` and ``ewa``, if you don't specify a config
    file, ewa will look for it in ``~/.ewa/ewa.conf`` and

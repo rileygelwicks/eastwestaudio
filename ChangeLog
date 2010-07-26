@@ -1,3 +1,6 @@
+2010-07-26  Jacob Smullyan <smulloni@smullyan.org>
+	* src/ewa/clisupport.py: added --max-age option for ewabatch.
+
 2010-04-07    <smulloni@smullyan.org>
 	
 	* added lighttpd hack, for versions of lighttpd that don't know
