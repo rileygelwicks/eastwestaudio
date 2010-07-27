@@ -5,9 +5,7 @@
 :Author: Jacob Smullyan
 :Contact: jsmullyan@gmail.com
 :organization: WNYC New York Public Radio
-:date: $Date$
-:revision: $Revision$
-:version: 0.62.6
+:version: 0.62.6.1
 :copyright: Copyright 2006,2010 WNYC New York Public Radio.
 
 .. contents:: 

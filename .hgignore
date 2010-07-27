@@ -2,3 +2,4 @@
 .*\.so$
 ^build/
 egg-info
+^doc/api/html
