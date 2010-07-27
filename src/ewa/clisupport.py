@@ -44,7 +44,8 @@ import ewa.mp3
 import ewa.audio
 from ewa.config import Config, initConfig
 from ewa.lighttpd_hack_middleware import LighttpdHackMiddleware
-from ewa.logutil import debug, exception, logger, initLogging, warn
+from ewa.logutil import (debug, error, exception, info, logger,
+                         initLogging, warn)
 from ewa.wsgiapp import EwaApp
 from ewa.rules import FileRule
 from ewa import __version__
@@ -215,6 +216,13 @@ def get_ap_parser():
                             'are regenerated. Default is 0, which means no '
                             'expiration.  -1 will force regeneration.'))
 
+    parser.add_option('-D',
+                      '--delete',
+                      default=False,
+                      action='store_true',
+                      help=('delete files in combined directory that are '
+                            'not in the the main directory'))
+
     parser.add_option('--version',
                       action="store_true",
                       dest="version",
@@ -308,6 +316,21 @@ def do_audioprovider(args):
     else:
         args = [re.sub('/*(.*)', r'\1', x) for x in args]
 
+    if opts.delete:
+        if not opts.recursive:
+            parser.error("delete only works in recursive mode")
+        delete_finder = DeleteFinder(args, mainpath)
+        for file, isdir in delete_finder:
+            info('deleting %s', file)
+            if not opts.dryrun:
+                try:
+                    if isdir:
+                        os.rmdir(file)
+                    else:
+                        os.unlink(file)
+                except Exception, e:
+                    error("couldn't unlink %s: %s", file, e)
+
     if opts.recursive:
         # replace args with an iterator that finds mp3 files
         if opts.max_age == -1:
@@ -337,6 +360,36 @@ def do_audioprovider(args):
                 debug('created %s', target)
     sys.exit(0)
 
+
+class DeleteFinder(object):
+    def __init__(self, files, basedir):
+        self.files = files
+        self.basedir = basedir
+        self.targetdir = Config.targetdir
+        if self.targetdir is None:
+            self.targetdir = path.join(Config.basedir, 'combined')
+
+    def _yielder(self, root, apath, isdir):
+        targetpath = os.path.join(root, apath)
+        mainpath = path.join(self.basedir,
+                             path.relpath(targetpath, self.targetdir))
+
+        debug('mainpath for %s is %s', apath, mainpath)
+        if not os.path.exists(mainpath):
+            yield targetpath, isdir
+
+    def __iter__(self):
+        for f in (path.join(self.targetdir, x) for x in self.files):
+            if path.isdir(f):
+                debug('found directory: %s', f)
+                for root, dirs, files in os.walk(f, topdown=False):
+                    for thing in files:
+                        for res in self._yielder(root, thing, 0):
+                            yield res
+                    for thing in dirs:
+                        for res in self._yielder(root, thing, 1):
+                            yield res
+                            
 
 class RecursiveMp3FileIterator(object):
     def __init__(self, files, basedir):

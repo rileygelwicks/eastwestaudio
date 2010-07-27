@@ -7,7 +7,7 @@
 :organization: WNYC New York Public Radio
 :date: $Date$
 :revision: $Revision$
-:version: 0.62.5
+:version: 0.62.6
 :copyright: Copyright 2006,2010 WNYC New York Public Radio.
 
 .. contents:: 
@@ -690,6 +690,10 @@ options:
                         pass ``-1``.  To regenerate only files that have changed,
                         pass ``0``.  If you pass a higher number ``N``, any file 
                         older than ``N`` minutes will be regenerated.  
+  -D, --delete          delete files in combined directory that aren't
+                        in the main directory.  
+    
+  
                           
 
 .. hint:: With both ``ewabatch`` and ``ewa``, if you don't specify a config

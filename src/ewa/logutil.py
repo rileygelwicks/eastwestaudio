@@ -10,8 +10,8 @@ critical=logger.critical
 info=logger.info
 exception=logger.exception
 
-def initLogging(level=_logging.CRITICAL,
-                format='%(asctime)s %(filename)s %(levelname)s %(message)s',
+def initLogging(level=_logging.INFO,
+                format='%(levelname)s %(asctime)s %(filename)s | %(message)s',
                 stream=None,
                 filename=None,
                 datefmt=None,
