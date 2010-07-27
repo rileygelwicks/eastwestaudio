@@ -384,6 +384,9 @@ class DeleteFinder(object):
                 debug('found directory: %s', f)
                 for root, dirs, files in os.walk(f, topdown=False):
                     for thing in files:
+                        if thing.endswith('~'):
+                            # looks like an ewa temp file.  Let it be.
+                            continue
                         for res in self._yielder(root, thing, 0):
                             yield res
                     for thing in dirs:
