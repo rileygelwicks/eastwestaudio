@@ -19,6 +19,7 @@ import thread
 from ewa.mp3 import get_vbr_bitrate_samplerate_mode, splice
 from ewa.transcode import transcode
 from ewa.logutil import warn
+from ewa.rules import DefaultRule
 
 path_join = os.path.join
 path_exists = os.path.exists
@@ -38,8 +39,9 @@ class FileNotFound(AudioProviderException):
 
 
 class BaseAudioProvider(object):
-    def __init__(self, basedir):
+    def __init__(self, basedir, tolerate_vbr=True):
         self.basedir = os.path.normpath(os.path.abspath(basedir))
+        self.tolerate_vbr = tolerate_vbr
 
     def get_main_path(self, audioname):
         return path_join(self.basedir,
@@ -93,7 +95,11 @@ class BaseAudioProvider(object):
          samplerate, mode) = get_vbr_bitrate_samplerate_mode(audiopath)
         if isvbr:
             warn("file is vbr: %s", audiopath)
-            raise AudioProviderException("vbr not supported: %s" % audiopath)
+            if not self.tolerate_vbr:
+                raise AudioProviderException("vbr not supported: %s" % audiopath)
+            else:
+                # just return the default rule for vbr
+                symbols = list(DefaultRule(audioname))
 
         def resolve(x):
             if is_original(x):
@@ -117,8 +123,8 @@ class BaseAudioProvider(object):
 
 class FSAudioProvider(BaseAudioProvider):
 
-    def __init__(self, basedir, targetdir=None):
-        super(FSAudioProvider, self).__init__(basedir)
+    def __init__(self, basedir, tolerate_vbr=True, targetdir=None):
+        super(FSAudioProvider, self).__init__(basedir, tolerate_vbr)
         if targetdir is None:
             targetdir = path_join(basedir, 'combined')
         self.targetdir = os.path.abspath(targetdir)

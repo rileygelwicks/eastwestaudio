@@ -223,6 +223,12 @@ def get_ap_parser():
                       help=('delete files in combined directory that are '
                             'not in the the main directory'))
 
+    parser.add_option('-V', '--no-vbr',
+                      default=True,
+                      action='store_false',
+                      dest='tolerate_vbr',
+                      help="don't put vbr files in the combined directory")
+
     parser.add_option('--version',
                       action="store_true",
                       dest="version",
@@ -298,6 +304,7 @@ def do_audioprovider(args):
         sys.exit(0)
 
     provider = ewa.audio.FSAudioProvider(Config.basedir,
+                                         opts.tolerate_vbr,
                                          Config.targetdir)
     mainpath = provider.get_main_path("")
     if not mainpath.endswith('/'):
@@ -392,7 +399,7 @@ class DeleteFinder(object):
                     for thing in dirs:
                         for res in self._yielder(root, thing, 1):
                             yield res
-                            
+
 
 class RecursiveMp3FileIterator(object):
     def __init__(self, files, basedir):

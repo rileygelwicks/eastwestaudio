@@ -5,7 +5,7 @@
 :Author: Jacob Smullyan
 :Contact: jsmullyan@gmail.com
 :organization: WNYC New York Public Radio
-:version: 0.62.6.1
+:version: 0.62.7
 :copyright: Copyright 2006,2010 WNYC New York Public Radio.
 
 .. contents:: 
@@ -690,7 +690,7 @@ options:
                         older than ``N`` minutes will be regenerated.  
   -D, --delete          delete files in combined directory that aren't
                         in the main directory.  
-    
+  -V, --no-vbr          don't put vbr files in the combined directory.    
   
                           
 
