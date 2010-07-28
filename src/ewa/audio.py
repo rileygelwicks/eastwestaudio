@@ -99,7 +99,7 @@ class BaseAudioProvider(object):
                 raise AudioProviderException("vbr not supported: %s" % audiopath)
             else:
                 # just return the default rule for vbr
-                symbols = list(DefaultRule(audioname))
+                symbols = list(DefaultRule()(audioname))
 
         def resolve(x):
             if is_original(x):
