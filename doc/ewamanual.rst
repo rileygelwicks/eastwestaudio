@@ -5,7 +5,7 @@
 :Author: Jacob Smullyan
 :Contact: jsmullyan@gmail.com
 :organization: WNYC New York Public Radio
-:version: 0.62.7
+:version: 0.62.8
 :copyright: Copyright 2006,2010 WNYC New York Public Radio.
 
 .. contents:: 
@@ -687,11 +687,13 @@ options:
   -x, --max-age         in recursive mode, to force regeneration of all files, 
                         pass ``-1``.  To regenerate only files that have changed,
                         pass ``0``.  If you pass a higher number ``N``, any file 
-                        older than ``N`` minutes will be regenerated.  
+                        older than ``N`` minutes will be regenerated
   -D, --delete          delete files in combined directory that aren't
-                        in the main directory.  
-  -V, --no-vbr          don't put vbr files in the combined directory.    
-  
+                        in the main directory
+  -V, --no-vbr          don't put vbr files in the combined directory  
+  -B, --no-broken       don't put broken files in the combined directory
+  -s, --sleep           number of seconds to sleep between file generations; 
+                        default: 0.0
                           
 
 .. hint:: With both ``ewabatch`` and ``ewa``, if you don't specify a config

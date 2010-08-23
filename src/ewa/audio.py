@@ -39,9 +39,13 @@ class FileNotFound(AudioProviderException):
 
 
 class BaseAudioProvider(object):
-    def __init__(self, basedir, tolerate_vbr=True):
+    def __init__(self,
+                 basedir,
+                 tolerate_vbr=True,
+                 tolerate_broken=True):
         self.basedir = os.path.normpath(os.path.abspath(basedir))
         self.tolerate_vbr = tolerate_vbr
+        self.tolerate_broken = tolerate_broken
 
     def get_main_path(self, audioname):
         return path_join(self.basedir,
@@ -91,15 +95,26 @@ class BaseAudioProvider(object):
         if not symbols:
             return symbols
         audiopath = self.get_main_path(audioname)
-        (isvbr, bitrate,
-         samplerate, mode) = get_vbr_bitrate_samplerate_mode(audiopath)
-        if isvbr:
-            warn("file is vbr: %s", audiopath)
-            if not self.tolerate_vbr:
-                raise AudioProviderException("vbr not supported: %s" % audiopath)
-            else:
-                # just return the default rule for vbr
+        try:
+            (isvbr, bitrate,
+             samplerate, mode) = get_vbr_bitrate_samplerate_mode(audiopath)
+        except (InvalidAudioFormatException, TagException), exc:
+            if self.tolerate_broken:
+                warn('got %s for %s', exc, audiopath)
+                # no splicing, return default rule
                 symbols = list(DefaultRule()(audioname))
+                isvbr = bitrate = samplerate = mode = None
+            else:
+                raise exc
+        else:
+            if isvbr:
+                warn("file is vbr: %s", audiopath)
+                if not self.tolerate_vbr:
+                    raise AudioProviderException("vbr not supported: %s" \
+                                                 % audiopath)
+                else:
+                    # just return the default rule for vbr
+                    symbols = list(DefaultRule()(audioname))
 
         def resolve(x):
             if is_original(x):
@@ -123,8 +138,11 @@ class BaseAudioProvider(object):
 
 class FSAudioProvider(BaseAudioProvider):
 
-    def __init__(self, basedir, tolerate_vbr=True, targetdir=None):
-        super(FSAudioProvider, self).__init__(basedir, tolerate_vbr)
+    def __init__(self, basedir, tolerate_vbr=True,
+                 tolerate_broken=True, targetdir=None):
+        super(FSAudioProvider, self).__init__(basedir,
+                                              tolerate_vbr,
+                                              tolerate_broken)
         if targetdir is None:
             targetdir = path_join(basedir, 'combined')
         self.targetdir = os.path.abspath(targetdir)

@@ -229,10 +229,22 @@ def get_ap_parser():
                       dest='tolerate_vbr',
                       help="don't put vbr files in the combined directory")
 
+    parser.add_option('-B', '--no-broken',
+                      default=True,
+                      action='store_false',
+                      dest='tolerate_broken',
+                      help="don't put broken files in the combined directory")
+
     parser.add_option('--version',
                       action="store_true",
                       dest="version",
                       help="show version and exit")
+    parser.add_option('-s', '--sleep',
+                      type=float,
+                      default=0.0,
+                      dest='sleep',
+                      help=('number of seconds to sleep between file generations; '
+                            'default: 0.0'))
     return parser
 
 
@@ -305,6 +317,7 @@ def do_audioprovider(args):
 
     provider = ewa.audio.FSAudioProvider(Config.basedir,
                                          opts.tolerate_vbr,
+                                         opts.tolerate_broken,
                                          Config.targetdir)
     mainpath = provider.get_main_path("")
     if not mainpath.endswith('/'):
@@ -358,7 +371,12 @@ def do_audioprovider(args):
         sys.exit(0)
     else:
         _change_user_group()
+        is_first = True
         for file in args:
+            if is_first:
+                is_first = False
+            elif opts.sleep:
+                time.sleep(opts.sleep)
             try:
                 target = provider.create_combined(file, rule, splicer=engine)
             except:

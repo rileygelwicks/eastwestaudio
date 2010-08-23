@@ -57,9 +57,11 @@ class EwaApp(object):
         self.content_disposition = content_disposition
         if self.stream:
             self.provider = ewa.audio.StreamAudioProvider(basedir,
-                                                          tolerate_vbr=False)
+                                                          tolerate_vbr=False,
+                                                          tolerate_broken=False)
         else:
             self.provider = ewa.audio.FSAudioProvider(basedir,
+                                                      False,
                                                       False,
                                                       targetdir)
 

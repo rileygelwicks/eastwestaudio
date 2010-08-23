@@ -316,7 +316,7 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Organization:</th>
 <td>WNYC New York Public Radio</td></tr>
 <tr><th class="docinfo-name">Version:</th>
-<td>0.62.7</td></tr>
+<td>0.62.8</td></tr>
 <tr><th class="docinfo-name">Copyright:</th>
 <td>Copyright 2006,2010 WNYC New York Public Radio.</td></tr>
 </tbody>
@@ -1024,14 +1024,22 @@ than the basedir (default: no)</td></tr>
 <td>in recursive mode, to force regeneration of all files,
 pass <tt class="docutils literal"><span class="pre">-1</span></tt>.  To regenerate only files that have changed,
 pass <tt class="docutils literal">0</tt>.  If you pass a higher number <tt class="docutils literal">N</tt>, any file
-older than <tt class="docutils literal">N</tt> minutes will be regenerated.</td></tr>
+older than <tt class="docutils literal">N</tt> minutes will be regenerated</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-D</span>, <span class="option">--delete</span></kbd></td>
 <td>delete files in combined directory that aren't
-in the main directory.</td></tr>
+in the main directory</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-V</span>, <span class="option">--no-vbr</span></kbd></td>
-<td>don't put vbr files in the combined directory.</td></tr>
+<td>don't put vbr files in the combined directory</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-B</span>, <span class="option">--no-broken</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>don't put broken files in the combined directory</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span>, <span class="option">--sleep</span></kbd></td>
+<td>number of seconds to sleep between file generations;
+default: 0.0</td></tr>
 </tbody>
 </table>
 </dd>
