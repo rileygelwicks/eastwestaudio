@@ -17,7 +17,7 @@ import os
 import thread
 
 from eyed3.mp3 import Mp3Exception
-from eyed3.ide.tag import TagException
+from eyed3.id3.tag import TagException
 
 from ewa.mp3 import get_vbr_bitrate_samplerate_mode, splice
 from ewa.transcode import transcode
