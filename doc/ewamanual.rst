@@ -197,7 +197,7 @@ Ewa is written in Python_, and requires Python 2.4 or later. In
 addition, the following Python packages need to be installed:
 
 * setuptools_ 
-* eyeD3_
+* eyed3_
 * flup_
 
 To run tests you also need:
@@ -241,7 +241,7 @@ or equivalently::
 .. _Python: http://www.python.org/
 .. _setuptools: http://cheeseshop.python.org/pypi/setuptools
 .. _simplejson: http://cheeseshop.python.org/pypi/simplejson
-.. _eyeD3: http://eyed3.nicfit.net/
+.. _eyed3: http://eyed3.nicfit.net/
 .. _flup: http://cheeseshop.python.org/pypi/flup
 .. _nose: http://somethingaboutorange.com/mrl/projects/nose/
 .. _lame: http://lame.sourceforge.net/

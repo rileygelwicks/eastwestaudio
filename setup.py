@@ -49,6 +49,6 @@ setup(author='Jacob Smullyan',
       scripts=['bin/ewasplice',
                'bin/ewabatch',
                'bin/ewa'],
-      install_requires=['eyeD3'],
+      install_requires=['eyed3'],
       )
       

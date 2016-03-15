@@ -113,7 +113,7 @@ def get_vbr_bitrate_samplerate_mode(path):
     returns a 4-tuple: whether the file is VBR,
     the bitrate, the samplerate, and the mode.
     """
-    af = eyeD3.Mp3AudioFile(path)
+    af = eyed3.Mp3AudioFile(path)
     return af.getBitRate() + (af.getSampleFreq(), af.header.mode[0].lower())
 
 def calculate_id3v2_size(header):

@@ -100,7 +100,7 @@ class EwaApp(object):
                     self.rule,
                     **self.spliceKwargs), MP3_MIMETYPE
             except (ewa.audio.AudioProviderException,
-                    eyeD3.InvalidAudioFormatException):
+                    eyed3.InvalidAudioFormatException):
                 info("%s cannot be processed.  Serving statically", mainpath)
                 return open(mainpath), guess_mime(mainpath)
         else:
@@ -132,7 +132,7 @@ class EwaApp(object):
                     self.rule,
                     **self.spliceKwargs)
             except (ewa.audio.AudioProviderException,
-                    eyeD3.InvalidAudioFormatException):
+                    eyed3.InvalidAudioFormatException):
                 info("%s cannot be processed.  Serving statically", mainpath)
                 return mainpath, guess_mime(mainpath)
             # should be the same
