@@ -2,13 +2,13 @@ import os
 from struct import unpack
 import subprocess
 
-import eyeD3
+import eyed3
 
 from ewa.logutil import debug
 from ewa.frameinfo import get_frame
 from ewa.buffutil import buff_chunk_string, buff_chunk_file
 
-            
+
 def _sox_splicer(files,
                  buffsize,
                  sox_path='/usr/bin/sox'):
@@ -30,7 +30,7 @@ def _mp3cat_splicer(files,
     """
     splicing engine that uses Tom Clegg's mp3cat.
     """
-    
+
     p1=subprocess.Popen(["cat"]+ files,
                         stdout=subprocess.PIPE)
     p2=subprocess.Popen([mp3cat_path, "-", "-"],
@@ -77,8 +77,8 @@ def mp3_sanity_check(files):
             raise ValueError, msg % (fields[idx],
                                      template[idx],
                                      r[idx])
-    
-                                     
+
+
 def splice(files,
            tagfile=None,
            buffsize=2**20,
@@ -95,19 +95,19 @@ def splice(files,
             data=get_id3v2_tags(fp)
         finally:
             fp.close()
-        
+
         if data:
             for chunk in buff_chunk_string(data, buffsize):
                 yield chunk
 
     for chunk in splicer(files, buffsize, **splicerKwargs):
         yield chunk
-        
+
     if tagfile:
         endoffset, tag=get_id3v1_offset_and_tag(tagfile)
         if tag:
             yield tag
-        
+
 def get_vbr_bitrate_samplerate_mode(path):
     """
     returns a 4-tuple: whether the file is VBR,
@@ -215,15 +215,12 @@ def _check_last_sync(fp, idx):
                 #debug("invalid frame at %d", idx-(buffsize-end))
                 prevend=end
                 continue
-            
+
     # if we get here, no sync frame was found
     debug(
         ('no valid sync frame found in %d bytes '
          'at end of file before any id3v1 tag; '
          'no cleanup attempted'),
         BUFFMAX)
-    
+
     return idx
-
-
-         

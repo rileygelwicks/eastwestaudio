@@ -9,7 +9,7 @@ import mimetypes
 import os
 import time
 
-import eyeD3
+import eyed3
 
 import ewa.audio
 from ewa.logutil import debug, info, error, exception
@@ -66,7 +66,7 @@ class EwaApp(object):
                                                       targetdir)
 
     basedir = property(lambda x: x.provider.basedir)
-    
+
     targetdir = property(lambda x: getattr(x.provider, 'basedir', None))
 
     def send(self, start_response, status, headers=None, iterable=None):
@@ -139,7 +139,7 @@ class EwaApp(object):
             debug("path returned from provider: %s", path2)
             debug("our calculated path: %s", path)
             return path2, MP3_MIMETYPE
-                    
+
     def __call__(self, environ, start_response):
         mp3file = environ['SCRIPT_NAME']+environ['PATH_INFO']
         info("mp3file: %s", mp3file)
@@ -153,7 +153,7 @@ class EwaApp(object):
         except:
             error("error creating combined file")
             exception("internal server error")
-            return self.send(start_response, 500)        
+            return self.send(start_response, 500)
         else:
             return self.sendfile(result, start_response, mtype)
 
@@ -177,6 +177,3 @@ class EwaApp(object):
                              200,
                              headers,
                              result)
-        
-
-    
