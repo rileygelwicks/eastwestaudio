@@ -1,0 +1,1 @@
+East West Audio (ewa) is a Python server and batch mode program for dynamically producing spliced aggregate mp3s from one main content file and any number of secondary files (intros, outros, promos, etc.).  With ewa, podcasters or other internet mp3 producers can rotate the promotional mp3 content embedded in their mp3 files without remastering them.
