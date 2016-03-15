@@ -16,7 +16,7 @@ This module is responsible for managing audio files:
 import os
 import thread
 
-from eyed3 import InvalidAudioFormatException, TagException
+from eyed3 import Mp3Exception, TagException
 
 from ewa.mp3 import get_vbr_bitrate_samplerate_mode, splice
 from ewa.transcode import transcode
@@ -100,7 +100,7 @@ class BaseAudioProvider(object):
         try:
             (isvbr, bitrate,
              samplerate, mode) = get_vbr_bitrate_samplerate_mode(audiopath)
-        except (InvalidAudioFormatException, TagException), exc:
+        except (Mp3Exception, TagException), exc:
             if self.tolerate_broken:
                 warn('got %s for %s', exc, audiopath)
                 # no splicing, return default rule
