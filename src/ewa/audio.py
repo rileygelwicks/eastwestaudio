@@ -16,7 +16,7 @@ This module is responsible for managing audio files:
 import os
 import thread
 
-from eyed3 import Mp3Exception, TagException
+from eyed3.mp3 import Mp3Exception, TagException
 
 from ewa.mp3 import get_vbr_bitrate_samplerate_mode, splice
 from ewa.transcode import transcode
